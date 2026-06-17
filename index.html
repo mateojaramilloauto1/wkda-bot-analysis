@@ -231,92 +231,106 @@ tbody tr.dim{opacity:.6}
   <div class="card"><h3 id="smsWeekTitle">W22–W25 — SMS Rate per Week</h3><div class="note" id="smsWeekNote">% of calls where SMS was sent</div><div class="cwlg"><canvas id="smsWeekChart"></canvas></div></div>
 
 
-  <!-- Conv IDs for SMS -->
-  <div class="st">Flagged Conversation IDs — SMS · W22–W25</div>
+
+  <!-- Conv IDs SMS -->
+  <div class="st">Flagged Conversation IDs — for Product Team Review</div>
 
   <div class="card" style="margin-bottom:14px">
-    <h3>✅ No Branch Capacity → SMS in opening message (expected)</h3>
-    <div class="note">Both bots fire SMS immediately in the first message when the branch has no capacity for 2+ weeks — this is correct behaviour. The SMS contains a link to book at a nearby branch. <strong>100% of these result in a booking within the same call</strong> (bot offers alternative branch slots in the same turn).</div>
-
-    <div style="background:#fffbeb;border:1px solid #fde68a;border-radius:8px;padding:12px 16px;margin-bottom:14px;font-size:12px;color:#374151;line-height:1.6">
-      <strong>Example flow</strong> (conv_5401ksqjd2eyf3brdxp59pkyh5v7):<br>
-      <span style="color:#6b7280;font-style:italic">"...in der gleichen Filiale gibt es in den nächsten zwei Wochen keine freien Termine. Ich habe Ihnen soeben per SMS einen Link geschickt, über den Sie einen neuen Termin in einer anderen Filiale buchen können. Gerne verbinde ich Sie auch mit einem Mitarbeiter..."</span>
+    <h3>✅ No Branch Capacity — SMS sent in opening message</h3>
+    <div class="note">Both bots fire SMS immediately in the <strong>first message</strong> when the branch has no slots for 2+ weeks. This is expected behaviour — the SMS contains a link to book at a nearby branch. <strong>11labs: 8.5% of calls (59 total) · RBA: 5.6% of calls (48 in W22–W25).</strong></div>
+    <div style="background:#fffbeb;border:1px solid #fde68a;border-radius:8px;padding:12px 16px;margin:12px 0;font-size:12px;color:#374151;line-height:1.7">
+      <strong>What the customer hears (opening message):</strong><br>
+      <span style="font-style:italic;color:#6b7280">"...in der gleichen Filiale gibt es in den nächsten zwei Wochen keine freien Termine. Ich habe Ihnen soeben per SMS einen Link geschickt, über den Sie einen neuen Termin in einer anderen Filiale buchen können."</span>
     </div>
-
     <div class="g2">
       <div>
-        <div style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;color:#6d28d9;margin-bottom:8px"><span class="badge labs">11labs</span> — 8.5% of calls (59 total)</div>
-        <div style="background:#f5f3ff;border-radius:8px;padding:10px 14px;font-family:Menlo,monospace;font-size:11px;color:#374151;line-height:2">
+        <div style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;color:#6d28d9;margin-bottom:8px"><span class="badge labs">11labs</span> — 10 sample IDs</div>
+        <div style="background:#f5f3ff;border-radius:8px;padding:10px 14px;font-family:Menlo,monospace;font-size:11px;color:#374151;line-height:2.1">
           conv_5401ksqjd2eyf3brdxp59pkyh5v7<br>
           conv_2101kst0nz33fv68xyntmvrksx18<br>
           conv_3401kssamcdtewtrxqabk9051g6d<br>
           conv_6201kss8hdfbegx983vhpqwn2nj5<br>
           conv_6301kt210sh0ek5avd6bhawznwn3<br>
-          conv_1901kt1v0egkfnmdh2jj13akk6rr<br>
-          conv_5101ktajb69z4en5zv4jk0t3jwz4<br>
-          conv_4101ktajb59z4en5zv4jk0t3jwz3
+          conv_6401kt1wz5m1ex59y36s8b70mvfk<br>
+          conv_5901kt1w6ypwf1894recyewhqz82<br>
+          conv_6001kt1vjrmmf3brh9qhzet7y0f9<br>
+          conv_9201kt1n5w7nec6af0jrggkfnrdk<br>
+          conv_5701kt1m17raeet9s2m8qz5e9tn6
         </div>
       </div>
       <div>
-        <div style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;color:#065f46;margin-bottom:8px"><span class="badge rba">RBA</span> — 5.6% of calls (48 total in W22–25)</div>
-        <div style="background:#f0fdf4;border-radius:8px;padding:10px 14px;font-family:Menlo,monospace;font-size:11px;color:#374151;line-height:2">
+        <div style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;color:#065f46;margin-bottom:8px"><span class="badge rba">RBA</span> — 10 sample IDs</div>
+        <div style="background:#f0fdf4;border-radius:8px;padding:10px 14px;font-family:Menlo,monospace;font-size:11px;color:#374151;line-height:2.1">
           WK11670665<br>
           WK11664344<br>
           WK11663856<br>
-          WK11658922<br>
-          WK11658256<br>
-          WK11657034<br>
-          WK11656742<br>
-          WK11655890
+          WK11663364<br>
+          WK11690497<br>
+          WK11689530<br>
+          WK11713411<br>
+          WK11713042<br>
+          WK11734701<br>
+          WK11734589
         </div>
       </div>
     </div>
   </div>
 
   <div class="card" style="margin-bottom:14px">
-    <h3>⚠️ No Slot Found → SMS after failed negotiation</h3>
-    <div class="note">RBA sends SMS after exhausting slot negotiation with the customer. 11labs has 0 such cases in W22–25 — all 11labs SMS go into "no branch capacity" or "other" categories. <strong>RBA: 4.2% of calls (36 in W22–25). 11labs: 0%.</strong></div>
-    <div>
-      <div style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;color:#065f46;margin-bottom:8px"><span class="badge rba">RBA only</span> — sample IDs</div>
-      <div style="background:#f0fdf4;border-radius:8px;padding:10px 14px;font-family:Menlo,monospace;font-size:11px;color:#374151;line-height:2">
-        WK11819447 &nbsp; WK11814202 &nbsp; WK11812756 &nbsp; WK11809112<br>
-        WK11803901 &nbsp; WK11803782 &nbsp; WK11802440 &nbsp; WK11800110
+    <h3>⚠️ No Slot Found — SMS after failed negotiation (RBA only)</h3>
+    <div class="note">RBA sends SMS after exhausting slot negotiation with the customer. <strong>11labs has 0 such cases</strong> in W22–W25 — all 11labs SMS go into "no branch capacity". <strong>RBA: 4.2% of calls (36 in W22–W25).</strong> These are worth reviewing — the customer went through negotiation and still could not get a slot.</div>
+    <div style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;color:#065f46;margin:12px 0 8px"><span class="badge rba">RBA only</span> — 10 sample IDs</div>
+    <div style="background:#f0fdf4;border-radius:8px;padding:10px 14px;font-family:Menlo,monospace;font-size:11px;color:#374151;line-height:2.1">
+          WK11693059<br>
+          WK11692807<br>
+          WK11692213<br>
+          WK11709626<br>
+          WK11752678<br>
+          WK11777034<br>
+          WK11774911<br>
+          WK11773551<br>
+          WK11769365<br>
+          WK11794221
+        </div>
+  </div>
+
+  <div class="card">
+    <h3>Cancelled — SMS rebook link sent after cancellation</h3>
+    <div class="note">Both bots send a rebook link after the customer cancels their appointment. Expected behaviour. <strong>11labs: 3.5% of calls (24 total) · RBA: 1.6% of calls (14 in W22–W25).</strong></div>
+    <div class="g2">
+      <div>
+        <div style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;color:#6d28d9;margin-bottom:8px"><span class="badge labs">11labs</span> — 10 sample IDs</div>
+        <div style="background:#f5f3ff;border-radius:8px;padding:10px 14px;font-family:Menlo,monospace;font-size:11px;color:#374151;line-height:2.1">
+          conv_6501ksq0nbmmffwbnen82qfkt9g9<br>
+          conv_3601kss8hf9qfcz9rbgz5gxfqhcy<br>
+          conv_7101kt126xw9epgb6f76ht30w9vh<br>
+          conv_6401kt4pbadjfz6bj1bhg01te2b8<br>
+          conv_0001kt64gqd8eh3s57fqzf1yhcs9<br>
+          conv_4901ktc8s6zdeh1s5jp202h3z3wq<br>
+          conv_6301ktc79kh9e87ta5b185czckxt<br>
+          conv_5201ktbzr2y6e23tvh0809ege6kj<br>
+          conv_0501ktbv00j1e199kaa77yp1n1jw<br>
+          conv_0801ktb9agfee5n9dsc4mwj52463
+        </div>
+      </div>
+      <div>
+        <div style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;color:#065f46;margin-bottom:8px"><span class="badge rba">RBA</span> — 10 sample IDs</div>
+        <div style="background:#f0fdf4;border-radius:8px;padding:10px 14px;font-family:Menlo,monospace;font-size:11px;color:#374151;line-height:2.1">
+          WK11661119<br>
+          WK11691555<br>
+          WK11710131<br>
+          WK11732894<br>
+          WK11790612<br>
+          WK11829285<br>
+          WK11847110<br>
+          WK11904314<br>
+          WK11901404<br>
+          WK11901022
+        </div>
       </div>
     </div>
   </div>
 
-  <div class="card">
-    <h3>Appointment Cancelled → SMS rebook link</h3>
-    <div class="note">Both bots send a rebook link after the customer cancels. <strong>11labs: 3.5% of calls (24 total). RBA: 1.6% of calls (14 in W22–25).</strong></div>
-    <div class="g2">
-      <div>
-        <div style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;color:#6d28d9;margin-bottom:8px"><span class="badge labs">11labs</span></div>
-        <div style="background:#f5f3ff;border-radius:8px;padding:10px 14px;font-family:Menlo,monospace;font-size:11px;color:#374151;line-height:2">
-          conv_0801ksqsv44gecksvvf5wq016tt0<br>
-          conv_9201ksqsq5kce0q8rb5jg55f42gp<br>
-          conv_3301ksqs2yxbgkzxzfhp2g5a0e7c<br>
-          conv_7401ksqs5a7rfr3w9httkaq9dz26n<br>
-          conv_6701kst49x3dkn4rdyb54vxv9x8h2<br>
-          conv_5501kst3yh1ak59vrdmzqhz6q48b4<br>
-          conv_2901ktajc49e5n6av6mk1t4kjwza5<br>
-          conv_1101kt9tqp2c5f2a8xzmj4v7d3n6p
-        </div>
-      </div>
-      <div>
-        <div style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;color:#065f46;margin-bottom:8px"><span class="badge rba">RBA</span></div>
-        <div style="background:#f0fdf4;border-radius:8px;padding:10px 14px;font-family:Menlo,monospace;font-size:11px;color:#374151;line-height:2">
-          WK11833940<br>
-          WK11831722<br>
-          WK11825016<br>
-          WK11823804<br>
-          WK11820938<br>
-          WK11819889<br>
-          WK11819186<br>
-          WK11817774
-        </div>
-      </div>
-    </div>
-  </div>
 
   <div class="footer">Clara CX Analysis · DE Market · June 2026</div>
 </div>
@@ -392,41 +406,47 @@ tbody tr.dim{opacity:.6}
     <div class="finding"><div class="ft">11labs escalates 2.5× more often (20.2% vs 8.1%)</div><div class="fb">On W22–W25: 11labs 20.2% vs RBA 12.7%. 11labs proactively offers escalation in nearly every SMS conversation. This inflates its rate — it's not a sign of more failure, but a more liberal offer strategy.</div><div class="fi">Confirm if this is intentional — consider aligning the offer threshold</div></div>
   </div>
 
-  <!-- Conv IDs for Escalation -->
-  <div class="st">Flagged Conversation IDs — Escalation · W22–W25</div>
+
+  <!-- Conv IDs Escalation -->
+  <div class="st">Flagged Conversation IDs — for Product Team Review</div>
 
   <div class="card" style="margin-bottom:14px">
-    <h3><span class="badge labs">11labs</span> — Quick escalation (≤2 turns, customer-triggered)</h3>
-    <div class="note">These are calls where 11labs escalated within the first 2 turns — before any slot negotiation took place. The customer immediately asked for a human, or the bot detected it could not help and escalated directly. <strong>8 conversations in W22–25 (1.2% of calls).</strong> This is NOT the same as the "3 tries" rule — it is triggered by the customer's first response, not by repeated failures.</div>
-    <div style="background:#fff7ed;border:1px solid #fed7aa;border-radius:8px;padding:12px 16px;margin-bottom:12px;font-size:12px;color:#374151;line-height:1.6">
-      <strong>Example:</strong> Customer says "Ich möchte mit einem menschlichen Kollegen sprechen" → bot immediately escalates at turn 2.
+    <h3><span class="badge labs">11labs</span> — Quick escalation at turn ≤2 (customer-triggered)</h3>
+    <div class="note">These are calls where 11labs escalated within the first 2 turns. The customer immediately asked for a human agent — this is <strong>not</strong> a "3 tries" rule failure, it is a customer choice. <strong>12 conversations in W22–W25 (1.7% of calls).</strong></div>
+    <div style="background:#fff7ed;border:1px solid #fed7aa;border-radius:8px;padding:12px 16px;margin:12px 0;font-size:12px;color:#374151;line-height:1.7">
+      <strong>What triggers this:</strong> Customer says something like <span style="font-style:italic;color:#6b7280">"Ich möchte mit einem menschlichen Kollegen sprechen"</span> or <span style="font-style:italic;color:#6b7280">"Ich möchte keine Maschine"</span> in their first response — bot immediately escalates.
     </div>
-    <div style="background:#f5f3ff;border-radius:8px;padding:10px 14px;font-family:Menlo,monospace;font-size:11px;color:#374151;line-height:2">
-      conv_4101ksqdpjz8eywb7mp5cnnnmtxa &nbsp;(2026-05-28 · turn 2)<br>
-      conv_7901kt10hs8yegp98h13h4vhz0h7 &nbsp;(2026-06-01 · turn 2)<br>
-      conv_8601ktcbpemgfc88t83a8tvnq40v &nbsp;(2026-06-05 · turn 2)<br>
-      conv_4601ktbrw3xnef0bbv9rygzsyaa5 &nbsp;(2026-06-05 · turn 2)<br>
-      conv_9001ktbj43jpezwt7qjc0pkqs7p4 &nbsp;(2026-06-05 · turn 2)<br>
-      conv_3201ktbgp2h1ak59vrdmzqhz6q48 &nbsp;(2026-06-09 · turn 2)<br>
-      conv_7701ktb9tqp2c5f2a8xzmj4v7d3n &nbsp;(2026-06-09 · turn 2)<br>
-      conv_2501ktajf3dkn4rdyb54vxv9x8h2 &nbsp;(2026-06-10 · turn 2)
-    </div>
+    <div style="background:#f5f3ff;border-radius:8px;padding:10px 14px;font-family:Menlo,monospace;font-size:11px;color:#374151;line-height:2.2">
+          conv_4101ksqdpjz8eywb7mp5cnnnmtxa &nbsp;<span style="color:#9ca3af">2026-05-28 W22</span> &nbsp;<span style="color:#6b7280;font-style:italic">— CX: "Danke. Bleibe in der Leitung."</span><br>
+          conv_7901kt10hs8yegp98h13h4vhz0h7 &nbsp;<span style="color:#9ca3af">2026-06-01 W23</span> &nbsp;<span style="color:#6b7280;font-style:italic">— CX: "Ich melde mich noch mal. Ich habe den Fahrzeugbrie"</span><br>
+          conv_8601ktcbpemgfc88t83a8tvnq40v &nbsp;<span style="color:#9ca3af">2026-06-05 W23</span> &nbsp;<span style="color:#6b7280;font-style:italic">— CX: "Danke. Bleibe in der Leitung."</span><br>
+          conv_4601ktbrw3xnef0bbv9rygzsyaa5 &nbsp;<span style="color:#9ca3af">2026-06-05 W23</span> &nbsp;<span style="color:#6b7280;font-style:italic">— CX: "Danke. Bleibe in der Leitung."</span><br>
+          conv_9001ktbj43jpezwt7qjc0pkqs7p4 &nbsp;<span style="color:#9ca3af">2026-06-05 W23</span> &nbsp;<span style="color:#6b7280;font-style:italic">— CX: "Danke. Bleibe in der Leitung."</span><br>
+          conv_3501ktnyp326e6e9txnzjcrjsbdt &nbsp;<span style="color:#9ca3af">2026-06-09 W24</span> &nbsp;<span style="color:#6b7280;font-style:italic">— CX: "Danke. Bleibe in der Leitung."</span><br>
+          conv_8301ktnqrf92f5ztwfr8ee2kjdpm &nbsp;<span style="color:#9ca3af">2026-06-09 W24</span> &nbsp;<span style="color:#6b7280;font-style:italic">— CX: "Danke. Bleibe in der Leitung."</span><br>
+          conv_9401ktnfpwxvf5qrtdm9y1nqn483 &nbsp;<span style="color:#9ca3af">2026-06-09 W24</span> &nbsp;<span style="color:#6b7280;font-style:italic">— CX: "Danke. Bleibe in der Leitung."</span><br>
+          conv_5201kts46bvdes2bx57je2gx9mjk &nbsp;<span style="color:#9ca3af">2026-06-10 W24</span> &nbsp;<span style="color:#6b7280;font-style:italic">— CX: "Ihres Anrufs hinterlassen, sehe ich nach, ob diese"</span><br>
+          conv_2101kty923ghe7h8yev5ewwxg7yc &nbsp;<span style="color:#9ca3af">2026-06-12 W24</span> &nbsp;<span style="color:#6b7280;font-style:italic">— CX: "Verdeleitet."</span><br>
+          conv_6801ktxjxez9frdbnjk4fmmnqe0f &nbsp;<span style="color:#9ca3af">2026-06-12 W24</span> &nbsp;<span style="color:#6b7280;font-style:italic">— CX: "Ich, ich rufe zurück. Hallo."</span><br>
+          conv_8101kv5sn6atft0b887cwb0hd43g &nbsp;<span style="color:#9ca3af">2026-06-15 W25</span> &nbsp;<span style="color:#6b7280;font-style:italic">— CX: "... Ihres Anrufs hinterlassen, sehe ich nach, ob d"</span>
+        </div>
   </div>
 
   <div class="card">
     <h3><span class="badge rba">RBA</span> — Escalation after bot misunderstanding</h3>
-    <div class="note">These are calls where the bot failed to understand the customer at least once before escalating. The customer arrived at the agent already frustrated. <strong>48 conversations in W22–25 (8.6% of escalated calls, 5.6% of all calls).</strong></div>
-    <div style="background:#fff7ed;border:1px solid #fed7aa;border-radius:8px;padding:12px 16px;margin-bottom:12px;font-size:12px;color:#374151;line-height:1.6">
-      <strong>Pattern:</strong> Bot says "Ich habe Sie nicht verstanden" at least once → conversation continues → eventually escalates. Customer reaches agent having already experienced confusion.
+    <div class="note">These are calls where the bot failed to understand the customer at least once before escalating. Customer arrives at the agent already frustrated. <strong>5 in W22–W25 (0.6% of all calls · 8.6% of escalated calls).</strong></div>
+    <div style="background:#fff7ed;border:1px solid #fed7aa;border-radius:8px;padding:12px 16px;margin:12px 0;font-size:12px;color:#374151;line-height:1.7">
+      <strong>Pattern:</strong> Bot says <span style="font-style:italic;color:#6b7280">"Das habe ich nicht verstanden"</span> at least once → conversation continues → eventually escalates. The turn number shows how far into the call the escalation happened.
     </div>
-    <div style="background:#f0fdf4;border-radius:8px;padding:10px 14px;font-family:Menlo,monospace;font-size:11px;color:#374151;line-height:2">
-      WK11773551 &nbsp;(misund ×1 · escalated at turn 8)<br>
-      WK11815176 &nbsp;(misund ×1 · escalated at turn 12)<br>
-      WK11853627 &nbsp;(misund ×1 · escalated at turn 10)<br>
-      WK11858924 &nbsp;(misund ×1 · escalated at turn 8)<br>
-      WK11879103 &nbsp;(misund ×1 · escalated at turn 14)
-    </div>
+    <div style="background:#f0fdf4;border-radius:8px;padding:10px 14px;font-family:Menlo,monospace;font-size:11px;color:#374151;line-height:2.2">
+          WK11773551 &nbsp;<span style="color:#9ca3af">6/1/2026 W23</span> &nbsp;<span style="color:#6b7280">misund ×1 · turn 8</span><br>
+          WK11815176 &nbsp;<span style="color:#9ca3af">6/3/2026 W23</span> &nbsp;<span style="color:#6b7280">misund ×1 · turn 12</span><br>
+          WK11853627 &nbsp;<span style="color:#9ca3af">6/5/2026 W23</span> &nbsp;<span style="color:#6b7280">misund ×1 · turn 10</span><br>
+          WK11965342 &nbsp;<span style="color:#9ca3af">6/12/2026 W24</span> &nbsp;<span style="color:#6b7280">misund ×1 · turn 8</span><br>
+          WK11970310 &nbsp;<span style="color:#9ca3af">6/13/2026 W24</span> &nbsp;<span style="color:#6b7280">misund ×1 · turn 8</span>
+        </div>
   </div>
+
 
   <div class="footer">Clara CX Analysis · DE Market · June 2026</div>
 </div>
