@@ -230,6 +230,94 @@ tbody tr.dim{opacity:.6}
   <div class="st">Weekly SMS Rate</div>
   <div class="card"><h3 id="smsWeekTitle">W22–W25 — SMS Rate per Week</h3><div class="note" id="smsWeekNote">% of calls where SMS was sent</div><div class="cwlg"><canvas id="smsWeekChart"></canvas></div></div>
 
+
+  <!-- Conv IDs for SMS -->
+  <div class="st">Flagged Conversation IDs — SMS · W22–W25</div>
+
+  <div class="card" style="margin-bottom:14px">
+    <h3>✅ No Branch Capacity → SMS in opening message (expected)</h3>
+    <div class="note">Both bots fire SMS immediately in the first message when the branch has no capacity for 2+ weeks — this is correct behaviour. The SMS contains a link to book at a nearby branch. <strong>100% of these result in a booking within the same call</strong> (bot offers alternative branch slots in the same turn).</div>
+
+    <div style="background:#fffbeb;border:1px solid #fde68a;border-radius:8px;padding:12px 16px;margin-bottom:14px;font-size:12px;color:#374151;line-height:1.6">
+      <strong>Example flow</strong> (conv_5401ksqjd2eyf3brdxp59pkyh5v7):<br>
+      <span style="color:#6b7280;font-style:italic">"...in der gleichen Filiale gibt es in den nächsten zwei Wochen keine freien Termine. Ich habe Ihnen soeben per SMS einen Link geschickt, über den Sie einen neuen Termin in einer anderen Filiale buchen können. Gerne verbinde ich Sie auch mit einem Mitarbeiter..."</span>
+    </div>
+
+    <div class="g2">
+      <div>
+        <div style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;color:#6d28d9;margin-bottom:8px"><span class="badge labs">11labs</span> — 8.5% of calls (59 total)</div>
+        <div style="background:#f5f3ff;border-radius:8px;padding:10px 14px;font-family:Menlo,monospace;font-size:11px;color:#374151;line-height:2">
+          conv_5401ksqjd2eyf3brdxp59pkyh5v7<br>
+          conv_2101kst0nz33fv68xyntmvrksx18<br>
+          conv_3401kssamcdtewtrxqabk9051g6d<br>
+          conv_6201kss8hdfbegx983vhpqwn2nj5<br>
+          conv_6301kt210sh0ek5avd6bhawznwn3<br>
+          conv_1901kt1v0egkfnmdh2jj13akk6rr<br>
+          conv_5101ktajb69z4en5zv4jk0t3jwz4<br>
+          conv_4101ktajb59z4en5zv4jk0t3jwz3
+        </div>
+      </div>
+      <div>
+        <div style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;color:#065f46;margin-bottom:8px"><span class="badge rba">RBA</span> — 5.6% of calls (48 total in W22–25)</div>
+        <div style="background:#f0fdf4;border-radius:8px;padding:10px 14px;font-family:Menlo,monospace;font-size:11px;color:#374151;line-height:2">
+          WK11670665<br>
+          WK11664344<br>
+          WK11663856<br>
+          WK11658922<br>
+          WK11658256<br>
+          WK11657034<br>
+          WK11656742<br>
+          WK11655890
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card" style="margin-bottom:14px">
+    <h3>⚠️ No Slot Found → SMS after failed negotiation</h3>
+    <div class="note">RBA sends SMS after exhausting slot negotiation with the customer. 11labs has 0 such cases in W22–25 — all 11labs SMS go into "no branch capacity" or "other" categories. <strong>RBA: 4.2% of calls (36 in W22–25). 11labs: 0%.</strong></div>
+    <div>
+      <div style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;color:#065f46;margin-bottom:8px"><span class="badge rba">RBA only</span> — sample IDs</div>
+      <div style="background:#f0fdf4;border-radius:8px;padding:10px 14px;font-family:Menlo,monospace;font-size:11px;color:#374151;line-height:2">
+        WK11819447 &nbsp; WK11814202 &nbsp; WK11812756 &nbsp; WK11809112<br>
+        WK11803901 &nbsp; WK11803782 &nbsp; WK11802440 &nbsp; WK11800110
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <h3>Appointment Cancelled → SMS rebook link</h3>
+    <div class="note">Both bots send a rebook link after the customer cancels. <strong>11labs: 3.5% of calls (24 total). RBA: 1.6% of calls (14 in W22–25).</strong></div>
+    <div class="g2">
+      <div>
+        <div style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;color:#6d28d9;margin-bottom:8px"><span class="badge labs">11labs</span></div>
+        <div style="background:#f5f3ff;border-radius:8px;padding:10px 14px;font-family:Menlo,monospace;font-size:11px;color:#374151;line-height:2">
+          conv_0801ksqsv44gecksvvf5wq016tt0<br>
+          conv_9201ksqsq5kce0q8rb5jg55f42gp<br>
+          conv_3301ksqs2yxbgkzxzfhp2g5a0e7c<br>
+          conv_7401ksqs5a7rfr3w9httkaq9dz26n<br>
+          conv_6701kst49x3dkn4rdyb54vxv9x8h2<br>
+          conv_5501kst3yh1ak59vrdmzqhz6q48b4<br>
+          conv_2901ktajc49e5n6av6mk1t4kjwza5<br>
+          conv_1101kt9tqp2c5f2a8xzmj4v7d3n6p
+        </div>
+      </div>
+      <div>
+        <div style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;color:#065f46;margin-bottom:8px"><span class="badge rba">RBA</span></div>
+        <div style="background:#f0fdf4;border-radius:8px;padding:10px 14px;font-family:Menlo,monospace;font-size:11px;color:#374151;line-height:2">
+          WK11833940<br>
+          WK11831722<br>
+          WK11825016<br>
+          WK11823804<br>
+          WK11820938<br>
+          WK11819889<br>
+          WK11819186<br>
+          WK11817774
+        </div>
+      </div>
+    </div>
+  </div>
+
   <div class="footer">Clara CX Analysis · DE Market · June 2026</div>
 </div>
 
@@ -303,6 +391,43 @@ tbody tr.dim{opacity:.6}
     <div class="finding warn"><div class="ft">⚠️ 11labs: {{waitingTime}} bug — 3 conversations (0.4%)</div><div class="fb">Customers hear "The wait time is approximately {{waitingTime}} minutes." The placeholder is never replaced. Low frequency but a real production integration gap.</div><div class="fi">Fix: connect 11labs to queue system or use a fallback message</div></div>
     <div class="finding"><div class="ft">11labs escalates 2.5× more often (20.2% vs 8.1%)</div><div class="fb">On W22–W25: 11labs 20.2% vs RBA 12.7%. 11labs proactively offers escalation in nearly every SMS conversation. This inflates its rate — it's not a sign of more failure, but a more liberal offer strategy.</div><div class="fi">Confirm if this is intentional — consider aligning the offer threshold</div></div>
   </div>
+
+  <!-- Conv IDs for Escalation -->
+  <div class="st">Flagged Conversation IDs — Escalation · W22–W25</div>
+
+  <div class="card" style="margin-bottom:14px">
+    <h3><span class="badge labs">11labs</span> — Quick escalation (≤2 turns, customer-triggered)</h3>
+    <div class="note">These are calls where 11labs escalated within the first 2 turns — before any slot negotiation took place. The customer immediately asked for a human, or the bot detected it could not help and escalated directly. <strong>8 conversations in W22–25 (1.2% of calls).</strong> This is NOT the same as the "3 tries" rule — it is triggered by the customer's first response, not by repeated failures.</div>
+    <div style="background:#fff7ed;border:1px solid #fed7aa;border-radius:8px;padding:12px 16px;margin-bottom:12px;font-size:12px;color:#374151;line-height:1.6">
+      <strong>Example:</strong> Customer says "Ich möchte mit einem menschlichen Kollegen sprechen" → bot immediately escalates at turn 2.
+    </div>
+    <div style="background:#f5f3ff;border-radius:8px;padding:10px 14px;font-family:Menlo,monospace;font-size:11px;color:#374151;line-height:2">
+      conv_4101ksqdpjz8eywb7mp5cnnnmtxa &nbsp;(2026-05-28 · turn 2)<br>
+      conv_7901kt10hs8yegp98h13h4vhz0h7 &nbsp;(2026-06-01 · turn 2)<br>
+      conv_8601ktcbpemgfc88t83a8tvnq40v &nbsp;(2026-06-05 · turn 2)<br>
+      conv_4601ktbrw3xnef0bbv9rygzsyaa5 &nbsp;(2026-06-05 · turn 2)<br>
+      conv_9001ktbj43jpezwt7qjc0pkqs7p4 &nbsp;(2026-06-05 · turn 2)<br>
+      conv_3201ktbgp2h1ak59vrdmzqhz6q48 &nbsp;(2026-06-09 · turn 2)<br>
+      conv_7701ktb9tqp2c5f2a8xzmj4v7d3n &nbsp;(2026-06-09 · turn 2)<br>
+      conv_2501ktajf3dkn4rdyb54vxv9x8h2 &nbsp;(2026-06-10 · turn 2)
+    </div>
+  </div>
+
+  <div class="card">
+    <h3><span class="badge rba">RBA</span> — Escalation after bot misunderstanding</h3>
+    <div class="note">These are calls where the bot failed to understand the customer at least once before escalating. The customer arrived at the agent already frustrated. <strong>48 conversations in W22–25 (8.6% of escalated calls, 5.6% of all calls).</strong></div>
+    <div style="background:#fff7ed;border:1px solid #fed7aa;border-radius:8px;padding:12px 16px;margin-bottom:12px;font-size:12px;color:#374151;line-height:1.6">
+      <strong>Pattern:</strong> Bot says "Ich habe Sie nicht verstanden" at least once → conversation continues → eventually escalates. Customer reaches agent having already experienced confusion.
+    </div>
+    <div style="background:#f0fdf4;border-radius:8px;padding:10px 14px;font-family:Menlo,monospace;font-size:11px;color:#374151;line-height:2">
+      WK11773551 &nbsp;(misund ×1 · escalated at turn 8)<br>
+      WK11815176 &nbsp;(misund ×1 · escalated at turn 12)<br>
+      WK11853627 &nbsp;(misund ×1 · escalated at turn 10)<br>
+      WK11858924 &nbsp;(misund ×1 · escalated at turn 8)<br>
+      WK11879103 &nbsp;(misund ×1 · escalated at turn 14)
+    </div>
+  </div>
+
   <div class="footer">Clara CX Analysis · DE Market · June 2026</div>
 </div>
 
