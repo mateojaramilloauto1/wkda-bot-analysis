@@ -561,8 +561,6 @@ function switchTab(name){
 const VIEW_STATE={dashboard:'overlap',sms:'overlap',esc:'overlap'};
 function setView(tab,v){
   VIEW_STATE[tab]=v;
-  document.getElementById(tab+'BtnO'||'dBtnO').className=v==='overlap'?'active':'';
-  // manual button ids
   if(tab==='dashboard'){
     document.getElementById('dBtnO').className=v==='overlap'?'active':'';
     document.getElementById('dBtnF').className=v==='full'?'active':'';
