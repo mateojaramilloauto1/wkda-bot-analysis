@@ -129,6 +129,7 @@ tbody tr.dim{opacity:.6}
     <button onclick="switchTab('cx')">Customer Response</button>
     <button onclick="switchTab('sms')">SMS</button>
     <button onclick="switchTab('esc')">Escalation</button>
+    <button onclick="switchTab('diff')">Conversation Examples</button>
     <button onclick="switchTab('methodology')">How it's calculated</button>
     <button onclick="switchTab('conversations')">Conversation detail</button>
   </nav>
@@ -451,6 +452,526 @@ tbody tr.dim{opacity:.6}
   <div class="footer">Clara CX Analysis · DE Market · June 2026</div>
 </div>
 
+
+<!-- ════════ DIFFERENCES ════════ -->
+<div id="tab-diff" class="tab-panel">
+
+  <div class="insight">
+    <div class="it">What this tab shows</div>
+    <div class="ib">Real conversation excerpts for the cases where 11labs and RBA behave differently — SMS timing, missing SMS triggers, escalation speed, the {{waitingTime}} bug, and RBA escalation after misunderstanding. Highlighted turns (amber) mark the key moment in each conversation.</div>
+  </div>
+
+  <div class="st">SMS — Differences</div>
+
+  <div class="card" style="margin-bottom:16px">
+    <h3><span class="badge labs">11labs</span> No Branch Capacity — SMS fired in opening message (both bots, but 11labs 8.5% vs RBA 5.6%)</h3>
+    <div class="note">The bot detects upfront that there is no capacity at the branch for 2 weeks. It sends the SMS immediately in the first message — before any negotiation — and offers an alternative branch. Same pattern in RBA.</div>
+    <div style="background:#f0fdf4;border:1px solid #bbf7d0;border-radius:8px;padding:10px 14px;margin-bottom:12px;font-size:12px;color:#374151;line-height:1.6"><strong>Why this is different:</strong> 11labs fires this in 8.5% of calls vs 5.6% for RBA — meaning 11labs encounters more branch-capacity issues. The flow itself is the same for both bots.</div>
+    
+    <div style="background:#f8f9ff;border:1px solid #e0e3ff;border-radius:8px;padding:14px;margin-bottom:10px">
+      <div style="display:flex;gap:10px;align-items:center;margin-bottom:10px">
+        <span style="font-size:11px;font-weight:700;color:#6b7280">Example 1</span>
+        <span style="font-family:Menlo,monospace;font-size:11px;color:#6366f1">conv_5401ksqjd2eyf3brdxp59pkyh5v7</span>
+        <span style="font-size:11px;color:#9ca3af">2026-05-28 · W22</span>
+      </div>
+      <div style="border:1px solid #e5e7eb;border-radius:6px;background:#fff;padding:4px 12px">
+        <div style="padding:8px 0;border-bottom:1px solid #f9fafb;">
+          <span style="background:#ede9fe;color:#4c1d95;border-radius:4px;padding:1px 7px;font-size:10px;font-weight:700">🤖 Bot</span>
+          <span style="font-size:12px;color:#374151;margin-left:8px;line-height:1.6">Hallo, hier spricht Paul der KI-Assistent von wir kaufen dein auto. Ich rufe wegen Ihres kürzlich gebuchten Termins an. Der von Ihnen gewählte Termin ist nicht mehr verfügbar, und in der gleichen Filiale gibt es in den nächsten zwei Wochen keine frei</span>
+        </div>
+<div style="padding:8px 0;border-bottom:1px solid #f9fafb;">
+          <span style="background:#d1fae5;color:#064e3b;border-radius:4px;padding:1px 7px;font-size:10px;font-weight:700">👤 Customer</span>
+          <span style="font-size:12px;color:#374151;margin-left:8px;line-height:1.6">Nein.</span>
+        </div>
+<div style="padding:8px 0;border-bottom:1px solid #f9fafb;">
+          <span style="background:#ede9fe;color:#4c1d95;border-radius:4px;padding:1px 7px;font-size:10px;font-weight:700">🤖 Bot</span>
+          <span style="font-size:12px;color:#374151;margin-left:8px;line-height:1.6">Einen ganz kleinen Moment, bitte….</span>
+        </div>
+<div style="padding:8px 0;border-bottom:1px solid #f9fafb;">
+          <span style="background:#ede9fe;color:#4c1d95;border-radius:4px;padding:1px 7px;font-size:10px;font-weight:700">🤖 Bot</span>
+          <span style="font-size:12px;color:#374151;margin-left:8px;line-height:1.6">Alles klar, vielen Dank für Ihre Rückmeldung. Auf Wiederhören.</span>
+        </div>
+
+      </div>
+    </div>
+    <div style="background:#f8f9ff;border:1px solid #e0e3ff;border-radius:8px;padding:14px;margin-bottom:10px">
+      <div style="display:flex;gap:10px;align-items:center;margin-bottom:10px">
+        <span style="font-size:11px;font-weight:700;color:#6b7280">Example 2</span>
+        <span style="font-family:Menlo,monospace;font-size:11px;color:#6366f1">conv_2101kst0nz33fv68xyntmvrksx18</span>
+        <span style="font-size:11px;color:#9ca3af">2026-05-29 · W22</span>
+      </div>
+      <div style="border:1px solid #e5e7eb;border-radius:6px;background:#fff;padding:4px 12px">
+        <div style="padding:8px 0;border-bottom:1px solid #f9fafb;">
+          <span style="background:#ede9fe;color:#4c1d95;border-radius:4px;padding:1px 7px;font-size:10px;font-weight:700">🤖 Bot</span>
+          <span style="font-size:12px;color:#374151;margin-left:8px;line-height:1.6">Hallo, hier spricht Paul der KI-Assistent von wir kaufen dein auto. Ich rufe wegen Ihres kürzlich gebuchten Termins an. Der von Ihnen gewählte Termin ist nicht mehr verfügbar, und in der gleichen Filiale gibt es in den nächsten zwei Wochen keine frei</span>
+        </div>
+<div style="padding:8px 0;border-bottom:1px solid #f9fafb;">
+          <span style="background:#d1fae5;color:#064e3b;border-radius:4px;padding:1px 7px;font-size:10px;font-weight:700">👤 Customer</span>
+          <span style="font-size:12px;color:#374151;margin-left:8px;line-height:1.6">Nein.</span>
+        </div>
+<div style="padding:8px 0;border-bottom:1px solid #f9fafb;">
+          <span style="background:#ede9fe;color:#4c1d95;border-radius:4px;padding:1px 7px;font-size:10px;font-weight:700">🤖 Bot</span>
+          <span style="font-size:12px;color:#374151;margin-left:8px;line-height:1.6">Einen ganz kleinen Moment, bitte….</span>
+        </div>
+<div style="padding:8px 0;border-bottom:1px solid #f9fafb;">
+          <span style="background:#ede9fe;color:#4c1d95;border-radius:4px;padding:1px 7px;font-size:10px;font-weight:700">🤖 Bot</span>
+          <span style="font-size:12px;color:#374151;margin-left:8px;line-height:1.6">Alles klar, vielen Dank für Ihre Rückmeldung. Auf Wiederhören.</span>
+        </div>
+
+      </div>
+    </div>
+  </div>
+  <div class="card" style="margin-bottom:16px">
+    <h3><span class="badge rba">RBA only</span> No Slot Found — SMS after failed negotiation (RBA only: 4.2% · 11labs: 0%)</h3>
+    <div class="note">After back-and-forth negotiation with the customer, RBA gives up and sends an SMS. 11labs has zero cases of this trigger in W22–W25. The highlighted turn shows when the SMS is sent.</div>
+    <div style="background:#f0fdf4;border:1px solid #bbf7d0;border-radius:8px;padding:10px 14px;margin-bottom:12px;font-size:12px;color:#374151;line-height:1.6"><strong>Key difference:</strong> 11labs never reaches "no slot found" in the same way — it either resolves the booking or sends the "no branch capacity" SMS upfront. This may mean 11labs negotiates less before giving up, or has different slot availability.</div>
+    
+    <div style="background:#f8f9ff;border:1px solid #e0e3ff;border-radius:8px;padding:14px;margin-bottom:10px">
+      <div style="display:flex;gap:10px;align-items:center;margin-bottom:10px">
+        <span style="font-size:11px;font-weight:700;color:#6b7280">Example 1</span>
+        <span style="font-family:Menlo,monospace;font-size:11px;color:#6366f1">WK11693059</span>
+        <span style="font-size:11px;color:#9ca3af">5/26/2026 · W22</span>
+      </div>
+      <div style="border:1px solid #e5e7eb;border-radius:6px;background:#fff;padding:4px 12px">
+        <div style="padding:8px 0;border-bottom:1px solid #f9fafb;">
+          <span style="background:#ede9fe;color:#4c1d95;border-radius:4px;padding:1px 7px;font-size:10px;font-weight:700">🤖 Bot</span>
+          <span style="font-size:12px;color:#374151;margin-left:8px;line-height:1.6">Hallo, hier spricht Paul der KI-Assistent von wir kaufen dein auto. Ich rufe an, um Ihren Termin zu verschieben, da der von Ihnen gewählte Termin nicht verfügbar ist. Ist Montag, 8. Juni um 09:30 für Sie in Ordnung, oder haben Sie einen anderen bevor</span>
+        </div>
+<div style="padding:8px 0;border-bottom:1px solid #f9fafb;">
+          <span style="background:#d1fae5;color:#064e3b;border-radius:4px;padding:1px 7px;font-size:10px;font-weight:700">👤 Customer</span>
+          <span style="font-size:12px;color:#374151;margin-left:8px;line-height:1.6">Ja, Hallo</span>
+        </div>
+<div style="padding:8px 0;border-bottom:1px solid #f9fafb;">
+          <span style="background:#ede9fe;color:#4c1d95;border-radius:4px;padding:1px 7px;font-size:10px;font-weight:700">🤖 Bot</span>
+          <span style="font-size:12px;color:#374151;margin-left:8px;line-height:1.6">Sie möchten am Montag, 8. Juni um 09:30 in die Filiale Baden-Baden kommen. Ist das korrekt?</span>
+        </div>
+<div style="padding:8px 0;border-bottom:1px solid #f9fafb;">
+          <span style="background:#d1fae5;color:#064e3b;border-radius:4px;padding:1px 7px;font-size:10px;font-weight:700">👤 Customer</span>
+          <span style="font-size:12px;color:#374151;margin-left:8px;line-height:1.6">Nein, wann, um wieviel Uhr</span>
+        </div>
+<div style="padding:8px 0;border-bottom:1px solid #f9fafb;background:#fffbeb;border-left:3px solid #f59e0b;">
+          <span style="background:#ede9fe;color:#4c1d95;border-radius:4px;padding:1px 7px;font-size:10px;font-weight:700">🤖 Bot</span>
+          <span style="font-size:12px;color:#374151;margin-left:8px;line-height:1.6">Da wir bisher keinen gemeinsamen Termin finden konnten, habe ich Ihnen per SMS einen Link geschickt, über den Sie alle verfügbaren Termin einsehen können. Gerne verbinde ich Sie auch mit einem Mitarbeiter, um weitere Alternativen zu prüfen. Möchten S</span>
+        </div>
+<div style="padding:8px 0;border-bottom:1px solid #f9fafb;">
+          <span style="background:#d1fae5;color:#064e3b;border-radius:4px;padding:1px 7px;font-size:10px;font-weight:700">👤 Customer</span>
+          <span style="font-size:12px;color:#374151;margin-left:8px;line-height:1.6">Ja, bitte</span>
+        </div>
+<div style="padding:8px 0;border-bottom:1px solid #f9fafb;">
+          <span style="background:#ede9fe;color:#4c1d95;border-radius:4px;padding:1px 7px;font-size:10px;font-weight:700">🤖 Bot</span>
+          <span style="font-size:12px;color:#374151;margin-left:8px;line-height:1.6">Ich leite Sie gerne an einen unserer Mitarbeiter weiter. Die durchschnittliche Wartezeit beträgt derzeit 12 Minuten.</span>
+        </div>
+<div style="padding:8px 0;border-bottom:1px solid #f9fafb;">
+          <span style="background:#ede9fe;color:#4c1d95;border-radius:4px;padding:1px 7px;font-size:10px;font-weight:700">🤖 Bot</span>
+          <span style="font-size:12px;color:#374151;margin-left:8px;line-height:1.6">.</span>
+        </div>
+
+      </div>
+    </div>
+    <div style="background:#f8f9ff;border:1px solid #e0e3ff;border-radius:8px;padding:14px;margin-bottom:10px">
+      <div style="display:flex;gap:10px;align-items:center;margin-bottom:10px">
+        <span style="font-size:11px;font-weight:700;color:#6b7280">Example 2</span>
+        <span style="font-family:Menlo,monospace;font-size:11px;color:#6366f1">WK11692807</span>
+        <span style="font-size:11px;color:#9ca3af">5/26/2026 · W22</span>
+      </div>
+      <div style="border:1px solid #e5e7eb;border-radius:6px;background:#fff;padding:4px 12px">
+        <div style="padding:8px 0;border-bottom:1px solid #f9fafb;">
+          <span style="background:#ede9fe;color:#4c1d95;border-radius:4px;padding:1px 7px;font-size:10px;font-weight:700">🤖 Bot</span>
+          <span style="font-size:12px;color:#374151;margin-left:8px;line-height:1.6">Hallo, hier spricht Paul der KI-Assistent von wir kaufen dein auto. Ich rufe an, um Ihren Termin zu verschieben, da der von Ihnen gewählte Termin nicht verfügbar ist. Ist Samstag, 30. Mai um 10:00 für Sie in Ordnung, oder haben Sie einen anderen bevo</span>
+        </div>
+<div style="padding:8px 0;border-bottom:1px solid #f9fafb;">
+          <span style="background:#d1fae5;color:#064e3b;border-radius:4px;padding:1px 7px;font-size:10px;font-weight:700">👤 Customer</span>
+          <span style="font-size:12px;color:#374151;margin-left:8px;line-height:1.6">Ein</span>
+        </div>
+<div style="padding:8px 0;border-bottom:1px solid #f9fafb;">
+          <span style="background:#ede9fe;color:#4c1d95;border-radius:4px;padding:1px 7px;font-size:10px;font-weight:700">🤖 Bot</span>
+          <span style="font-size:12px;color:#374151;margin-left:8px;line-height:1.6">Sie möchten am Samstag, 30. Mai um 10:00 in die Filiale Berlin-Tempelhof kommen. Ist das korrekt?</span>
+        </div>
+<div style="padding:8px 0;border-bottom:1px solid #f9fafb;">
+          <span style="background:#d1fae5;color:#064e3b;border-radius:4px;padding:1px 7px;font-size:10px;font-weight:700">👤 Customer</span>
+          <span style="font-size:12px;color:#374151;margin-left:8px;line-height:1.6">Nein</span>
+        </div>
+<div style="padding:8px 0;border-bottom:1px solid #f9fafb;background:#fffbeb;border-left:3px solid #f59e0b;">
+          <span style="background:#ede9fe;color:#4c1d95;border-radius:4px;padding:1px 7px;font-size:10px;font-weight:700">🤖 Bot</span>
+          <span style="font-size:12px;color:#374151;margin-left:8px;line-height:1.6">Da wir bisher keinen gemeinsamen Termin finden konnten, habe ich Ihnen per SMS einen Link geschickt, über den Sie alle verfügbaren Termin einsehen können. Gerne verbinde ich Sie auch mit einem Mitarbeiter, um weitere Alternativen zu prüfen. Möchten S</span>
+        </div>
+<div style="padding:8px 0;border-bottom:1px solid #f9fafb;">
+          <span style="background:#ede9fe;color:#4c1d95;border-radius:4px;padding:1px 7px;font-size:10px;font-weight:700">🤖 Bot</span>
+          <span style="font-size:12px;color:#374151;margin-left:8px;line-height:1.6">Alles klar. Vielen Dank für Ihre Zeit. Schönen Tag noch!</span>
+        </div>
+
+      </div>
+    </div>
+  </div>
+  <div class="card" style="margin-bottom:16px">
+    <h3><span class="badge labs">11labs</span> Cancelled — SMS rebook link (both bots, standard behaviour)</h3>
+    <div class="note">After the customer cancels, the bot sends an SMS with a rebook link. Standard behaviour for both bots.</div>
+    
+    
+    <div style="background:#f8f9ff;border:1px solid #e0e3ff;border-radius:8px;padding:14px;margin-bottom:10px">
+      <div style="display:flex;gap:10px;align-items:center;margin-bottom:10px">
+        <span style="font-size:11px;font-weight:700;color:#6b7280">Example 1</span>
+        <span style="font-family:Menlo,monospace;font-size:11px;color:#6366f1">conv_6501ksq0nbmmffwbnen82qfkt9g9</span>
+        <span style="font-size:11px;color:#9ca3af">2026-05-28 · W22</span>
+      </div>
+      <div style="border:1px solid #e5e7eb;border-radius:6px;background:#fff;padding:4px 12px">
+        <div style="padding:8px 0;border-bottom:1px solid #f9fafb;">
+          <span style="background:#ede9fe;color:#4c1d95;border-radius:4px;padding:1px 7px;font-size:10px;font-weight:700">🤖 Bot</span>
+          <span style="font-size:12px;color:#374151;margin-left:8px;line-height:1.6">Hallo, hier spricht Paul der KI-Assistent von wir kaufen dein auto. Ich rufe an, um Ihren Termin zu verschieben, da der von Ihnen gewählte Termin nicht verfügbar ist. Ist am zehnten Mittwoch Juni, vierzehn Uhr dreißig für Sie in Ordnung, oder haben S</span>
+        </div>
+<div style="padding:8px 0;border-bottom:1px solid #f9fafb;">
+          <span style="background:#d1fae5;color:#064e3b;border-radius:4px;padding:1px 7px;font-size:10px;font-weight:700">👤 Customer</span>
+          <span style="font-size:12px;color:#374151;margin-left:8px;line-height:1.6">Äh, Termin absegnen.</span>
+        </div>
+<div style="padding:8px 0;border-bottom:1px solid #f9fafb;">
+          <span style="background:#ede9fe;color:#4c1d95;border-radius:4px;padding:1px 7px;font-size:10px;font-weight:700">🤖 Bot</span>
+          <span style="font-size:12px;color:#374151;margin-left:8px;line-height:1.6">Einen ganz kleinen Moment, bitte…. Meinen Sie, dass Sie den vorgeschlagenen Termin bestätigen möchten? Das wäre Mittwoch, der zehnte Juni, um vierzehn Uhr dreißig in Berlin-Pankow, Blankenburger Straße dreiundzwanzig. Habe ich das so richtig verstand</span>
+        </div>
+<div style="padding:8px 0;border-bottom:1px solid #f9fafb;">
+          <span style="background:#d1fae5;color:#064e3b;border-radius:4px;padding:1px 7px;font-size:10px;font-weight:700">👤 Customer</span>
+          <span style="font-size:12px;color:#374151;margin-left:8px;line-height:1.6">Äh, nein, ich möchte Termin absagen.</span>
+        </div>
+<div style="padding:8px 0;border-bottom:1px solid #f9fafb;">
+          <span style="background:#ede9fe;color:#4c1d95;border-radius:4px;padding:1px 7px;font-size:10px;font-weight:700">🤖 Bot</span>
+          <span style="font-size:12px;color:#374151;margin-left:8px;line-height:1.6">Einen ganz kleinen Moment, bitte….</span>
+        </div>
+<div style="padding:8px 0;border-bottom:1px solid #f9fafb;background:#fffbeb;border-left:3px solid #f59e0b;">
+          <span style="background:#ede9fe;color:#4c1d95;border-radius:4px;padding:1px 7px;font-size:10px;font-weight:700">🤖 Bot</span>
+          <span style="font-size:12px;color:#374151;margin-left:8px;line-height:1.6">[Empathetically] Alles klar, Ihr Termin ist jetzt storniert. Ich habe Ihnen außerdem einen Link per SMS gesendet, über den Sie bei Bedarf einen neuen Termin vereinbaren können. Kann ich sonst noch etwas für Sie tun?</span>
+        </div>
+<div style="padding:8px 0;border-bottom:1px solid #f9fafb;">
+          <span style="background:#d1fae5;color:#064e3b;border-radius:4px;padding:1px 7px;font-size:10px;font-weight:700">👤 Customer</span>
+          <span style="font-size:12px;color:#374151;margin-left:8px;line-height:1.6">Äh, ich möchte sprechen zur Agentin.</span>
+        </div>
+<div style="padding:8px 0;border-bottom:1px solid #f9fafb;">
+          <span style="background:#ede9fe;color:#4c1d95;border-radius:4px;padding:1px 7px;font-size:10px;font-weight:700">🤖 Bot</span>
+          <span style="font-size:12px;color:#374151;margin-left:8px;line-height:1.6">Gerne, ich verbinde Sie mit einem menschlichen Kollegen. Die Wartezeit beträgt etwa {{waitingTime}} Minuten. Einen Moment bitte.</span>
+        </div>
+
+      </div>
+    </div>
+    <div style="background:#f8f9ff;border:1px solid #e0e3ff;border-radius:8px;padding:14px;margin-bottom:10px">
+      <div style="display:flex;gap:10px;align-items:center;margin-bottom:10px">
+        <span style="font-size:11px;font-weight:700;color:#6b7280">Example 2</span>
+        <span style="font-family:Menlo,monospace;font-size:11px;color:#6366f1">conv_3601kss8hf9qfcz9rbgz5gxfqhcy</span>
+        <span style="font-size:11px;color:#9ca3af">2026-05-29 · W22</span>
+      </div>
+      <div style="border:1px solid #e5e7eb;border-radius:6px;background:#fff;padding:4px 12px">
+        <div style="padding:8px 0;border-bottom:1px solid #f9fafb;">
+          <span style="background:#ede9fe;color:#4c1d95;border-radius:4px;padding:1px 7px;font-size:10px;font-weight:700">🤖 Bot</span>
+          <span style="font-size:12px;color:#374151;margin-left:8px;line-height:1.6">Hallo, hier spricht Paul der KI-Assistent von wir kaufen dein auto. Ich rufe an, um Ihren Termin zu verschieben, da der von Ihnen gewählte Termin nicht verfügbar ist. Ist am ersten Montag Juni, neun Uhr für Sie in Ordnung, oder haben Sie einen andere</span>
+        </div>
+<div style="padding:8px 0;border-bottom:1px solid #f9fafb;">
+          <span style="background:#d1fae5;color:#064e3b;border-radius:4px;padding:1px 7px;font-size:10px;font-weight:700">👤 Customer</span>
+          <span style="font-size:12px;color:#374151;margin-left:8px;line-height:1.6">Anderer Termin.</span>
+        </div>
+<div style="padding:8px 0;border-bottom:1px solid #f9fafb;">
+          <span style="background:#ede9fe;color:#4c1d95;border-radius:4px;padding:1px 7px;font-size:10px;font-weight:700">🤖 Bot</span>
+          <span style="font-size:12px;color:#374151;margin-left:8px;line-height:1.6">Gerne. Welches Datum und welche Uhrzeit würden Ihnen denn am besten passen?</span>
+        </div>
+<div style="padding:8px 0;border-bottom:1px solid #f9fafb;">
+          <span style="background:#d1fae5;color:#064e3b;border-radius:4px;padding:1px 7px;font-size:10px;font-weight:700">👤 Customer</span>
+          <span style="font-size:12px;color:#374151;margin-left:8px;line-height:1.6">Samstag.</span>
+        </div>
+<div style="padding:8px 0;border-bottom:1px solid #f9fafb;">
+          <span style="background:#ede9fe;color:#4c1d95;border-radius:4px;padding:1px 7px;font-size:10px;font-weight:700">🤖 Bot</span>
+          <span style="font-size:12px;color:#374151;margin-left:8px;line-height:1.6">Einen ganz kleinen Moment, bitte…. Für Samstag ist aktuell leider kein Termin verfügbar, da alle Termine belegt sind. Alternativ hätten wir Montag, den ersten Juni, um neun Uhr oder um zehn Uhr in Darmstadt, Frankfurter Straße siebenundneunzig. Würde</span>
+        </div>
+<div style="padding:8px 0;border-bottom:1px solid #f9fafb;">
+          <span style="background:#d1fae5;color:#064e3b;border-radius:4px;padding:1px 7px;font-size:10px;font-weight:700">👤 Customer</span>
+          <span style="font-size:12px;color:#374151;margin-left:8px;line-height:1.6">Nein, passt nicht. Zu spät.</span>
+        </div>
+<div style="padding:8px 0;border-bottom:1px solid #f9fafb;">
+          <span style="background:#ede9fe;color:#4c1d95;border-radius:4px;padding:1px 7px;font-size:10px;font-weight:700">🤖 Bot</span>
+          <span style="font-size:12px;color:#374151;margin-left:8px;line-height:1.6">Verstehe, das passt zeitlich nicht. Welches Datum und welche Uhrzeit wären Ihnen denn lieber?</span>
+        </div>
+<div style="padding:8px 0;border-bottom:1px solid #f9fafb;">
+          <span style="background:#d1fae5;color:#064e3b;border-radius:4px;padding:1px 7px;font-size:10px;font-weight:700">👤 Customer</span>
+          <span style="font-size:12px;color:#374151;margin-left:8px;line-height:1.6">Das Auto wird am Samstag jetzt verkauft.</span>
+        </div>
+
+      </div>
+    </div>
+  </div>
+  <div class="st">Escalation — Differences</div>
+
+  <div class="card" style="margin-bottom:16px">
+    <h3><span class="badge labs">11labs</span> Quick escalation ≤2 turns — customer immediately asks for agent (11labs: 1.7% of calls)</h3>
+    <div class="note">Customer asks for a human in their first response — before any slot negotiation. Bot escalates immediately. This is NOT a "3 tries" failure — it is a customer choice. The highlighted turn shows the escalation.</div>
+    <div style="background:#f0fdf4;border:1px solid #bbf7d0;border-radius:8px;padding:10px 14px;margin-bottom:12px;font-size:12px;color:#374151;line-height:1.6"><strong>Why this matters:</strong> 11labs has 12 such cases (1.7%) in W22–W25. RBA has 0. This may mean 11labs customers are more likely to immediately request a human, or that 11labs' opening message prompts this response more.</div>
+    
+    <div style="background:#f8f9ff;border:1px solid #e0e3ff;border-radius:8px;padding:14px;margin-bottom:10px">
+      <div style="display:flex;gap:10px;align-items:center;margin-bottom:10px">
+        <span style="font-size:11px;font-weight:700;color:#6b7280">Example 1</span>
+        <span style="font-family:Menlo,monospace;font-size:11px;color:#6366f1">conv_4101ksqdpjz8eywb7mp5cnnnmtxa</span>
+        <span style="font-size:11px;color:#9ca3af">2026-05-28 · W22</span>
+      </div>
+      <div style="border:1px solid #e5e7eb;border-radius:6px;background:#fff;padding:4px 12px">
+        <div style="padding:8px 0;border-bottom:1px solid #f9fafb;">
+          <span style="background:#ede9fe;color:#4c1d95;border-radius:4px;padding:1px 7px;font-size:10px;font-weight:700">🤖 Bot</span>
+          <span style="font-size:12px;color:#374151;margin-left:8px;line-height:1.6">Hallo, hier spricht Paul der KI-Assistent von wir kaufen dein auto. Ich rufe an, um Ihren Termin zu verschieben, da der von Ihnen gewählte Termin nicht verfügbar ist. Ist am ersten Montag Juni, neun Uhr dreißig für Sie in Ordnung, oder haben Sie eine</span>
+        </div>
+<div style="padding:8px 0;border-bottom:1px solid #f9fafb;">
+          <span style="background:#d1fae5;color:#064e3b;border-radius:4px;padding:1px 7px;font-size:10px;font-weight:700">👤 Customer</span>
+          <span style="font-size:12px;color:#374151;margin-left:8px;line-height:1.6">Danke. Bleibe in der Leitung.</span>
+        </div>
+<div style="padding:8px 0;border-bottom:1px solid #f9fafb;background:#fffbeb;border-left:3px solid #f59e0b;">
+          <span style="background:#ede9fe;color:#4c1d95;border-radius:4px;padding:1px 7px;font-size:10px;font-weight:700">🤖 Bot</span>
+          <span style="font-size:12px;color:#374151;margin-left:8px;line-height:1.6">Gern. Meinen Sie damit, dass Sie mit einem menschlichen Kollegen sprechen möchten?</span>
+        </div>
+<div style="padding:8px 0;border-bottom:1px solid #f9fafb;">
+          <span style="background:#d1fae5;color:#064e3b;border-radius:4px;padding:1px 7px;font-size:10px;font-weight:700">👤 Customer</span>
+          <span style="font-size:12px;color:#374151;margin-left:8px;line-height:1.6">...</span>
+        </div>
+<div style="padding:8px 0;border-bottom:1px solid #f9fafb;background:#fffbeb;border-left:3px solid #f59e0b;">
+          <span style="background:#ede9fe;color:#4c1d95;border-radius:4px;padding:1px 7px;font-size:10px;font-weight:700">🤖 Bot</span>
+          <span style="font-size:12px;color:#374151;margin-left:8px;line-height:1.6">Einen ganz kleinen Moment, bitte…. Entschuldigung, ich habe Sie gerade nicht verstanden. Möchten Sie mit einem menschlichen Kollegen sprechen, oder möchten Sie den vorgeschlagenen Termin am Montag, dem ersten Juni, um neun Uhr dreißig bestätigen?</span>
+        </div>
+<div style="padding:8px 0;border-bottom:1px solid #f9fafb;">
+          <span style="background:#d1fae5;color:#064e3b;border-radius:4px;padding:1px 7px;font-size:10px;font-weight:700">👤 Customer</span>
+          <span style="font-size:12px;color:#374151;margin-left:8px;line-height:1.6">...</span>
+        </div>
+
+      </div>
+    </div>
+    <div style="background:#f8f9ff;border:1px solid #e0e3ff;border-radius:8px;padding:14px;margin-bottom:10px">
+      <div style="display:flex;gap:10px;align-items:center;margin-bottom:10px">
+        <span style="font-size:11px;font-weight:700;color:#6b7280">Example 2</span>
+        <span style="font-family:Menlo,monospace;font-size:11px;color:#6366f1">conv_7901kt10hs8yegp98h13h4vhz0h7</span>
+        <span style="font-size:11px;color:#9ca3af">2026-06-01 · W23</span>
+      </div>
+      <div style="border:1px solid #e5e7eb;border-radius:6px;background:#fff;padding:4px 12px">
+        <div style="padding:8px 0;border-bottom:1px solid #f9fafb;">
+          <span style="background:#ede9fe;color:#4c1d95;border-radius:4px;padding:1px 7px;font-size:10px;font-weight:700">🤖 Bot</span>
+          <span style="font-size:12px;color:#374151;margin-left:8px;line-height:1.6">Hallo, hier spricht Paul der KI-Assistent von wir kaufen dein auto. Ich rufe an, um Ihren Termin zu verschieben, da der von Ihnen gewählte Termin nicht verfügbar ist. Ist morgen dreizehn Uhr dreißig für Sie in Ordnung, oder haben Sie einen anderen be</span>
+        </div>
+<div style="padding:8px 0;border-bottom:1px solid #f9fafb;">
+          <span style="background:#d1fae5;color:#064e3b;border-radius:4px;padding:1px 7px;font-size:10px;font-weight:700">👤 Customer</span>
+          <span style="font-size:12px;color:#374151;margin-left:8px;line-height:1.6">Ich melde mich noch mal. Ich habe den Fahrzeugbrief noch nich.</span>
+        </div>
+<div style="padding:8px 0;border-bottom:1px solid #f9fafb;">
+          <span style="background:#ede9fe;color:#4c1d95;border-radius:4px;padding:1px 7px;font-size:10px;font-weight:700">🤖 Bot</span>
+          <span style="font-size:12px;color:#374151;margin-left:8px;line-height:1.6">Einen ganz kleinen Moment, bitte…. Kein Problem, danke für die Rückmeldung. Für den Verkauf benötigen wir grundsätzlich die Zulassungsbescheinigung Teil eins, also den Fahrzeugschein, und Teil zwei, also den Fahrzeugbrief. Falls Ihr Fahrzeug finanzie</span>
+        </div>
+<div style="padding:8px 0;border-bottom:1px solid #f9fafb;background:#fffbeb;border-left:3px solid #f59e0b;">
+          <span style="background:#d1fae5;color:#064e3b;border-radius:4px;padding:1px 7px;font-size:10px;font-weight:700">👤 Customer</span>
+          <span style="font-size:12px;color:#374151;margin-left:8px;line-height:1.6">Lieber mit einem menschlichen Kollegen sprechen.</span>
+        </div>
+<div style="padding:8px 0;border-bottom:1px solid #f9fafb;">
+          <span style="background:#ede9fe;color:#4c1d95;border-radius:4px;padding:1px 7px;font-size:10px;font-weight:700">🤖 Bot</span>
+          <span style="font-size:12px;color:#374151;margin-left:8px;line-height:1.6">Einen ganz kleinen Moment, bitte….</span>
+        </div>
+<div style="padding:8px 0;border-bottom:1px solid #f9fafb;background:#fffbeb;border-left:3px solid #f59e0b;">
+          <span style="background:#ede9fe;color:#4c1d95;border-radius:4px;padding:1px 7px;font-size:10px;font-weight:700">🤖 Bot</span>
+          <span style="font-size:12px;color:#374151;margin-left:8px;line-height:1.6">Ich verbinde Sie mit einem menschlichen Kollegen. Die Wartezeit beträgt aktuell etwa sieben Minuten...</span>
+        </div>
+
+      </div>
+    </div>
+  </div>
+  <div class="card" style="margin-bottom:16px">
+    <h3><span class="badge warn">🐛 11labs bug</span> {{waitingTime}} production bug — placeholder never filled (11labs only: 0.4%)</h3>
+    <div class="note">When 11labs auto-escalates, the wait time message contains the unfilled placeholder. Customers hear "approximately {{waitingTime}} minutes". The highlighted turn shows the exact message.</div>
+    <div style="background:#f0fdf4;border:1px solid #bbf7d0;border-radius:8px;padding:10px 14px;margin-bottom:12px;font-size:12px;color:#374151;line-height:1.6"><strong>Action required:</strong> Fix the integration between 11labs and the queue system so the wait time is injected at runtime.</div>
+    
+    <div style="background:#f8f9ff;border:1px solid #e0e3ff;border-radius:8px;padding:14px;margin-bottom:10px">
+      <div style="display:flex;gap:10px;align-items:center;margin-bottom:10px">
+        <span style="font-size:11px;font-weight:700;color:#6b7280">Example 1</span>
+        <span style="font-family:Menlo,monospace;font-size:11px;color:#6366f1">conv_7301ksq18kemejbtsddye167tfxt</span>
+        <span style="font-size:11px;color:#9ca3af">2026-05-28 · W22</span>
+      </div>
+      <div style="border:1px solid #e5e7eb;border-radius:6px;background:#fff;padding:4px 12px">
+        <div style="padding:8px 0;border-bottom:1px solid #f9fafb;">
+          <span style="background:#ede9fe;color:#4c1d95;border-radius:4px;padding:1px 7px;font-size:10px;font-weight:700">🤖 Bot</span>
+          <span style="font-size:12px;color:#374151;margin-left:8px;line-height:1.6">Hallo, hier spricht Paul der KI-Assistent von wir kaufen dein auto. Ich rufe an, um Ihren Termin zu verschieben, da der von Ihnen gewählte Termin nicht verfügbar ist. Ist am zehnten Mittwoch Juni, vierzehn Uhr dreißig für Sie in Ordnung, oder haben S</span>
+        </div>
+<div style="padding:8px 0;border-bottom:1px solid #f9fafb;">
+          <span style="background:#d1fae5;color:#064e3b;border-radius:4px;padding:1px 7px;font-size:10px;font-weight:700">👤 Customer</span>
+          <span style="font-size:12px;color:#374151;margin-left:8px;line-height:1.6">...</span>
+        </div>
+<div style="padding:8px 0;border-bottom:1px solid #f9fafb;">
+          <span style="background:#ede9fe;color:#4c1d95;border-radius:4px;padding:1px 7px;font-size:10px;font-weight:700">🤖 Bot</span>
+          <span style="font-size:12px;color:#374151;margin-left:8px;line-height:1.6">Einen ganz kleinen Moment, bitte…. Hallo, sind Sie noch dran? Ich wollte nur kurz klären, ob der Termin am Mittwoch, dem zehnten Juni um vierzehn Uhr dreißig für Sie passt, oder ob Sie lieber einen anderen Termin wünschen.</span>
+        </div>
+<div style="padding:8px 0;border-bottom:1px solid #f9fafb;">
+          <span style="background:#d1fae5;color:#064e3b;border-radius:4px;padding:1px 7px;font-size:10px;font-weight:700">👤 Customer</span>
+          <span style="font-size:12px;color:#374151;margin-left:8px;line-height:1.6">Ich kann es nur samstags machen.</span>
+        </div>
+<div style="padding:8px 0;border-bottom:1px solid #f9fafb;">
+          <span style="background:#ede9fe;color:#4c1d95;border-radius:4px;padding:1px 7px;font-size:10px;font-weight:700">🤖 Bot</span>
+          <span style="font-size:12px;color:#374151;margin-left:8px;line-height:1.6">Einen ganz kleinen Moment, bitte….</span>
+        </div>
+<div style="padding:8px 0;border-bottom:1px solid #f9fafb;">
+          <span style="background:#ede9fe;color:#4c1d95;border-radius:4px;padding:1px 7px;font-size:10px;font-weight:700">🤖 Bot</span>
+          <span style="font-size:12px;color:#374151;margin-left:8px;line-height:1.6">Entschuldigung, da ist gerade ein technisches Problem aufgetreten. Möchten Sie, dass ich Sie mit einem menschlichen Kollegen verbinde, damit Ihr Termin weiter geklärt werden kann?</span>
+        </div>
+<div style="padding:8px 0;border-bottom:1px solid #f9fafb;">
+          <span style="background:#d1fae5;color:#064e3b;border-radius:4px;padding:1px 7px;font-size:10px;font-weight:700">👤 Customer</span>
+          <span style="font-size:12px;color:#374151;margin-left:8px;line-height:1.6">Ja.</span>
+        </div>
+<div style="padding:8px 0;border-bottom:1px solid #f9fafb;">
+          <span style="background:#ede9fe;color:#4c1d95;border-radius:4px;padding:1px 7px;font-size:10px;font-weight:700">🤖 Bot</span>
+          <span style="font-size:12px;color:#374151;margin-left:8px;line-height:1.6">Einen ganz kleinen Moment, bitte….</span>
+        </div>
+<div style="padding:8px 0;border-bottom:1px solid #f9fafb;background:#fffbeb;border-left:3px solid #f59e0b;">
+          <span style="background:#ede9fe;color:#4c1d95;border-radius:4px;padding:1px 7px;font-size:10px;font-weight:700">🤖 Bot</span>
+          <span style="font-size:12px;color:#374151;margin-left:8px;line-height:1.6">Ich verbinde Sie jetzt mit einem menschlichen Kollegen. Die Wartezeit beträgt {{waitingTime}} Minuten. Vielen Dank für Ihre Geduld...</span>
+        </div>
+
+      </div>
+    </div>
+    <div style="background:#f8f9ff;border:1px solid #e0e3ff;border-radius:8px;padding:14px;margin-bottom:10px">
+      <div style="display:flex;gap:10px;align-items:center;margin-bottom:10px">
+        <span style="font-size:11px;font-weight:700;color:#6b7280">Example 2</span>
+        <span style="font-family:Menlo,monospace;font-size:11px;color:#6366f1">conv_8801ksq15yyhf68vbsfxayjf8zdh</span>
+        <span style="font-size:11px;color:#9ca3af">2026-05-28 · W22</span>
+      </div>
+      <div style="border:1px solid #e5e7eb;border-radius:6px;background:#fff;padding:4px 12px">
+        <div style="padding:8px 0;border-bottom:1px solid #f9fafb;">
+          <span style="background:#ede9fe;color:#4c1d95;border-radius:4px;padding:1px 7px;font-size:10px;font-weight:700">🤖 Bot</span>
+          <span style="font-size:12px;color:#374151;margin-left:8px;line-height:1.6">Hallo, hier spricht Paul der KI-Assistent von wir kaufen dein auto. Ich rufe an, um Ihren Termin zu verschieben, da der von Ihnen gewählte Termin nicht verfügbar ist. Ist am zehnten Mittwoch Juni, vierzehn Uhr dreißig für Sie in Ordnung, oder haben S</span>
+        </div>
+<div style="padding:8px 0;border-bottom:1px solid #f9fafb;">
+          <span style="background:#d1fae5;color:#064e3b;border-radius:4px;padding:1px 7px;font-size:10px;font-weight:700">👤 Customer</span>
+          <span style="font-size:12px;color:#374151;margin-left:8px;line-height:1.6">Ich möchte Agentin sprechen.</span>
+        </div>
+<div style="padding:8px 0;border-bottom:1px solid #f9fafb;">
+          <span style="background:#ede9fe;color:#4c1d95;border-radius:4px;padding:1px 7px;font-size:10px;font-weight:700">🤖 Bot</span>
+          <span style="font-size:12px;color:#374151;margin-left:8px;line-height:1.6">Einen ganz kleinen Moment, bitte….</span>
+        </div>
+<div style="padding:8px 0;border-bottom:1px solid #f9fafb;background:#fffbeb;border-left:3px solid #f59e0b;">
+          <span style="background:#ede9fe;color:#4c1d95;border-radius:4px;padding:1px 7px;font-size:10px;font-weight:700">🤖 Bot</span>
+          <span style="font-size:12px;color:#374151;margin-left:8px;line-height:1.6">[Empathetically] Ich verbinde Sie jetzt mit einer Kollegin oder einem Kollegen. Die Wartezeit beträgt voraussichtlich {{waitingTime}} Minuten...</span>
+        </div>
+
+      </div>
+    </div>
+  </div>
+  <div class="card" style="margin-bottom:16px">
+    <h3><span class="badge rba">RBA</span> Escalation after bot misunderstanding — customer arrives frustrated (RBA: 8.6% of escalated)</h3>
+    <div class="note">The bot failed to understand the customer at least once before escalating. The highlighted turns show the misunderstanding(s) and the eventual escalation. 11labs has 0 such cases.</div>
+    <div style="background:#f0fdf4;border:1px solid #bbf7d0;border-radius:8px;padding:10px 14px;margin-bottom:12px;font-size:12px;color:#374151;line-height:1.6"><strong>Key difference:</strong> In 8.6% of RBA's escalated conversations, the customer experienced at least one bot failure before being handed off. They arrive at the agent already frustrated — potentially increasing agent handling time and reducing satisfaction.</div>
+    
+    <div style="background:#f8f9ff;border:1px solid #e0e3ff;border-radius:8px;padding:14px;margin-bottom:10px">
+      <div style="display:flex;gap:10px;align-items:center;margin-bottom:10px">
+        <span style="font-size:11px;font-weight:700;color:#6b7280">Example 1</span>
+        <span style="font-family:Menlo,monospace;font-size:11px;color:#6366f1">WK11773551</span>
+        <span style="font-size:11px;color:#9ca3af">6/1/2026 · W23</span>
+      </div>
+      <div style="border:1px solid #e5e7eb;border-radius:6px;background:#fff;padding:4px 12px">
+        <div style="padding:8px 0;border-bottom:1px solid #f9fafb;">
+          <span style="background:#ede9fe;color:#4c1d95;border-radius:4px;padding:1px 7px;font-size:10px;font-weight:700">🤖 Bot</span>
+          <span style="font-size:12px;color:#374151;margin-left:8px;line-height:1.6">Hallo, hier spricht Paul der KI-Assistent von wir kaufen dein auto. Ich rufe an, um Ihren Termin zu verschieben, da der von Ihnen gewählte Termin nicht verfügbar ist. Ist morgen um 14:30 für Sie in Ordnung, oder haben Sie einen anderen bevorzugten Te</span>
+        </div>
+<div style="padding:8px 0;border-bottom:1px solid #f9fafb;">
+          <span style="background:#d1fae5;color:#064e3b;border-radius:4px;padding:1px 7px;font-size:10px;font-weight:700">👤 Customer</span>
+          <span style="font-size:12px;color:#374151;margin-left:8px;line-height:1.6">Nein, ich warte noch ab</span>
+        </div>
+<div style="padding:8px 0;border-bottom:1px solid #f9fafb;">
+          <span style="background:#ede9fe;color:#4c1d95;border-radius:4px;padding:1px 7px;font-size:10px;font-weight:700">🤖 Bot</span>
+          <span style="font-size:12px;color:#374151;margin-left:8px;line-height:1.6">Wunderbar! Wir suchen Ihnen den besten Termin heraus. Bitte sagen Sie mir welche Zeit Ihnen am Besten passt.</span>
+        </div>
+<div style="padding:8px 0;border-bottom:1px solid #f9fafb;">
+          <span style="background:#d1fae5;color:#064e3b;border-radius:4px;padding:1px 7px;font-size:10px;font-weight:700">👤 Customer</span>
+          <span style="font-size:12px;color:#374151;margin-left:8px;line-height:1.6">Ich weiß noch nicht</span>
+        </div>
+<div style="padding:8px 0;border-bottom:1px solid #f9fafb;">
+          <span style="background:#ede9fe;color:#4c1d95;border-radius:4px;padding:1px 7px;font-size:10px;font-weight:700">🤖 Bot</span>
+          <span style="font-size:12px;color:#374151;margin-left:8px;line-height:1.6">Entschuldigung, können Sie bitte Ihren bevorzugten Termin wiederholen? Bitte nennen Sie mir den Monat, das Datum und die Uhrzeit.</span>
+        </div>
+<div style="padding:8px 0;border-bottom:1px solid #f9fafb;">
+          <span style="background:#d1fae5;color:#064e3b;border-radius:4px;padding:1px 7px;font-size:10px;font-weight:700">👤 Customer</span>
+          <span style="font-size:12px;color:#374151;margin-left:8px;line-height:1.6">Ich weiß noch nicht, wann</span>
+        </div>
+<div style="padding:8px 0;border-bottom:1px solid #f9fafb;background:#fffbeb;border-left:3px solid #f59e0b;">
+          <span style="background:#ede9fe;color:#4c1d95;border-radius:4px;padding:1px 7px;font-size:10px;font-weight:700">🤖 Bot</span>
+          <span style="font-size:12px;color:#374151;margin-left:8px;line-height:1.6">Entschuldigung, das habe ich wieder nicht verstanden. Wir versuchen es noch einmal: Bitte nennen Sie mir Datum und Uhrzeit Ihres Wunschtermins.</span>
+        </div>
+<div style="padding:8px 0;border-bottom:1px solid #f9fafb;">
+          <span style="background:#d1fae5;color:#064e3b;border-radius:4px;padding:1px 7px;font-size:10px;font-weight:700">👤 Customer</span>
+          <span style="font-size:12px;color:#374151;margin-left:8px;line-height:1.6">Ich weiß es noch nicht</span>
+        </div>
+<div style="padding:8px 0;border-bottom:1px solid #f9fafb;background:#fffbeb;border-left:3px solid #f59e0b;">
+          <span style="background:#ede9fe;color:#4c1d95;border-radius:4px;padding:1px 7px;font-size:10px;font-weight:700">🤖 Bot</span>
+          <span style="font-size:12px;color:#374151;margin-left:8px;line-height:1.6">Da wir bisher keinen gemeinsamen Termin finden konnten, habe ich Ihnen per SMS einen Link geschickt, über den Sie alle verfügbaren Termin einsehen können. Gerne verbinde ich Sie auch mit einem Mitarbeiter, um weitere Alternativen zu prüfen. Möchten S</span>
+        </div>
+<div style="padding:8px 0;border-bottom:1px solid #f9fafb;">
+          <span style="background:#d1fae5;color:#064e3b;border-radius:4px;padding:1px 7px;font-size:10px;font-weight:700">👤 Customer</span>
+          <span style="font-size:12px;color:#374151;margin-left:8px;line-height:1.6">Nein</span>
+        </div>
+<div style="padding:8px 0;border-bottom:1px solid #f9fafb;">
+          <span style="background:#ede9fe;color:#4c1d95;border-radius:4px;padding:1px 7px;font-size:10px;font-weight:700">🤖 Bot</span>
+          <span style="font-size:12px;color:#374151;margin-left:8px;line-height:1.6">Ok. Vielen Dank für Ihre Zeit. Schönen Tag noch!</span>
+        </div>
+<div style="padding:8px 0;border-bottom:1px solid #f9fafb;">
+          <span style="background:#ede9fe;color:#4c1d95;border-radius:4px;padding:1px 7px;font-size:10px;font-weight:700">🤖 Bot</span>
+          <span style="font-size:12px;color:#374151;margin-left:8px;line-height:1.6">.</span>
+        </div>
+
+      </div>
+    </div>
+    <div style="background:#f8f9ff;border:1px solid #e0e3ff;border-radius:8px;padding:14px;margin-bottom:10px">
+      <div style="display:flex;gap:10px;align-items:center;margin-bottom:10px">
+        <span style="font-size:11px;font-weight:700;color:#6b7280">Example 2</span>
+        <span style="font-family:Menlo,monospace;font-size:11px;color:#6366f1">WK11815176</span>
+        <span style="font-size:11px;color:#9ca3af">6/3/2026 · W23</span>
+      </div>
+      <div style="border:1px solid #e5e7eb;border-radius:6px;background:#fff;padding:4px 12px">
+        <div style="padding:8px 0;border-bottom:1px solid #f9fafb;">
+          <span style="background:#ede9fe;color:#4c1d95;border-radius:4px;padding:1px 7px;font-size:10px;font-weight:700">🤖 Bot</span>
+          <span style="font-size:12px;color:#374151;margin-left:8px;line-height:1.6">Hallo, hier spricht Paul der KI-Assistent von wir kaufen dein auto. Ich rufe an, um Ihren Termin zu verschieben, da der von Ihnen gewählte Termin nicht verfügbar ist. Ist Dienstag, 9. Juni um 11:00 für Sie in Ordnung, oder haben Sie einen anderen bev</span>
+        </div>
+<div style="padding:8px 0;border-bottom:1px solid #f9fafb;">
+          <span style="background:#d1fae5;color:#064e3b;border-radius:4px;padding:1px 7px;font-size:10px;font-weight:700">👤 Customer</span>
+          <span style="font-size:12px;color:#374151;margin-left:8px;line-height:1.6">Nein</span>
+        </div>
+<div style="padding:8px 0;border-bottom:1px solid #f9fafb;">
+          <span style="background:#ede9fe;color:#4c1d95;border-radius:4px;padding:1px 7px;font-size:10px;font-weight:700">🤖 Bot</span>
+          <span style="font-size:12px;color:#374151;margin-left:8px;line-height:1.6">Wunderbar! Wir suchen Ihnen den besten Termin heraus. Bitte sagen Sie mir welche Zeit Ihnen am Besten passt.</span>
+        </div>
+<div style="padding:8px 0;border-bottom:1px solid #f9fafb;">
+          <span style="background:#d1fae5;color:#064e3b;border-radius:4px;padding:1px 7px;font-size:10px;font-weight:700">👤 Customer</span>
+          <span style="font-size:12px;color:#374151;margin-left:8px;line-height:1.6">Montagnachmittag</span>
+        </div>
+<div style="padding:8px 0;border-bottom:1px solid #f9fafb;">
+          <span style="background:#ede9fe;color:#4c1d95;border-radius:4px;padding:1px 7px;font-size:10px;font-weight:700">🤖 Bot</span>
+          <span style="font-size:12px;color:#374151;margin-left:8px;line-height:1.6">Für den gewünschten Zeitraum ist aktuell kein Termin verfügbar. Ich habe aber folgende Alternativen für Sie gefunden: Dienstag, 9. Juni um 11:00 ,oder, 14:00. Sie können sich gerne einen davon aussuchen, oder mir einen anderen Wunschtermin nennen.</span>
+        </div>
+<div style="padding:8px 0;border-bottom:1px solid #f9fafb;">
+          <span style="background:#d1fae5;color:#064e3b;border-radius:4px;padding:1px 7px;font-size:10px;font-weight:700">👤 Customer</span>
+          <span style="font-size:12px;color:#374151;margin-left:8px;line-height:1.6">Nein</span>
+        </div>
+<div style="padding:8px 0;border-bottom:1px solid #f9fafb;">
+          <span style="background:#ede9fe;color:#4c1d95;border-radius:4px;padding:1px 7px;font-size:10px;font-weight:700">🤖 Bot</span>
+          <span style="font-size:12px;color:#374151;margin-left:8px;line-height:1.6">Für den gewünschten Zeitraum ist aktuell kein Termin verfügbar. Ich habe aber folgende Alternativen für Sie gefunden: Dienstag, 9. Juni um 11:00 ,oder, 14:00. Sie können sich gerne einen davon aussuchen, oder mir einen anderen Wunschtermin nennen.</span>
+        </div>
+<div style="padding:8px 0;border-bottom:1px solid #f9fafb;">
+          <span style="background:#d1fae5;color:#064e3b;border-radius:4px;padding:1px 7px;font-size:10px;font-weight:700">👤 Customer</span>
+          <span style="font-size:12px;color:#374151;margin-left:8px;line-height:1.6">Ich habe 3. einen anderen Termin</span>
+        </div>
+<div style="padding:8px 0;border-bottom:1px solid #f9fafb;">
+          <span style="background:#ede9fe;color:#4c1d95;border-radius:4px;padding:1px 7px;font-size:10px;font-weight:700">🤖 Bot</span>
+          <span style="font-size:12px;color:#374151;margin-left:8px;line-height:1.6">Entschuldigung, können Sie bitte Ihren bevorzugten Termin wiederholen? Bitte nennen Sie mir den Monat, das Datum und die Uhrzeit.</span>
+        </div>
+<div style="padding:8px 0;border-bottom:1px solid #f9fafb;">
+          <span style="background:#d1fae5;color:#064e3b;border-radius:4px;padding:1px 7px;font-size:10px;font-weight:700">👤 Customer</span>
+          <span style="font-size:12px;color:#374151;margin-left:8px;line-height:1.6">Ich habe bereits einen anderen Termin</span>
+        </div>
+<div style="padding:8px 0;border-bottom:1px solid #f9fafb;background:#fffbeb;border-left:3px solid #f59e0b;">
+          <span style="background:#ede9fe;color:#4c1d95;border-radius:4px;padding:1px 7px;font-size:10px;font-weight:700">🤖 Bot</span>
+          <span style="font-size:12px;color:#374151;margin-left:8px;line-height:1.6">Entschuldigung, das habe ich wieder nicht verstanden. Wir versuchen es noch einmal: Bitte nennen Sie mir Datum und Uhrzeit Ihres Wunschtermins.</span>
+        </div>
+<div style="padding:8px 0;border-bottom:1px solid #f9fafb;">
+          <span style="background:#d1fae5;color:#064e3b;border-radius:4px;padding:1px 7px;font-size:10px;font-weight:700">👤 Customer</span>
+          <span style="font-size:12px;color:#374151;margin-left:8px;line-height:1.6">Ich brauche keinen neuen Termin. Ich habe bereits einen anderen Termin</span>
+        </div>
+
+      </div>
+    </div>
+  </div>
+  <div class="footer">Clara CX Analysis · DE Market · W22–W25 · June 2026</div>
+</div>
+
 <!-- ════════ METHODOLOGY ════════ -->
 <div id="tab-methodology" class="tab-panel">
   <div class="st">What we measure</div>
@@ -541,7 +1062,7 @@ const DAY_LABELS=['0','1','2','3','4','5','6','7','8','9','10','11','12','13+'];
 const KPI_D={overlap:{labsMean:3.72,labsMed:3,labsN:541,rbaMean:3.93,rbaMed:3,rbaN:1008,diff:'+0.21',nextDay:'~21%',trend:'11labs ↓ 3.04d in W25'},full:{labsMean:3.72,labsMed:3,labsN:541,rbaMean:3.93,rbaMed:3,rbaN:6468,diff:'+0.21',nextDay:'~21%',trend:'RBA spike W14: 5.48d avg'}};
 
 // ── Tabs
-const TABS=['dashboard','cx','sms','esc','methodology','conversations'];
+const TABS=['dashboard','cx','sms','esc','diff','methodology','conversations'];
 const NAV=document.querySelectorAll('.main-nav button');
 let inited={};
 function switchTab(name){
