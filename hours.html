@@ -1,228 +1,30 @@
 <!DOCTYPE html>
 <html lang="en"><head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>11labs Call Hour Analysis — Outcome Distribution</title>
-<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js">
-
-const DATA = [{"hour": 8, "total": 96, "no_answer": 48, "no_answer_pct": 50.0, "rescheduled": 10, "rescheduled_pct": 10.4, "callback": 1, "callback_pct": 1.0, "slot_issue": 1, "slot_issue_pct": 1.0, "no_capacity_sms": 2, "no_capacity_sms_pct": 2.1, "cancelled": 0, "cancelled_pct": 0.0, "escalated": 0, "escalated_pct": 0.0, "bot_misunderstand": 0, "bot_misunderstand_pct": 0.0, "other": 6, "other_pct": 6.2, "unknown": 28, "unknown_pct": 29.2, "score": 5.2}, {"hour": 9, "total": 115, "no_answer": 64, "no_answer_pct": 55.7, "rescheduled": 17, "rescheduled_pct": 14.8, "callback": 5, "callback_pct": 4.3, "slot_issue": 7, "slot_issue_pct": 6.1, "no_capacity_sms": 6, "no_capacity_sms_pct": 5.2, "cancelled": 4, "cancelled_pct": 3.5, "escalated": 1, "escalated_pct": 0.9, "bot_misunderstand": 0, "bot_misunderstand_pct": 0.0, "other": 9, "other_pct": 7.8, "unknown": 2, "unknown_pct": 1.7, "score": 6.56}, {"hour": 10, "total": 36, "no_answer": 12, "no_answer_pct": 33.3, "rescheduled": 3, "rescheduled_pct": 8.3, "callback": 0, "callback_pct": 0.0, "slot_issue": 4, "slot_issue_pct": 11.1, "no_capacity_sms": 3, "no_capacity_sms_pct": 8.3, "cancelled": 0, "cancelled_pct": 0.0, "escalated": 1, "escalated_pct": 2.8, "bot_misunderstand": 0, "bot_misunderstand_pct": 0.0, "other": 5, "other_pct": 13.9, "unknown": 8, "unknown_pct": 22.2, "score": 5.54}, {"hour": 11, "total": 34, "no_answer": 18, "no_answer_pct": 52.9, "rescheduled": 5, "rescheduled_pct": 14.7, "callback": 1, "callback_pct": 2.9, "slot_issue": 2, "slot_issue_pct": 5.9, "no_capacity_sms": 2, "no_capacity_sms_pct": 5.9, "cancelled": 2, "cancelled_pct": 5.9, "escalated": 0, "escalated_pct": 0.0, "bot_misunderstand": 0, "bot_misunderstand_pct": 0.0, "other": 1, "other_pct": 2.9, "unknown": 3, "unknown_pct": 8.8, "score": 6.92}, {"hour": 12, "total": 38, "no_answer": 20, "no_answer_pct": 52.6, "rescheduled": 5, "rescheduled_pct": 13.2, "callback": 2, "callback_pct": 5.3, "slot_issue": 0, "slot_issue_pct": 0.0, "no_capacity_sms": 2, "no_capacity_sms_pct": 5.3, "cancelled": 1, "cancelled_pct": 2.6, "escalated": 0, "escalated_pct": 0.0, "bot_misunderstand": 0, "bot_misunderstand_pct": 0.0, "other": 5, "other_pct": 13.2, "unknown": 3, "unknown_pct": 7.9, "score": 6.26}, {"hour": 13, "total": 45, "no_answer": 22, "no_answer_pct": 48.9, "rescheduled": 10, "rescheduled_pct": 22.2, "callback": 0, "callback_pct": 0.0, "slot_issue": 3, "slot_issue_pct": 6.7, "no_capacity_sms": 0, "no_capacity_sms_pct": 0.0, "cancelled": 1, "cancelled_pct": 2.2, "escalated": 2, "escalated_pct": 4.4, "bot_misunderstand": 0, "bot_misunderstand_pct": 0.0, "other": 5, "other_pct": 11.1, "unknown": 2, "unknown_pct": 4.4, "score": 11.34}, {"hour": 14, "total": 41, "no_answer": 20, "no_answer_pct": 48.8, "rescheduled": 8, "rescheduled_pct": 19.5, "callback": 0, "callback_pct": 0.0, "slot_issue": 2, "slot_issue_pct": 4.9, "no_capacity_sms": 1, "no_capacity_sms_pct": 2.4, "cancelled": 1, "cancelled_pct": 2.4, "escalated": 0, "escalated_pct": 0.0, "bot_misunderstand": 0, "bot_misunderstand_pct": 0.0, "other": 3, "other_pct": 7.3, "unknown": 6, "unknown_pct": 14.6, "score": 9.98}, {"hour": 15, "total": 45, "no_answer": 23, "no_answer_pct": 51.1, "rescheduled": 11, "rescheduled_pct": 24.4, "callback": 0, "callback_pct": 0.0, "slot_issue": 2, "slot_issue_pct": 4.4, "no_capacity_sms": 2, "no_capacity_sms_pct": 4.4, "cancelled": 1, "cancelled_pct": 2.2, "escalated": 0, "escalated_pct": 0.0, "bot_misunderstand": 0, "bot_misunderstand_pct": 0.0, "other": 3, "other_pct": 6.7, "unknown": 3, "unknown_pct": 6.7, "score": 11.93}, {"hour": 16, "total": 45, "no_answer": 23, "no_answer_pct": 51.1, "rescheduled": 2, "rescheduled_pct": 4.4, "callback": 0, "callback_pct": 0.0, "slot_issue": 4, "slot_issue_pct": 8.9, "no_capacity_sms": 3, "no_capacity_sms_pct": 6.7, "cancelled": 1, "cancelled_pct": 2.2, "escalated": 0, "escalated_pct": 0.0, "bot_misunderstand": 0, "bot_misunderstand_pct": 0.0, "other": 5, "other_pct": 11.1, "unknown": 7, "unknown_pct": 15.6, "score": 2.15}, {"hour": 17, "total": 53, "no_answer": 29, "no_answer_pct": 54.7, "rescheduled": 8, "rescheduled_pct": 15.1, "callback": 1, "callback_pct": 1.9, "slot_issue": 3, "slot_issue_pct": 5.7, "no_capacity_sms": 2, "no_capacity_sms_pct": 3.8, "cancelled": 3, "cancelled_pct": 5.7, "escalated": 2, "escalated_pct": 3.8, "bot_misunderstand": 0, "bot_misunderstand_pct": 0.0, "other": 2, "other_pct": 3.8, "unknown": 3, "unknown_pct": 5.7, "score": 6.84}, {"hour": 18, "total": 54, "no_answer": 27, "no_answer_pct": 50.0, "rescheduled": 8, "rescheduled_pct": 14.8, "callback": 1, "callback_pct": 1.9, "slot_issue": 3, "slot_issue_pct": 5.6, "no_capacity_sms": 1, "no_capacity_sms_pct": 1.9, "cancelled": 2, "cancelled_pct": 3.7, "escalated": 0, "escalated_pct": 0.0, "bot_misunderstand": 0, "bot_misunderstand_pct": 0.0, "other": 4, "other_pct": 7.4, "unknown": 8, "unknown_pct": 14.8, "score": 7.4}, {"hour": 19, "total": 56, "no_answer": 27, "no_answer_pct": 48.2, "rescheduled": 8, "rescheduled_pct": 14.3, "callback": 0, "callback_pct": 0.0, "slot_issue": 6, "slot_issue_pct": 10.7, "no_capacity_sms": 1, "no_capacity_sms_pct": 1.8, "cancelled": 2, "cancelled_pct": 3.6, "escalated": 0, "escalated_pct": 0.0, "bot_misunderstand": 0, "bot_misunderstand_pct": 0.0, "other": 7, "other_pct": 12.5, "unknown": 5, "unknown_pct": 8.9, "score": 7.41}];
-
-const hours  = DATA.map(d => d.hour + ':00');
-const scores = DATA.map(d => d.score);
-const naRate = DATA.map(d => d.no_answer_pct);
-const rRate  = DATA.map(d => d.rescheduled_pct);
-const totals = DATA.map(d => d.total);
-const GOLDEN = new Set([13, 14, 15]);
-const AVOID  = new Set([8, 9]);
-
-// ── Score chart ───────────────────────────────────────────────────────────────
-const scorePlugin = {
-  id: 'goldenShade',
-  beforeDraw(c) {
-    const {ctx, chartArea, scales} = c;
-    if (!chartArea) return;
-    const i13 = DATA.findIndex(d => d.hour === 13);
-    const i15 = DATA.findIndex(d => d.hour === 15);
-    if (i13 < 0) return;
-    const x0 = scales.x.getPixelForValue(i13 - 0.5);
-    const x1 = scales.x.getPixelForValue(i15 + 0.5);
-    ctx.save();
-    ctx.fillStyle = 'rgba(16,185,129,.1)';
-    ctx.fillRect(x0, chartArea.top, x1 - x0, chartArea.height);
-    ctx.restore();
-  }
-};
-
-new Chart(document.getElementById('scoreChart'), {
-  type: 'bar',
-  plugins: [scorePlugin],
-  data: {
-    labels: hours,
-    datasets: [{
-      label: 'Efficiency score',
-      data: scores,
-      backgroundColor: DATA.map(d =>
-        GOLDEN.has(d.hour) ? 'rgba(16,185,129,.85)' :
-        AVOID.has(d.hour)  ? 'rgba(225,29,72,.7)' :
-        'rgba(99,102,241,.65)'
-      ),
-      borderRadius: 5,
-    }]
-  },
-  options: {
-    responsive: true, maintainAspectRatio: false,
-    plugins: {
-      legend: { display: false },
-      tooltip: { callbacks: {
-        label: ctx => {
-          const d = DATA[ctx.dataIndex];
-          return [`Score: ${d.score}`, `Reschedule: ${d.rescheduled_pct}%`, `No-answer: ${d.no_answer_pct}%`];
-        }
-      }}
-    },
-    scales: {
-      x: { ticks: { font: { size: 11 } }, grid: { display: false } },
-      y: { title: { display: true, text: 'Efficiency score', font: { size: 10 } }, ticks: { font: { size: 10 } }, grid: { color: 'rgba(0,0,0,.05)' } }
-    }
-  }
-});
-
-// ── Quadrant scatter ──────────────────────────────────────────────────────────
-const avgNA     = DATA.reduce((s,d) => s + d.no_answer_pct * d.total, 0) / DATA.reduce((s,d) => s + d.total, 0);
-const avgResched = DATA.reduce((s,d) => s + d.rescheduled_pct * d.total, 0) / DATA.reduce((s,d) => s + d.total, 0);
-
-const quadrantPlugin = {
-  id: 'quadLines',
-  afterDraw(c) {
-    const {ctx, chartArea, scales} = c;
-    ctx.save();
-    ctx.strokeStyle = 'rgba(0,0,0,.1)';
-    ctx.setLineDash([5, 4]);
-    ctx.lineWidth = 1;
-    const xMid = scales.x.getPixelForValue(avgNA);
-    const yMid = scales.y.getPixelForValue(avgResched);
-    ctx.beginPath(); ctx.moveTo(xMid, chartArea.top); ctx.lineTo(xMid, chartArea.bottom); ctx.stroke();
-    ctx.beginPath(); ctx.moveTo(chartArea.left, yMid); ctx.lineTo(chartArea.right, yMid); ctx.stroke();
-    // Labels
-    ctx.fillStyle = 'rgba(5,150,105,.6)';
-    ctx.font = '10px system-ui';
-    ctx.fillText('← Better', chartArea.left + 4, chartArea.top + 14);
-    ctx.restore();
-  }
-};
-
-new Chart(document.getElementById('quadrantChart'), {
-  type: 'bubble',
-  plugins: [quadrantPlugin],
-  data: {
-    datasets: [{
-      data: DATA.map(d => ({
-        x: d.no_answer_pct,
-        y: d.rescheduled_pct,
-        r: Math.sqrt(d.total) * 1.2,
-        hour: d.hour,
-      })),
-      backgroundColor: DATA.map(d =>
-        GOLDEN.has(d.hour) ? 'rgba(16,185,129,.75)' :
-        AVOID.has(d.hour)  ? 'rgba(225,29,72,.65)' :
-        'rgba(99,102,241,.55)'
-      ),
-      borderColor: DATA.map(d =>
-        GOLDEN.has(d.hour) ? '#059669' :
-        AVOID.has(d.hour)  ? '#e11d48' :
-        '#6366f1'
-      ),
-      borderWidth: 2,
-    }]
-  },
-  options: {
-    responsive: true, maintainAspectRatio: false,
-    plugins: {
-      legend: { display: false },
-      tooltip: {
-        callbacks: {
-          label: ctx => {
-            const d = DATA[ctx.dataIndex];
-            return [`${d.hour}:00`, `No-answer: ${d.no_answer_pct}%`, `Reschedule: ${d.rescheduled_pct}%`, `Calls: ${d.total}`];
-          }
-        }
-      }
-    },
-    scales: {
-      x: { reverse: true, title: { display: true, text: 'No-answer rate % (← lower is better)', font: { size: 10 } }, ticks: { callback: v => v+'%', font: { size: 10 } }, grid: { color: 'rgba(0,0,0,.05)' } },
-      y: { title: { display: true, text: 'Reschedule rate % (↑ higher is better)', font: { size: 10 } }, ticks: { callback: v => v+'%', font: { size: 10 } }, grid: { color: 'rgba(0,0,0,.05)' } }
-    },
-    // Add hour labels
-    animation: {
-      onComplete() {
-        const chart = this;
-        const {ctx, scales} = chart;
-        ctx.font = 'bold 10px system-ui';
-        ctx.textAlign = 'center';
-        ctx.textBaseline = 'middle';
-        DATA.forEach((d, i) => {
-          const x = scales.x.getPixelForValue(d.no_answer_pct);
-          const y = scales.y.getPixelForValue(d.rescheduled_pct);
-          ctx.fillStyle = GOLDEN.has(d.hour) ? '#065f46' : AVOID.has(d.hour) ? '#9f1239' : '#374151';
-          ctx.fillText(d.hour + 'h', x, y);
-        });
-      }
-    }
-  }
-});
-
-// ── Dual bar chart ────────────────────────────────────────────────────────────
-const dualPlugin = {
-  id: 'goldenZone',
-  beforeDraw(c) {
-    const {ctx, chartArea, scales} = c;
-    if (!chartArea) return;
-    const i13 = DATA.findIndex(d => d.hour === 13);
-    const i15 = DATA.findIndex(d => d.hour === 15);
-    if (i13 < 0) return;
-    const x0 = scales.x.getPixelForValue(i13 - 0.5);
-    const x1 = scales.x.getPixelForValue(i15 + 0.5);
-    ctx.save();
-    ctx.fillStyle = 'rgba(16,185,129,.08)';
-    ctx.fillRect(x0, chartArea.top, x1 - x0, chartArea.height);
-    ctx.strokeStyle = 'rgba(16,185,129,.4)';
-    ctx.lineWidth = 2;
-    ctx.setLineDash([6, 3]);
-    ctx.strokeRect(x0, chartArea.top, x1 - x0, chartArea.height);
-    ctx.fillStyle = '#059669';
-    ctx.font = 'bold 11px system-ui';
-    ctx.textAlign = 'center';
-    ctx.setLineDash([]);
-    ctx.fillText('⭐ Golden Window', (x0 + x1) / 2, chartArea.top + 12);
-    ctx.restore();
-  }
-};
-
-new Chart(document.getElementById('dualChart'), {
-  type: 'bar',
-  plugins: [dualPlugin],
-  data: {
-    labels: hours,
-    datasets: [
-      {
-        label: 'No-answer rate %',
-        data: naRate,
-        backgroundColor: 'rgba(225,29,72,.65)',
-        borderRadius: 3,
-        yAxisID: 'y',
-      },
-      {
-        label: 'Reschedule rate %',
-        data: rRate,
-        backgroundColor: DATA.map(d => GOLDEN.has(d.hour) ? 'rgba(16,185,129,.9)' : 'rgba(5,150,105,.55)'),
-        borderRadius: 3,
-        yAxisID: 'y',
-      }
-    ]
-  },
-  options: {
-    responsive: true, maintainAspectRatio: false,
-    interaction: { mode: 'index', intersect: false },
-    plugins: {
-      legend: { position: 'top', labels: { font: { size: 11 }, usePointStyle: true } },
-      tooltip: { callbacks: { label: ctx => `${ctx.dataset.label}: ${ctx.parsed.y.toFixed(1)}%` } }
-    },
-    scales: {
-      x: { ticks: { font: { size: 11 } }, grid: { display: false } },
-      y: { max: 70, ticks: { callback: v => v+'%', font: { size: 10 } }, grid: { color: 'rgba(0,0,0,.05)' } }
-    }
-  }
-});
-
-</script>
+<title>11labs — Call Hour Analysis & Golden Hour</title>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
 body{font-family:'Segoe UI',system-ui,sans-serif;background:#f4f6fa;color:#1a1d2e;font-size:14px}
-.header{background:linear-gradient(135deg,#1a1d2e 0%,#2d3250 100%);color:#fff;padding:32px 48px 28px}
+/* Nav */
+.topnav{background:#1e293b;padding:12px 48px;display:flex;gap:16px;align-items:center;flex-wrap:wrap}
+.topnav span{font-size:11px;font-weight:700;color:rgba(255,255,255,.4);text-transform:uppercase;letter-spacing:1px;margin-right:8px}
+.topnav a{font-size:12px;font-weight:600;text-decoration:none;padding:5px 12px;border-radius:20px;border:1px solid rgba(255,255,255,.15);color:rgba(255,255,255,.6)}
+.topnav a.active{background:rgba(129,140,248,.2);border-color:#818cf8;color:#818cf8}
+/* Header */
+.header{background:linear-gradient(135deg,#1a1d2e 0%,#2d3250 100%);color:#fff;padding:28px 48px 0}
 .header h1{font-size:22px;font-weight:700}
 .header .sub{margin-top:5px;font-size:13px;opacity:.55}
-.header .meta{margin-top:14px;display:flex;gap:10px;flex-wrap:wrap}
-.header .meta span{font-size:11px;background:rgba(255,255,255,.1);border-radius:20px;padding:3px 12px}
+.header .meta{margin-top:12px;display:flex;gap:10px;flex-wrap:wrap}
+.header .meta span{font-size:11px;background:rgba(255,255,255,.1);border-radius:20px;padding:3px 11px}
+/* Tabs */
+.tab-nav{display:flex;gap:0;margin-top:18px}
+.tab-nav button{border:none;background:transparent;color:rgba(255,255,255,.5);padding:12px 24px;font-size:13px;font-weight:600;cursor:pointer;border-bottom:3px solid transparent;font-family:inherit;transition:all .15s;white-space:nowrap}
+.tab-nav button:hover{color:rgba(255,255,255,.85)}
+.tab-nav button.active{color:#fff;border-bottom-color:#818cf8}
+/* Page */
 .page{max-width:1200px;margin:0 auto;padding:28px 24px 64px}
+.tab-panel{display:none}.tab-panel.active{display:block}
 .st{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:#6b7280;margin-bottom:12px;margin-top:28px}
 .st:first-child{margin-top:0}
 .card{background:#fff;border-radius:12px;padding:22px;box-shadow:0 1px 4px rgba(0,0,0,.06);border:1px solid #e5e7eb}
@@ -234,147 +36,120 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:#f4f6fa;color:#1a1d2
 .cwlg{position:relative;height:320px}
 .kpi{background:#fff;border-radius:12px;padding:18px 20px;box-shadow:0 1px 4px rgba(0,0,0,.06);border:1px solid #e5e7eb}
 .kpi .lbl{font-size:10px;font-weight:600;color:#9ca3af;text-transform:uppercase;letter-spacing:.5px}
-.kpi .val{font-size:30px;font-weight:800;margin-top:5px;letter-spacing:-1px}
+.kpi .val{font-size:28px;font-weight:800;margin-top:5px;letter-spacing:-1px}
 .kpi .sub{font-size:11px;color:#9ca3af;margin-top:3px}
 .kpi .trend{font-size:11px;font-weight:600;margin-top:4px}
-.insight{background:#fff7ed;border:1px solid #fed7aa;border-left:4px solid #f59e0b;border-radius:8px;padding:14px 18px;margin-bottom:14px}
-.insight.good{background:#f0fdf4;border-color:#bbf7d0;border-left-color:#10b981}
-.insight.bad{background:#fff1f2;border-color:#fecdd3;border-left-color:#e11d48}
-.insight .it{font-weight:700;font-size:13px;color:#92400e;margin-bottom:5px}
-.insight.good .it{color:#065f46}
+/* Insights */
+.insight{border-radius:8px;padding:14px 18px;margin-bottom:14px;border-left-width:4px;border-left-style:solid}
+.insight.warn{background:#fff7ed;border-color:#f59e0b;border-width:1px}
+.insight.bad{background:#fff1f2;border-color:#e11d48;border-width:1px}
+.insight.good{background:#f0fdf4;border-color:#10b981;border-width:1px}
+.insight .it{font-weight:700;font-size:13px;margin-bottom:5px}
+.insight.warn .it{color:#92400e}
 .insight.bad .it{color:#9f1239}
+.insight.good .it{color:#065f46}
 .insight .ib{font-size:12px;color:#374151;line-height:1.6}
+/* Table */
 table{width:100%;border-collapse:collapse;font-size:12px}
 thead th{font-size:10px;font-weight:700;color:#6b7280;text-transform:uppercase;letter-spacing:.5px;padding:9px 12px;border-bottom:2px solid #f3f4f6;text-align:right;white-space:nowrap}
 thead th:first-child{text-align:left}
 tbody td{padding:8px 12px;border-bottom:1px solid #f3f4f6;text-align:right;color:#374151}
 tbody td:first-child{text-align:left;font-weight:600}
 tbody tr:hover{background:#f9fafb}
-tbody tr.best{background:#f0fdf4}
-tbody tr.worst{background:#fff1f2}
+tbody tr.best-row{background:#f0fdf4}
+tbody tr.worst-row{background:#fff1f2}
 .bar-cell{display:flex;align-items:center;justify-content:flex-end;gap:6px}
 .mini-bar{height:8px;border-radius:4px;min-width:2px}
-.footer{text-align:center;font-size:11px;color:#9ca3af;margin-top:48px}
-
-*{box-sizing:border-box;margin:0;padding:0}
-body{font-family:'Segoe UI',system-ui,sans-serif;background:#f4f6fa;color:#1a1d2e;font-size:14px}
-.header{background:linear-gradient(135deg,#1a1d2e 0%,#2d3250 100%);color:#fff;padding:32px 48px 28px}
-.header h1{font-size:22px;font-weight:700}
-.header .sub{margin-top:5px;font-size:13px;opacity:.55}
-.header .meta{margin-top:14px;display:flex;gap:10px;flex-wrap:wrap}
-.header .meta span{font-size:11px;background:rgba(255,255,255,.1);border-radius:20px;padding:3px 12px}
-.page{max-width:1100px;margin:0 auto;padding:28px 24px 64px}
-.st{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:#6b7280;margin-bottom:12px;margin-top:28px}
-.st:first-child{margin-top:0}
-.card{background:#fff;border-radius:12px;padding:22px;box-shadow:0 1px 4px rgba(0,0,0,.06);border:1px solid #e5e7eb}
-.card h3{font-size:14px;font-weight:600;margin-bottom:3px}
-.card .note{font-size:11px;color:#9ca3af;margin-bottom:14px}
-.g2{display:grid;grid-template-columns:1fr 1fr;gap:14px}
-.cw{position:relative;height:300px}
-.cwlg{position:relative;height:340px}
-
-/* Golden hour callout */
-.golden-banner{background:linear-gradient(135deg,#fffbeb,#fef3c7);border:2px solid #fbbf24;border-radius:16px;padding:28px 32px;margin-bottom:20px;display:grid;grid-template-columns:1fr auto;gap:24px;align-items:center}
-.golden-banner .left h2{font-size:20px;font-weight:800;color:#92400e;margin-bottom:6px}
-.golden-banner .left p{font-size:13px;color:#374151;line-height:1.7}
-.golden-badge{background:#f59e0b;color:#fff;border-radius:16px;padding:20px 28px;text-align:center;min-width:160px}
-.golden-badge .hour{font-size:48px;font-weight:900;line-height:1;letter-spacing:-2px}
-.golden-badge .lbl{font-size:12px;font-weight:700;margin-top:6px;opacity:.9}
-.golden-badge .sub{font-size:11px;opacity:.8;margin-top:2px}
-
-/* Window banner */
-.window-banner{background:#f0fdf4;border:1px solid #bbf7d0;border-radius:12px;padding:20px 24px;margin-bottom:20px;display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
-.window-hour{text-align:center;border-right:1px solid #d1fae5}
-.window-hour:last-child{border-right:none}
-.window-hour .h{font-size:22px;font-weight:800;color:#065f46}
-.window-hour .s{font-size:28px;font-weight:900;color:#10b981;margin:4px 0}
-.window-hour .d{font-size:11px;color:#9ca3af}
-
-/* What-if */
-.whatif{background:#f0f7ff;border:1px solid #bfdbfe;border-left:4px solid #3b82f6;border-radius:8px;padding:20px 24px;margin-top:16px}
+/* Golden hour tab styles */
+.golden-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-bottom:20px}
+.golden-card{border-radius:16px;padding:28px;position:relative;overflow:hidden}
+.golden-card.morning{background:linear-gradient(135deg,#fff7ed,#fef3c7);border:2px solid #fbbf24}
+.golden-card.afternoon{background:linear-gradient(135deg,#f0fdf4,#d1fae5);border:2px solid #10b981}
+.golden-card .gc-label{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:1px;opacity:.6;margin-bottom:8px}
+.golden-card.morning .gc-label{color:#92400e}
+.golden-card.afternoon .gc-label{color:#065f46}
+.golden-card .gc-hour{font-size:52px;font-weight:900;letter-spacing:-3px;line-height:1}
+.golden-card.morning .gc-hour{color:#f59e0b}
+.golden-card.afternoon .gc-hour{color:#10b981}
+.golden-card .gc-resched{font-size:22px;font-weight:800;margin-top:6px}
+.golden-card.morning .gc-resched{color:#92400e}
+.golden-card.afternoon .gc-resched{color:#065f46}
+.golden-card .gc-note{font-size:12px;color:#374151;line-height:1.6;margin-top:10px}
+.golden-card .gc-badge{position:absolute;top:18px;right:18px;background:rgba(0,0,0,.08);border-radius:8px;padding:6px 10px;text-align:center}
+.golden-card .gc-badge .score{font-size:20px;font-weight:800}
+.golden-card.morning .gc-badge .score{color:#92400e}
+.golden-card.afternoon .gc-badge .score{color:#065f46}
+.golden-card .gc-badge .slbl{font-size:9px;font-weight:600;text-transform:uppercase;letter-spacing:.5px;opacity:.6}
+.whatif{background:#f0f7ff;border:1px solid #bfdbfe;border-left:4px solid #3b82f6;border-radius:10px;padding:20px 24px;margin-bottom:20px}
 .whatif .title{font-size:14px;font-weight:700;color:#1e40af;margin-bottom:10px}
-.whatif-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px;margin-top:12px}
+.whatif-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:12px}
 .whatif-box{background:#fff;border-radius:8px;padding:14px;text-align:center;border:1px solid #e0e3ff}
-.whatif-box .num{font-size:28px;font-weight:800;margin-top:4px}
-.whatif-box .lbl{font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:.5px;color:#6b7280}
-
-/* Avoid zone */
-.avoid{background:#fff1f2;border:1px solid #fecdd3;border-left:4px solid #e11d48;border-radius:8px;padding:16px 20px;margin-top:16px}
-.avoid .title{font-size:13px;font-weight:700;color:#9f1239;margin-bottom:6px}
-.avoid p{font-size:12px;color:#374151;line-height:1.6}
-
+.whatif-box .wnum{font-size:26px;font-weight:800;margin-top:4px}
+.whatif-box .wlbl{font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:.5px;color:#6b7280}
+.avoid-box{background:#fff1f2;border:1px solid #fecdd3;border-left:4px solid #e11d48;border-radius:8px;padding:14px 18px;font-size:12px;color:#374151;line-height:1.6;margin-top:14px}
+.avoid-box strong{color:#9f1239}
 .footer{text-align:center;font-size:11px;color:#9ca3af;margin-top:48px}
+</style></head><body>
 
-</style>
-</head><body>
-
-
-<div style="background:#1e293b;padding:12px 48px;display:flex;gap:16px;align-items:center;flex-wrap:wrap">
-  <span style="font-size:11px;font-weight:700;color:rgba(255,255,255,.4);text-transform:uppercase;letter-spacing:1px;margin-right:8px">Dashboards</span>
-  <a href="index.html" style="font-size:12px;font-weight:600;color:rgba(255,255,255,.6);text-decoration:none;padding:5px 12px;border-radius:20px;border:1px solid rgba(255,255,255,.15)">Bot Comparison</a>
-  <a href="hours.html" style="font-size:12px;font-weight:600;color:#818cf8;text-decoration:none;padding:5px 12px;background:rgba(129,140,248,.15);border-radius:20px">📊 Call Hour Analysis &amp; Golden Hour ←</a>
-  
+<div class="topnav">
+  <span>Dashboards</span>
+  <a href="index.html">Bot Comparison</a>
+  <a href="hours.html" class="active">📊 Call Hour &amp; Golden Hour ←</a>
 </div>
+
 <div class="header">
-  <h1>11labs — Call Hour Distribution &amp; Outcome Analysis</h1>
-  <div class="sub">When are calls most effective? When do customers not answer?</div>
+  <h1>11labs — Call Hour Analysis &amp; Golden Hour</h1>
+  <div class="sub">When are calls most effective? What is the best time to call?</div>
   <div class="meta">
-    <span>DE Market</span>
-    <span>11labs Voice Bot</span>
+    <span>DE Market</span><span>11labs Voice Bot</span>
     <span>Overbooking Rescheduling</span>
-    <span>W22–W25 · 659 calls with timestamp</span>
-    <span>May–Jun 2026</span>
+    <span>659 calls with timestamp · W22–W25</span>
   </div>
+  <nav class="tab-nav">
+    <button class="active" onclick="switchTab('analysis')">Call Hour Analysis</button>
+    <button onclick="switchTab('golden')">🏆 Golden Hour</button>
+  </nav>
 </div>
 
 <div class="page">
 
-  <div class="st">Key Findings</div>
-  <div class="insight bad">
-    <div class="it">🔴 9am is the worst hour — highest no-answer rate AND most-called hour</div>
-    <div class="ib">115 calls are made at 9am (18% of all calls) yet 55.7% go unanswered — the highest no-answer rate of any hour. This is the single biggest opportunity: shifting even a fraction of these calls to 13–15pm would significantly improve outcomes.</div>
-  </div>
-  <div class="insight bad">
-    <div class="it">🔴 8am–9am: no-answer rate 50–56%, reschedule rate only 10–15%</div>
-    <div class="ib">Early morning calls consistently underperform. Combined, 8am and 9am account for 211 calls (32% of volume) but achieve the lowest reschedule rates of the day.</div>
-  </div>
-  <div class="insight good">
-    <div class="it">✅ 13pm–15pm: best reschedule rates (22–24%) with lower no-answer</div>
-    <div class="ib">13pm (22.2%), 14pm (19.5%), and 15pm (24.4% — the day's peak) consistently deliver the best outcomes. These 3 hours handle only 131 calls (20% of volume) but drive the highest conversion.</div>
-  </div>
-  <div class="insight">
-    <div class="it">⚠️ 10am is the exception — lowest no-answer rate (33.3%) but low volume (36 calls)</div>
-    <div class="ib">10am has unusually strong answer rates compared to surrounding hours. Worth investigating whether this is a systematic pattern or a sample-size effect given the low volume.</div>
-  </div>
+<!-- ════════ TAB 1: CALL HOUR ANALYSIS ════════ -->
+<div id="tab-analysis" class="tab-panel active">
 
-  <div class="st">Overview KPIs</div>
+  <div class="st">Key Findings</div>
+  <div class="insight bad"><div class="it">🔴 9am is the worst hour — highest no-answer AND most-called</div>
+    <div class="ib">115 calls at 9am (18% of volume) yet 55.7% go unanswered — the highest no-answer rate of any hour. Early morning calls (8–9am) account for 32% of volume but deliver the weakest results.</div></div>
+  <div class="insight good"><div class="it">✅ 13–15pm consistently delivers the best reschedule rates (19–24%)</div>
+    <div class="ib">These 3 hours handle only 20% of volume but drive the highest conversion. 15pm is the single best hour at 24.4% reschedule rate.</div></div>
+  <div class="insight warn"><div class="it">⚠️ 16pm anomaly — same no-answer rate as 15pm but only 4.4% reschedule</div>
+    <div class="ib">Something at 16pm drastically reduces conversion despite similar answer rates. Worth investigating separately.</div></div>
+
+  <div class="st">Overview</div>
   <div class="g4" id="kpiRow"></div>
 
   <div class="st">Call Volume by Hour</div>
   <div class="card">
     <h3>How many calls are made at each hour?</h3>
-    <div class="note">Peak calling is concentrated at 8–9am. Colour = no-answer rate at that hour (darker red = more unanswered).</div>
+    <div class="note">Colour intensity reflects no-answer rate — darker red = more unanswered calls at that hour.</div>
     <div class="cwlg"><canvas id="volumeChart"></canvas></div>
   </div>
 
-  <div class="st">No-Answer Rate vs Reschedule Rate by Hour</div>
+  <div class="st">No-Answer Rate vs Reschedule Rate</div>
   <div class="g2">
-    <div class="card">
-      <h3>No-Answer / Voicemail Rate</h3>
-      <div class="note">% of calls that hit voicemail or were abandoned. Lower is better.</div>
+    <div class="card"><h3>No-Answer / Voicemail Rate</h3>
+      <div class="note">% going unanswered. Lower is better.</div>
       <div class="cw"><canvas id="noAnswerChart"></canvas></div>
     </div>
-    <div class="card">
-      <h3>Reschedule Success Rate</h3>
-      <div class="note">% of calls that ended with a confirmed new appointment. Higher is better.</div>
+    <div class="card"><h3>Reschedule Success Rate</h3>
+      <div class="note">% confirmed new appointment. Higher is better.</div>
       <div class="cw"><canvas id="reschedChart"></canvas></div>
     </div>
   </div>
 
-  <div class="st">Outcome Breakdown by Hour (stacked)</div>
+  <div class="st">All Outcomes by Hour (stacked)</div>
   <div class="card">
-    <h3>All outcome categories stacked — 100% view</h3>
-    <div class="note">Each bar represents all calls at that hour. Shows the full outcome composition across the day.</div>
+    <h3>Full outcome composition across the day</h3>
+    <div class="note">100% stacked view — each bar shows the complete outcome mix for that hour.</div>
     <div class="cwlg"><canvas id="stackedChart"></canvas></div>
   </div>
 
@@ -383,329 +158,190 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:#f4f6fa;color:#1a1d2
     <h3>Hourly breakdown — all outcomes</h3>
     <div class="note">Green = best reschedule hour · Red = worst no-answer hour</div>
     <div style="overflow-x:auto">
-    <table id="dataTable">
-      <thead><tr>
-        <th class="left">Hour</th>
-        <th>Total calls</th>
-        <th>No Answer %</th>
-        <th>Rescheduled %</th>
-        <th>Slot Issue %</th>
-        <th>Callback %</th>
-        <th>Cancelled %</th>
-        <th>No Capacity→SMS %</th>
-        <th>Escalated %</th>
-        <th>Other/Unknown %</th>
-      </tr></thead>
-      <tbody id="tableBody"></tbody>
-    </table>
+    <table><thead><tr>
+      <th style="text-align:left">Hour</th><th>Calls</th><th>No Answer %</th>
+      <th>Rescheduled %</th><th>Slot Issue %</th><th>Callback %</th>
+      <th>Cancelled %</th><th>No Cap→SMS %</th><th>Escalated %</th><th>Other %</th>
+    </tr></thead><tbody id="tableBody"></tbody></table>
+    </div>
+  </div>
+  <div class="footer">Clara CX Analysis · DE Market · 11labs · June 2026</div>
+</div>
+
+<!-- ════════ TAB 2: GOLDEN HOUR ════════ -->
+<div id="tab-golden" class="tab-panel">
+
+  <div class="st">Best hour to call — Morning vs Afternoon</div>
+  <div class="golden-grid">
+    <div class="golden-card morning">
+      <div class="gc-badge"><div class="score">6.9</div><div class="slbl">Score</div></div>
+      <div class="gc-label">☀️ Morning golden hour</div>
+      <div class="gc-hour">11:00</div>
+      <div class="gc-resched">14.7% reschedule</div>
+      <div class="gc-note">Best score in the 8–12 window. No-answer rate of 52.9% is typical for the morning, but the reschedule rate is the strongest available at this time of day. If morning calls are unavoidable, 11am is the best slot.</div>
+    </div>
+    <div class="golden-card afternoon">
+      <div class="gc-badge"><div class="score">11.9</div><div class="slbl">Score</div></div>
+      <div class="gc-label">🌅 Afternoon golden hour</div>
+      <div class="gc-hour">15:00</div>
+      <div class="gc-resched">24.4% reschedule</div>
+      <div class="gc-note">Best hour of the entire day — 24.4% reschedule rate and the highest efficiency score (11.9). The 13–15pm window consistently outperforms all other hours. 15pm is the single best hour to call.</div>
     </div>
   </div>
 
-
-
-  <hr style="border:none;border-top:2px solid #e5e7eb;margin:40px 0">
-  <div class="st" style="font-size:14px;font-weight:800;text-transform:none;letter-spacing:0;color:#1a1d2e;margin-bottom:20px">🏆 Recommendation — When to Call</div>
-
-
-  <!-- Golden hour callout -->
-  <div class="st">The Recommendation</div>
-  <div class="golden-banner">
-    <div class="left">
-      <h2>🏆 Golden hour to test: 15:00</h2>
-      <p>15pm delivers the <strong>highest reschedule rate (24.4%)</strong> and the <strong>best efficiency score (11.9)</strong> of any hour — nearly double the performance of 8–9am. 
-      The window <strong>13:00–15:00</strong> consistently outperforms the rest of the day. 
-      We recommend shifting the early morning volume into this window as a structured A/B test.</p>
-    </div>
-    <div class="golden-badge">
-      <div class="hour">15:00</div>
-      <div class="lbl">GOLDEN HOUR</div>
-      <div class="sub">24.4% reschedule</div>
-    </div>
-  </div>
-
-  <!-- Window breakdown -->
-  <div class="st">The Golden Window — 13:00–15:00</div>
-  <div class="window-banner">
-    <div class="window-hour">
-      <div class="h">13:00</div>
-      <div class="s">22.2%</div>
-      <div class="d">reschedule rate</div>
-      <div style="font-size:11px;color:#6b7280;margin-top:4px">Score: 11.3 · 45 calls</div>
-    </div>
-    <div class="window-hour">
-      <div class="h">14:00</div>
-      <div class="s">19.5%</div>
-      <div class="d">reschedule rate</div>
-      <div style="font-size:11px;color:#6b7280;margin-top:4px">Score: 10.0 · 41 calls</div>
-    </div>
-    <div class="window-hour" style="background:rgba(16,185,129,.06);border-radius:8px">
-      <div class="h">15:00 ⭐</div>
-      <div class="s" style="color:#059669;font-size:34px">24.4%</div>
-      <div class="d">reschedule rate — best hour</div>
-      <div style="font-size:11px;color:#6b7280;margin-top:4px">Score: 11.9 · 45 calls</div>
-    </div>
-  </div>
-
-  <!-- Efficiency score + scatter -->
-  <div class="st">Efficiency Score — Reschedule Rate × Answer Rate</div>
+  <div class="st">Efficiency Score — Morning vs Afternoon</div>
   <div class="g2">
     <div class="card">
-      <h3>Score by hour</h3>
-      <div class="note">Score = reschedule% × (1 − no-answer%). Captures both dimensions. Golden window highlighted in green.</div>
-      <div class="cw"><canvas id="scoreChart"></canvas></div>
+      <h3>Morning hours (8–12) — Score by hour</h3>
+      <div class="note">Score = reschedule% × answer rate. 11am highlighted as morning best.</div>
+      <div class="cw"><canvas id="mornScoreChart"></canvas></div>
     </div>
     <div class="card">
-      <h3>Quadrant analysis — Answer rate vs Reschedule rate</h3>
-      <div class="note">Top-right = best (high answer + high reschedule). Each bubble = one hour, size = call volume.</div>
-      <div class="cw"><canvas id="quadrantChart"></canvas></div>
+      <h3>Afternoon hours (13–19) — Score by hour</h3>
+      <div class="note">15pm far outperforms all other afternoon hours. Note 16pm anomaly.</div>
+      <div class="cw"><canvas id="aftnScoreChart"></canvas></div>
     </div>
   </div>
 
-  <!-- What-if -->
-  <div class="whatif">
-    <div class="title">💡 What if we shift 8–9am calls to 13–15pm?</div>
-    <p style="font-size:12px;color:#374151;line-height:1.6">Currently <strong>211 calls</strong> (32% of volume) are made at 8–9am with the worst efficiency of the day. 
-    If those calls were rescheduled to the 13–15pm window (avg score 11.4 vs current 6.0), this is the projected impact:</p>
-    <div class="whatif-grid">
-      <div class="whatif-box">
-        <div class="lbl">Current effective bookings (8–9am)</div>
-        <div class="num" style="color:#e11d48">~12.5</div>
-        <div style="font-size:11px;color:#9ca3af;margin-top:4px">from 211 calls at avg score 6.0</div>
-      </div>
-      <div class="whatif-box">
-        <div class="lbl">Projected if shifted to 13–15pm</div>
-        <div class="num" style="color:#059669">~24</div>
-        <div style="font-size:11px;color:#9ca3af;margin-top:4px">same 211 calls at avg score 11.4</div>
-      </div>
-      <div class="whatif-box">
-        <div class="lbl">Estimated additional reschedules</div>
-        <div class="num" style="color:#3b82f6">+11</div>
-        <div style="font-size:11px;color:#9ca3af;margin-top:4px">~90% improvement from same call volume</div>
-      </div>
-    </div>
-  </div>
-
-  <!-- Avoid zone -->
-  <div class="avoid">
-    <div class="title">🚫 Hours to avoid or deprioritise</div>
-    <p><strong>8–9am:</strong> 211 calls, 50–56% no-answer, only 10–15% reschedule. Customers are least reachable and least engaged early morning. 
-    <strong>16pm</strong> is a notable anomaly — similar no-answer rate to 15pm (51%) but only 4.4% reschedule vs 24.4%. Something happens at 16pm that drastically reduces conversion — worth investigating separately.</p>
-  </div>
-
-  <!-- Charts -->
-  <div class="st">No-Answer vs Reschedule — All Hours</div>
+  <div class="st">Morning vs Afternoon — Side-by-Side</div>
   <div class="card">
-    <h3>Side-by-side comparison across the day</h3>
-    <div class="note">Golden window (13–15pm) shaded. Lower no-answer + higher reschedule = better. The gap between 9am and 15pm is striking.</div>
+    <h3>No-answer rate vs Reschedule rate — Full day with golden hours highlighted</h3>
+    <div class="note">⭐ Morning golden hour (11am) · 🏆 Afternoon golden hour (15pm)</div>
     <div class="cwlg"><canvas id="dualChart"></canvas></div>
   </div>
 
-  
+  <div class="st">What If We Call at the Golden Hour?</div>
 
-  <div class="footer">Clara CX Analysis · DE Market · 11labs · June 2026 · 659 calls with timestamp data</div>
+  <div class="whatif">
+    <div class="title">☀️ Morning scenario — shift all morning calls to 11am</div>
+    <p style="font-size:12px;color:#374151;line-height:1.6">Currently 319 calls are made in the morning (8–12). If all were made at 11am efficiency (score 6.9 vs current avg 6.1):</p>
+    <div class="whatif-grid">
+      <div class="whatif-box"><div class="wlbl">Current morning bookings</div><div class="wnum" style="color:#f59e0b">~19</div><div style="font-size:11px;color:#9ca3af;margin-top:4px">319 calls · avg score 6.1</div></div>
+      <div class="whatif-box"><div class="wlbl">Projected at 11am</div><div class="wnum" style="color:#059669">~22</div><div style="font-size:11px;color:#9ca3af;margin-top:4px">same 319 calls · score 6.9</div></div>
+      <div class="whatif-box"><div class="wlbl">Additional reschedules</div><div class="wnum" style="color:#3b82f6">+3</div><div style="font-size:11px;color:#9ca3af;margin-top:4px">modest gain — morning is inherently weak</div></div>
+    </div>
+  </div>
+
+  <div class="whatif" style="background:#f0fdf4;border-color:#bbf7d0;border-left-color:#10b981">
+    <div class="title" style="color:#065f46">🌅 Afternoon scenario — shift all afternoon calls to 15pm</div>
+    <p style="font-size:12px;color:#374151;line-height:1.6">Currently 340 calls are made in the afternoon (13–19). If all were made at 15pm efficiency (score 11.9 vs current avg 8.0, excluding 16pm anomaly):</p>
+    <div class="whatif-grid">
+      <div class="whatif-box"><div class="wlbl">Current afternoon bookings</div><div class="wnum" style="color:#f59e0b">~27</div><div style="font-size:11px;color:#9ca3af;margin-top:4px">340 calls · avg score 8.0</div></div>
+      <div class="whatif-box"><div class="wlbl">Projected at 15pm</div><div class="wnum" style="color:#059669">~40</div><div style="font-size:11px;color:#9ca3af;margin-top:4px">same 340 calls · score 11.9</div></div>
+      <div class="whatif-box"><div class="wlbl">Additional reschedules</div><div class="wnum" style="color:#3b82f6">+13</div><div style="font-size:11px;color:#9ca3af;margin-top:4px">~48% improvement in afternoon</div></div>
+    </div>
+  </div>
+
+  <div class="avoid-box">
+    <strong>Hours to avoid or deprioritise:</strong> 8–9am (50–56% no-answer, lowest reschedule) and 16pm (51% no-answer but only 4.4% reschedule — anomaly). 
+    The biggest gain comes from shifting <strong>afternoon</strong> calls away from 16–19pm toward 13–15pm, not from fixing morning calls.
+  </div>
+
+  <div class="footer">Clara CX Analysis · DE Market · 11labs · June 2026</div>
 </div>
 
+</div><!-- /page -->
+
 <script>
-const DATA = [{"hour": 8, "total": 96, "no_answer": 48, "no_answer_pct": 50.0, "rescheduled": 10, "rescheduled_pct": 10.4, "callback": 1, "callback_pct": 1.0, "slot_issue": 1, "slot_issue_pct": 1.0, "no_capacity_sms": 2, "no_capacity_sms_pct": 2.1, "cancelled": 0, "cancelled_pct": 0.0, "escalated": 0, "escalated_pct": 0.0, "bot_misunderstand": 0, "bot_misunderstand_pct": 0.0, "other": 6, "other_pct": 6.2, "unknown": 28, "unknown_pct": 29.2}, {"hour": 9, "total": 115, "no_answer": 64, "no_answer_pct": 55.7, "rescheduled": 17, "rescheduled_pct": 14.8, "callback": 5, "callback_pct": 4.3, "slot_issue": 7, "slot_issue_pct": 6.1, "no_capacity_sms": 6, "no_capacity_sms_pct": 5.2, "cancelled": 4, "cancelled_pct": 3.5, "escalated": 1, "escalated_pct": 0.9, "bot_misunderstand": 0, "bot_misunderstand_pct": 0.0, "other": 9, "other_pct": 7.8, "unknown": 2, "unknown_pct": 1.7}, {"hour": 10, "total": 36, "no_answer": 12, "no_answer_pct": 33.3, "rescheduled": 3, "rescheduled_pct": 8.3, "callback": 0, "callback_pct": 0.0, "slot_issue": 4, "slot_issue_pct": 11.1, "no_capacity_sms": 3, "no_capacity_sms_pct": 8.3, "cancelled": 0, "cancelled_pct": 0.0, "escalated": 1, "escalated_pct": 2.8, "bot_misunderstand": 0, "bot_misunderstand_pct": 0.0, "other": 5, "other_pct": 13.9, "unknown": 8, "unknown_pct": 22.2}, {"hour": 11, "total": 34, "no_answer": 18, "no_answer_pct": 52.9, "rescheduled": 5, "rescheduled_pct": 14.7, "callback": 1, "callback_pct": 2.9, "slot_issue": 2, "slot_issue_pct": 5.9, "no_capacity_sms": 2, "no_capacity_sms_pct": 5.9, "cancelled": 2, "cancelled_pct": 5.9, "escalated": 0, "escalated_pct": 0.0, "bot_misunderstand": 0, "bot_misunderstand_pct": 0.0, "other": 1, "other_pct": 2.9, "unknown": 3, "unknown_pct": 8.8}, {"hour": 12, "total": 38, "no_answer": 20, "no_answer_pct": 52.6, "rescheduled": 5, "rescheduled_pct": 13.2, "callback": 2, "callback_pct": 5.3, "slot_issue": 0, "slot_issue_pct": 0.0, "no_capacity_sms": 2, "no_capacity_sms_pct": 5.3, "cancelled": 1, "cancelled_pct": 2.6, "escalated": 0, "escalated_pct": 0.0, "bot_misunderstand": 0, "bot_misunderstand_pct": 0.0, "other": 5, "other_pct": 13.2, "unknown": 3, "unknown_pct": 7.9}, {"hour": 13, "total": 45, "no_answer": 22, "no_answer_pct": 48.9, "rescheduled": 10, "rescheduled_pct": 22.2, "callback": 0, "callback_pct": 0.0, "slot_issue": 3, "slot_issue_pct": 6.7, "no_capacity_sms": 0, "no_capacity_sms_pct": 0.0, "cancelled": 1, "cancelled_pct": 2.2, "escalated": 2, "escalated_pct": 4.4, "bot_misunderstand": 0, "bot_misunderstand_pct": 0.0, "other": 5, "other_pct": 11.1, "unknown": 2, "unknown_pct": 4.4}, {"hour": 14, "total": 41, "no_answer": 20, "no_answer_pct": 48.8, "rescheduled": 8, "rescheduled_pct": 19.5, "callback": 0, "callback_pct": 0.0, "slot_issue": 2, "slot_issue_pct": 4.9, "no_capacity_sms": 1, "no_capacity_sms_pct": 2.4, "cancelled": 1, "cancelled_pct": 2.4, "escalated": 0, "escalated_pct": 0.0, "bot_misunderstand": 0, "bot_misunderstand_pct": 0.0, "other": 3, "other_pct": 7.3, "unknown": 6, "unknown_pct": 14.6}, {"hour": 15, "total": 45, "no_answer": 23, "no_answer_pct": 51.1, "rescheduled": 11, "rescheduled_pct": 24.4, "callback": 0, "callback_pct": 0.0, "slot_issue": 2, "slot_issue_pct": 4.4, "no_capacity_sms": 2, "no_capacity_sms_pct": 4.4, "cancelled": 1, "cancelled_pct": 2.2, "escalated": 0, "escalated_pct": 0.0, "bot_misunderstand": 0, "bot_misunderstand_pct": 0.0, "other": 3, "other_pct": 6.7, "unknown": 3, "unknown_pct": 6.7}, {"hour": 16, "total": 45, "no_answer": 23, "no_answer_pct": 51.1, "rescheduled": 2, "rescheduled_pct": 4.4, "callback": 0, "callback_pct": 0.0, "slot_issue": 4, "slot_issue_pct": 8.9, "no_capacity_sms": 3, "no_capacity_sms_pct": 6.7, "cancelled": 1, "cancelled_pct": 2.2, "escalated": 0, "escalated_pct": 0.0, "bot_misunderstand": 0, "bot_misunderstand_pct": 0.0, "other": 5, "other_pct": 11.1, "unknown": 7, "unknown_pct": 15.6}, {"hour": 17, "total": 53, "no_answer": 29, "no_answer_pct": 54.7, "rescheduled": 8, "rescheduled_pct": 15.1, "callback": 1, "callback_pct": 1.9, "slot_issue": 3, "slot_issue_pct": 5.7, "no_capacity_sms": 2, "no_capacity_sms_pct": 3.8, "cancelled": 3, "cancelled_pct": 5.7, "escalated": 2, "escalated_pct": 3.8, "bot_misunderstand": 0, "bot_misunderstand_pct": 0.0, "other": 2, "other_pct": 3.8, "unknown": 3, "unknown_pct": 5.7}, {"hour": 18, "total": 54, "no_answer": 27, "no_answer_pct": 50.0, "rescheduled": 8, "rescheduled_pct": 14.8, "callback": 1, "callback_pct": 1.9, "slot_issue": 3, "slot_issue_pct": 5.6, "no_capacity_sms": 1, "no_capacity_sms_pct": 1.9, "cancelled": 2, "cancelled_pct": 3.7, "escalated": 0, "escalated_pct": 0.0, "bot_misunderstand": 0, "bot_misunderstand_pct": 0.0, "other": 4, "other_pct": 7.4, "unknown": 8, "unknown_pct": 14.8}, {"hour": 19, "total": 56, "no_answer": 27, "no_answer_pct": 48.2, "rescheduled": 8, "rescheduled_pct": 14.3, "callback": 0, "callback_pct": 0.0, "slot_issue": 6, "slot_issue_pct": 10.7, "no_capacity_sms": 1, "no_capacity_sms_pct": 1.8, "cancelled": 2, "cancelled_pct": 3.6, "escalated": 0, "escalated_pct": 0.0, "bot_misunderstand": 0, "bot_misunderstand_pct": 0.0, "other": 7, "other_pct": 12.5, "unknown": 5, "unknown_pct": 8.9}];
+const DATA = [{"hour": 8, "total": 96, "no_answer": 48, "no_answer_pct": 50.0, "rescheduled": 10, "rescheduled_pct": 10.4, "callback": 1, "callback_pct": 1.0, "slot_issue": 1, "slot_issue_pct": 1.0, "no_capacity_sms": 2, "no_capacity_sms_pct": 2.1, "cancelled": 0, "cancelled_pct": 0.0, "escalated": 0, "escalated_pct": 0.0, "bot_misunderstand": 0, "bot_misunderstand_pct": 0.0, "other": 6, "other_pct": 6.2, "unknown": 28, "unknown_pct": 29.2, "score": 5.2}, {"hour": 9, "total": 115, "no_answer": 64, "no_answer_pct": 55.7, "rescheduled": 17, "rescheduled_pct": 14.8, "callback": 5, "callback_pct": 4.3, "slot_issue": 7, "slot_issue_pct": 6.1, "no_capacity_sms": 6, "no_capacity_sms_pct": 5.2, "cancelled": 4, "cancelled_pct": 3.5, "escalated": 1, "escalated_pct": 0.9, "bot_misunderstand": 0, "bot_misunderstand_pct": 0.0, "other": 9, "other_pct": 7.8, "unknown": 2, "unknown_pct": 1.7, "score": 6.56}, {"hour": 10, "total": 36, "no_answer": 12, "no_answer_pct": 33.3, "rescheduled": 3, "rescheduled_pct": 8.3, "callback": 0, "callback_pct": 0.0, "slot_issue": 4, "slot_issue_pct": 11.1, "no_capacity_sms": 3, "no_capacity_sms_pct": 8.3, "cancelled": 0, "cancelled_pct": 0.0, "escalated": 1, "escalated_pct": 2.8, "bot_misunderstand": 0, "bot_misunderstand_pct": 0.0, "other": 5, "other_pct": 13.9, "unknown": 8, "unknown_pct": 22.2, "score": 5.54}, {"hour": 11, "total": 34, "no_answer": 18, "no_answer_pct": 52.9, "rescheduled": 5, "rescheduled_pct": 14.7, "callback": 1, "callback_pct": 2.9, "slot_issue": 2, "slot_issue_pct": 5.9, "no_capacity_sms": 2, "no_capacity_sms_pct": 5.9, "cancelled": 2, "cancelled_pct": 5.9, "escalated": 0, "escalated_pct": 0.0, "bot_misunderstand": 0, "bot_misunderstand_pct": 0.0, "other": 1, "other_pct": 2.9, "unknown": 3, "unknown_pct": 8.8, "score": 6.92}, {"hour": 12, "total": 38, "no_answer": 20, "no_answer_pct": 52.6, "rescheduled": 5, "rescheduled_pct": 13.2, "callback": 2, "callback_pct": 5.3, "slot_issue": 0, "slot_issue_pct": 0.0, "no_capacity_sms": 2, "no_capacity_sms_pct": 5.3, "cancelled": 1, "cancelled_pct": 2.6, "escalated": 0, "escalated_pct": 0.0, "bot_misunderstand": 0, "bot_misunderstand_pct": 0.0, "other": 5, "other_pct": 13.2, "unknown": 3, "unknown_pct": 7.9, "score": 6.26}, {"hour": 13, "total": 45, "no_answer": 22, "no_answer_pct": 48.9, "rescheduled": 10, "rescheduled_pct": 22.2, "callback": 0, "callback_pct": 0.0, "slot_issue": 3, "slot_issue_pct": 6.7, "no_capacity_sms": 0, "no_capacity_sms_pct": 0.0, "cancelled": 1, "cancelled_pct": 2.2, "escalated": 2, "escalated_pct": 4.4, "bot_misunderstand": 0, "bot_misunderstand_pct": 0.0, "other": 5, "other_pct": 11.1, "unknown": 2, "unknown_pct": 4.4, "score": 11.34}, {"hour": 14, "total": 41, "no_answer": 20, "no_answer_pct": 48.8, "rescheduled": 8, "rescheduled_pct": 19.5, "callback": 0, "callback_pct": 0.0, "slot_issue": 2, "slot_issue_pct": 4.9, "no_capacity_sms": 1, "no_capacity_sms_pct": 2.4, "cancelled": 1, "cancelled_pct": 2.4, "escalated": 0, "escalated_pct": 0.0, "bot_misunderstand": 0, "bot_misunderstand_pct": 0.0, "other": 3, "other_pct": 7.3, "unknown": 6, "unknown_pct": 14.6, "score": 9.98}, {"hour": 15, "total": 45, "no_answer": 23, "no_answer_pct": 51.1, "rescheduled": 11, "rescheduled_pct": 24.4, "callback": 0, "callback_pct": 0.0, "slot_issue": 2, "slot_issue_pct": 4.4, "no_capacity_sms": 2, "no_capacity_sms_pct": 4.4, "cancelled": 1, "cancelled_pct": 2.2, "escalated": 0, "escalated_pct": 0.0, "bot_misunderstand": 0, "bot_misunderstand_pct": 0.0, "other": 3, "other_pct": 6.7, "unknown": 3, "unknown_pct": 6.7, "score": 11.93}, {"hour": 16, "total": 45, "no_answer": 23, "no_answer_pct": 51.1, "rescheduled": 2, "rescheduled_pct": 4.4, "callback": 0, "callback_pct": 0.0, "slot_issue": 4, "slot_issue_pct": 8.9, "no_capacity_sms": 3, "no_capacity_sms_pct": 6.7, "cancelled": 1, "cancelled_pct": 2.2, "escalated": 0, "escalated_pct": 0.0, "bot_misunderstand": 0, "bot_misunderstand_pct": 0.0, "other": 5, "other_pct": 11.1, "unknown": 7, "unknown_pct": 15.6, "score": 2.15}, {"hour": 17, "total": 53, "no_answer": 29, "no_answer_pct": 54.7, "rescheduled": 8, "rescheduled_pct": 15.1, "callback": 1, "callback_pct": 1.9, "slot_issue": 3, "slot_issue_pct": 5.7, "no_capacity_sms": 2, "no_capacity_sms_pct": 3.8, "cancelled": 3, "cancelled_pct": 5.7, "escalated": 2, "escalated_pct": 3.8, "bot_misunderstand": 0, "bot_misunderstand_pct": 0.0, "other": 2, "other_pct": 3.8, "unknown": 3, "unknown_pct": 5.7, "score": 6.84}, {"hour": 18, "total": 54, "no_answer": 27, "no_answer_pct": 50.0, "rescheduled": 8, "rescheduled_pct": 14.8, "callback": 1, "callback_pct": 1.9, "slot_issue": 3, "slot_issue_pct": 5.6, "no_capacity_sms": 1, "no_capacity_sms_pct": 1.9, "cancelled": 2, "cancelled_pct": 3.7, "escalated": 0, "escalated_pct": 0.0, "bot_misunderstand": 0, "bot_misunderstand_pct": 0.0, "other": 4, "other_pct": 7.4, "unknown": 8, "unknown_pct": 14.8, "score": 7.4}, {"hour": 19, "total": 56, "no_answer": 27, "no_answer_pct": 48.2, "rescheduled": 8, "rescheduled_pct": 14.3, "callback": 0, "callback_pct": 0.0, "slot_issue": 6, "slot_issue_pct": 10.7, "no_capacity_sms": 1, "no_capacity_sms_pct": 1.8, "cancelled": 2, "cancelled_pct": 3.6, "escalated": 0, "escalated_pct": 0.0, "bot_misunderstand": 0, "bot_misunderstand_pct": 0.0, "other": 7, "other_pct": 12.5, "unknown": 5, "unknown_pct": 8.9, "score": 7.41}];
+const MORNING   = DATA.filter(d => d.hour <= 12);
+const AFTERNOON = DATA.filter(d => d.hour >= 13);
+const GOLDEN_M  = 11;
+const GOLDEN_A  = 15;
+const AVOID_H   = new Set([8, 9, 16]);
 
-// ── Colour helpers ────────────────────────────────────────────────────────────
-function noAnswerColor(pct, alpha) {
-  // Green (low no-answer) → Red (high no-answer)
-  const r = Math.round(220 * (pct / 60));
-  const g = Math.round(180 * (1 - pct / 60));
-  return `rgba(${r},${g},60,${alpha})`;
+function noAnsColor(pct, a){ return `rgba(${Math.round(220*(pct/60))},${Math.round(180*(1-pct/60))},60,${a})`; }
+function scoreColor(h, morning){
+  if(morning && h===GOLDEN_M) return 'rgba(245,158,11,.9)';
+  if(!morning && h===GOLDEN_A) return 'rgba(16,185,129,.9)';
+  if(AVOID_H.has(h)) return 'rgba(225,29,72,.55)';
+  return morning ? 'rgba(245,158,11,.45)' : 'rgba(16,185,129,.45)';
 }
-function reschedColor(pct, alpha) {
-  const g = Math.round(150 * (pct / 25));
-  return `rgba(50,${100+g},80,${alpha})`;
+
+// ── Tab switch ──────────────────────────────────────────────────────────────
+const NAV = document.querySelectorAll('.tab-nav button');
+function switchTab(name){
+  document.querySelectorAll('.tab-panel').forEach(p=>p.classList.remove('active'));
+  document.getElementById('tab-'+name).classList.add('active');
+  NAV.forEach((b,i)=>b.classList.toggle('active',['analysis','golden'][i]===name));
+  if(name==='golden' && !window._goldenInited){ initGolden(); window._goldenInited=true; }
 }
 
-const hours = DATA.map(d => d.hour + ':00');
-const noAnswerPct = DATA.map(d => d.no_answer_pct);
-const reschedPct  = DATA.map(d => d.rescheduled_pct);
-const totals      = DATA.map(d => d.total);
+// ── Tab 1: Analysis ─────────────────────────────────────────────────────────
+const hours   = DATA.map(d=>d.hour+':00');
+const naRate  = DATA.map(d=>d.no_answer_pct);
+const rRate   = DATA.map(d=>d.rescheduled_pct);
+const totals  = DATA.map(d=>d.total);
+const wNA     = (DATA.reduce((s,d)=>s+d.no_answer_pct*d.total,0)/DATA.reduce((s,d)=>s+d.total,0)).toFixed(1);
+const wR      = (DATA.reduce((s,d)=>s+d.rescheduled_pct*d.total,0)/DATA.reduce((s,d)=>s+d.total,0)).toFixed(1);
+const bestR   = DATA.reduce((b,d)=>d.rescheduled_pct>b.rescheduled_pct?d:b);
+const worstNA = DATA.reduce((w,d)=>d.no_answer_pct>w.no_answer_pct?d:w);
 
-// ── KPIs ─────────────────────────────────────────────────────────────────────
-const totalCalls = DATA.reduce((s,d) => s+d.total, 0);
-const avgNoAnswer = Math.round(DATA.reduce((s,d) => s+d.no_answer*d.total, 0) / totalCalls * 10) / 10;
-const avgNoAnswerPct = Math.round(avgNoAnswer / totalCalls * 1000) / 10;
-const bestReschedHour = DATA.reduce((best, d) => d.rescheduled_pct > best.rescheduled_pct ? d : best);
-const worstNoAnswerHour = DATA.reduce((w, d) => d.no_answer_pct > w.no_answer_pct ? d : w);
+document.getElementById('kpiRow').innerHTML=`
+  <div class="kpi"><div class="lbl">Total calls analysed</div><div class="val" style="color:#6366f1">${DATA.reduce((s,d)=>s+d.total,0)}</div><div class="sub">659 with timestamp · W22–W25</div></div>
+  <div class="kpi"><div class="lbl">Avg no-answer rate</div><div class="val" style="color:#e11d48">${wNA}%</div><div class="sub">Worst: ${worstNA.hour}:00 (${worstNA.no_answer_pct}%)</div></div>
+  <div class="kpi"><div class="lbl">Avg reschedule rate</div><div class="val" style="color:#059669">${wR}%</div><div class="sub">Best: ${bestR.hour}:00 (${bestR.rescheduled_pct}%)</div></div>
+  <div class="kpi"><div class="lbl">Peak calling hour</div><div class="val" style="color:#f59e0b">9:00</div><div class="sub">115 calls — but 55.7% no-answer</div></div>`;
 
-// Compute weighted avg no-answer pct
-const wNoAnswer = (DATA.reduce((s,d) => s + d.no_answer_pct * d.total, 0) / totalCalls).toFixed(1);
-const wResched  = (DATA.reduce((s,d) => s + d.rescheduled_pct * d.total, 0) / totalCalls).toFixed(1);
+// Volume chart
+new Chart(document.getElementById('volumeChart'),{type:'bar',data:{labels:hours,datasets:[{label:'Calls',data:totals,backgroundColor:DATA.map(d=>noAnsColor(d.no_answer_pct,.85)),borderRadius:5}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false},tooltip:{callbacks:{label:ctx=>{const d=DATA[ctx.dataIndex];return[`${d.total} calls`,`No-answer: ${d.no_answer_pct}%`,`Reschedule: ${d.rescheduled_pct}%`];}}}},scales:{x:{ticks:{font:{size:11}},grid:{display:false}},y:{title:{display:true,text:'Calls',font:{size:10}},ticks:{font:{size:10}},grid:{color:'rgba(0,0,0,.05)'}}}}});
 
-document.getElementById('kpiRow').innerHTML = `
-  <div class="kpi"><div class="lbl">Total calls analysed</div><div class="val" style="color:#6366f1">${totalCalls}</div><div class="sub">659 with hour data · W22–W25</div></div>
-  <div class="kpi"><div class="lbl">Avg no-answer rate</div><div class="val" style="color:#e11d48">${wNoAnswer}%</div><div class="sub">Weighted across all hours</div><div class="trend" style="color:#e11d48">Worst: ${worstNoAnswerHour.hour}:00 (${worstNoAnswerHour.no_answer_pct}%)</div></div>
-  <div class="kpi"><div class="lbl">Avg reschedule rate</div><div class="val" style="color:#059669">${wResched}%</div><div class="sub">Weighted across all hours</div><div class="trend" style="color:#059669">Best: ${bestReschedHour.hour}:00 (${bestReschedHour.rescheduled_pct}%)</div></div>
-  <div class="kpi"><div class="lbl">Peak calling hour</div><div class="val" style="color:#f59e0b">9:00</div><div class="sub">115 calls (17.5% of volume)</div><div class="trend" style="color:#e11d48">55.7% no-answer — worst hour</div></div>`;
+// No-answer line
+new Chart(document.getElementById('noAnswerChart'),{type:'line',data:{labels:hours,datasets:[{label:'No-answer %',data:naRate,borderColor:'#e11d48',backgroundColor:'rgba(225,29,72,.1)',borderWidth:3,pointRadius:DATA.map(d=>4+d.total/30),pointBackgroundColor:DATA.map(d=>noAnsColor(d.no_answer_pct,1)),pointBorderColor:'#fff',pointBorderWidth:2,fill:true,tension:.3}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false},tooltip:{callbacks:{label:ctx=>`${ctx.parsed.y}% no-answer (n=${DATA[ctx.dataIndex].total})`}}},scales:{y:{min:20,max:70,ticks:{callback:v=>v+'%',font:{size:10}},grid:{color:'rgba(0,0,0,.05)'}},x:{ticks:{font:{size:10}},grid:{display:false}}}}});
 
-// ── Volume chart ──────────────────────────────────────────────────────────────
-new Chart(document.getElementById('volumeChart'), {
-  type: 'bar',
-  data: {
-    labels: hours,
-    datasets: [{
-      label: 'Calls',
-      data: totals,
-      backgroundColor: DATA.map(d => noAnswerColor(d.no_answer_pct, 0.85)),
-      borderRadius: 5,
-    }]
-  },
-  options: {
-    responsive: true, maintainAspectRatio: false,
-    plugins: {
-      legend: { display: false },
-      tooltip: {
-        callbacks: {
-          label: ctx => {
-            const d = DATA[ctx.dataIndex];
-            return [`${d.total} calls`, `No-answer: ${d.no_answer_pct}%`, `Reschedule: ${d.rescheduled_pct}%`];
-          }
-        }
-      }
-    },
-    scales: {
-      x: { ticks: { font: { size: 11 } }, grid: { display: false } },
-      y: { title: { display: true, text: 'Number of calls', font: { size: 10 } }, ticks: { font: { size: 10 } }, grid: { color: 'rgba(0,0,0,.05)' } }
-    }
-  }
+// Reschedule bars
+new Chart(document.getElementById('reschedChart'),{type:'bar',data:{labels:hours,datasets:[{label:'Reschedule %',data:rRate,backgroundColor:DATA.map(d=>d.hour===15?'rgba(16,185,129,.9)':d.hour===13||d.hour===14?'rgba(16,185,129,.65)':'rgba(99,102,241,.55)'),borderRadius:5}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false},tooltip:{callbacks:{label:ctx=>`${ctx.parsed.y}% rescheduled (n=${DATA[ctx.dataIndex].total})`}}},scales:{y:{min:0,max:30,ticks:{callback:v=>v+'%',font:{size:10}},grid:{color:'rgba(0,0,0,.05)'}},x:{ticks:{font:{size:10}},grid:{display:false}}}}});
+
+// Stacked
+const OC={no_answer:'rgba(225,29,72,.8)',rescheduled:'rgba(5,150,105,.85)',slot_issue:'rgba(245,158,11,.8)',callback:'rgba(99,102,241,.8)',no_capacity_sms:'rgba(16,185,129,.6)',cancelled:'rgba(156,163,175,.7)',escalated:'rgba(59,130,246,.7)',other:'rgba(209,213,219,.7)',unknown:'rgba(243,244,246,.8)'};
+const OL={no_answer:'No Answer',rescheduled:'Rescheduled ✓',slot_issue:'Slot Issue',callback:'Callback',no_capacity_sms:'No Cap→SMS',cancelled:'Cancelled',escalated:'Escalated',other:'Other',unknown:'Unknown'};
+new Chart(document.getElementById('stackedChart'),{type:'bar',data:{labels:hours,datasets:Object.keys(OC).map(k=>({label:OL[k],data:DATA.map(d=>d[k+'_pct']),backgroundColor:OC[k],borderWidth:0}))},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{position:'bottom',labels:{font:{size:10},usePointStyle:true,padding:10}}},scales:{x:{stacked:true,ticks:{font:{size:11}},grid:{display:false}},y:{stacked:true,max:100,ticks:{callback:v=>v+'%',font:{size:10}},grid:{color:'rgba(0,0,0,.05)'}}}}});
+
+// Table
+const tbody=document.getElementById('tableBody');
+const maxR=Math.max(...DATA.map(d=>d.rescheduled_pct));
+const maxNA=Math.max(...DATA.map(d=>d.no_answer_pct));
+DATA.forEach(d=>{
+  const isBest=d.rescheduled_pct===maxR, isWorst=d.no_answer_pct===maxNA;
+  function bc(pct,color){return`<td><div class="bar-cell"><span>${pct.toFixed(1)}%</span><div class="mini-bar" style="width:${Math.round(pct*1.2)}px;background:${color}"></div></div></td>`;}
+  tbody.innerHTML+=`<tr class="${isBest?'best-row':isWorst?'worst-row':''}">
+    <td>${d.hour}:00${isBest?' ✅':''}${isWorst?' 🔴':''}</td><td>${d.total}</td>
+    ${bc(d.no_answer_pct,'#e11d48')}${bc(d.rescheduled_pct,'#059669')}
+    ${bc(d.slot_issue_pct,'#f59e0b')}${bc(d.callback_pct,'#6366f1')}
+    ${bc(d.cancelled_pct,'#9ca3af')}${bc(d.no_capacity_sms_pct,'#10b981')}
+    ${bc(d.escalated_pct,'#3b82f6')}${bc(d.other_pct+d.unknown_pct,'#d1d5db')}</tr>`;
 });
 
-// ── No-answer line chart ──────────────────────────────────────────────────────
-new Chart(document.getElementById('noAnswerChart'), {
-  type: 'line',
-  data: {
-    labels: hours,
-    datasets: [{
-      label: 'No-answer rate %',
-      data: noAnswerPct,
-      borderColor: '#e11d48',
-      backgroundColor: 'rgba(225,29,72,.1)',
-      borderWidth: 3,
-      pointRadius: DATA.map(d => 4 + d.total/30),
-      pointBackgroundColor: DATA.map(d => noAnswerColor(d.no_answer_pct, 1)),
-      pointBorderColor: '#fff',
-      pointBorderWidth: 2,
-      fill: true,
-      tension: 0.3
-    }]
-  },
-  options: {
-    responsive: true, maintainAspectRatio: false,
-    plugins: {
-      legend: { display: false },
-      tooltip: { callbacks: { label: ctx => `${ctx.parsed.y}% no-answer (n=${DATA[ctx.dataIndex].total})` } }
-    },
-    scales: {
-      y: { min: 20, max: 70, ticks: { callback: v => v+'%', font: { size: 10 } }, grid: { color: 'rgba(0,0,0,.05)' } },
-      x: { ticks: { font: { size: 10 } }, grid: { display: false } }
-    }
-  }
-});
+// ── Tab 2: Golden Hour (lazy init) ──────────────────────────────────────────
+function initGolden(){
+  const mHours = MORNING.map(d=>d.hour+':00');
+  const aHours = AFTERNOON.map(d=>d.hour+':00');
 
-// ── Reschedule bar chart ──────────────────────────────────────────────────────
-new Chart(document.getElementById('reschedChart'), {
-  type: 'bar',
-  data: {
-    labels: hours,
-    datasets: [{
-      label: 'Reschedule rate %',
-      data: reschedPct,
-      backgroundColor: DATA.map(d => reschedColor(d.rescheduled_pct, 0.85)),
-      borderRadius: 5,
-    }]
-  },
-  options: {
-    responsive: true, maintainAspectRatio: false,
-    plugins: {
-      legend: { display: false },
-      tooltip: { callbacks: { label: ctx => `${ctx.parsed.y}% rescheduled (n=${DATA[ctx.dataIndex].total})` } }
-    },
-    scales: {
-      y: { min: 0, max: 30, ticks: { callback: v => v+'%', font: { size: 10 } }, grid: { color: 'rgba(0,0,0,.05)' } },
-      x: { ticks: { font: { size: 10 } }, grid: { display: false } }
-    }
-  }
-});
+  // Morning score chart
+  new Chart(document.getElementById('mornScoreChart'),{type:'bar',data:{labels:mHours,datasets:[{label:'Score',data:MORNING.map(d=>d.score),backgroundColor:MORNING.map(d=>scoreColor(d.hour,true)),borderRadius:6}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false},tooltip:{callbacks:{label:ctx=>{const d=MORNING[ctx.dataIndex];return[`Score: ${d.score}`,`Reschedule: ${d.rescheduled_pct}%`,`No-answer: ${d.no_answer_pct}%`];}}}},scales:{x:{ticks:{font:{size:11}},grid:{display:false}},y:{title:{display:true,text:'Efficiency score',font:{size:10}},ticks:{font:{size:10}},grid:{color:'rgba(0,0,0,.05)'}}}}});
 
-// ── Stacked 100% chart ────────────────────────────────────────────────────────
-const OUTCOME_COLORS = {
-  no_answer:       'rgba(225,29,72,.8)',
-  rescheduled:     'rgba(5,150,105,.85)',
-  slot_issue:      'rgba(245,158,11,.8)',
-  callback:        'rgba(99,102,241,.8)',
-  no_capacity_sms: 'rgba(16,185,129,.6)',
-  cancelled:       'rgba(156,163,175,.7)',
-  escalated:       'rgba(59,130,246,.7)',
-  other:           'rgba(209,213,219,.7)',
-  unknown:         'rgba(243,244,246,.8)',
-};
-const OUTCOME_LABELS = {
-  no_answer: 'No Answer / Voicemail',
-  rescheduled: 'Rescheduled ✓',
-  slot_issue: 'Slot Not Available',
-  callback: 'Callback',
-  no_capacity_sms: 'No Capacity → SMS',
-  cancelled: 'Cancelled',
-  escalated: 'Escalated',
-  other: 'Other',
-  unknown: 'Unknown',
-};
+  // Afternoon score chart
+  new Chart(document.getElementById('aftnScoreChart'),{type:'bar',data:{labels:aHours,datasets:[{label:'Score',data:AFTERNOON.map(d=>d.score),backgroundColor:AFTERNOON.map(d=>scoreColor(d.hour,false)),borderRadius:6}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false},tooltip:{callbacks:{label:ctx=>{const d=AFTERNOON[ctx.dataIndex];return[`Score: ${d.score}`,`Reschedule: ${d.rescheduled_pct}%`,`No-answer: ${d.no_answer_pct}%`];}}}},scales:{x:{ticks:{font:{size:11}},grid:{display:false}},y:{title:{display:true,text:'Efficiency score',font:{size:10}},ticks:{font:{size:10}},grid:{color:'rgba(0,0,0,.05)'}}}}});
 
-const stackedDatasets = Object.keys(OUTCOME_COLORS).map(key => ({
-  label: OUTCOME_LABELS[key],
-  data: DATA.map(d => d[key+'_pct']),
-  backgroundColor: OUTCOME_COLORS[key],
-  borderWidth: 0,
-}));
-
-new Chart(document.getElementById('stackedChart'), {
-  type: 'bar',
-  data: { labels: hours, datasets: stackedDatasets },
-  options: {
-    responsive: true, maintainAspectRatio: false,
-    plugins: {
-      legend: { position: 'bottom', labels: { font: { size: 10 }, usePointStyle: true, padding: 10 } },
-      tooltip: { callbacks: { label: ctx => `${ctx.dataset.label}: ${ctx.parsed.y.toFixed(1)}%` } }
-    },
-    scales: {
-      x: { stacked: true, ticks: { font: { size: 11 } }, grid: { display: false } },
-      y: { stacked: true, max: 100, ticks: { callback: v => v+'%', font: { size: 10 } }, grid: { color: 'rgba(0,0,0,.05)' } }
-    }
-  }
-});
-
-// ── Table ─────────────────────────────────────────────────────────────────────
-const tbody = document.getElementById('tableBody');
-const maxResched = Math.max(...DATA.map(d => d.rescheduled_pct));
-const maxNoAns   = Math.max(...DATA.map(d => d.no_answer_pct));
-
-DATA.forEach(d => {
-  const isBest  = d.rescheduled_pct === maxResched;
-  const isWorst = d.no_answer_pct === maxNoAns;
-  const cls = isBest ? 'best' : (isWorst ? 'worst' : '');
-
-  function barCell(pct, color) {
-    return `<td><div class="bar-cell"><span style="font-size:12px">${pct.toFixed(1)}%</span>
-      <div class="mini-bar" style="width:${Math.round(pct*1.2)}px;background:${color}"></div></div></td>`;
-  }
-
-  const other_unk = d.other_pct + d.unknown_pct;
-  tbody.innerHTML += `<tr class="${cls}">
-    <td>${d.hour}:00${isBest ? ' ✅' : ''}${isWorst ? ' 🔴' : ''}</td>
-    <td>${d.total}</td>
-    ${barCell(d.no_answer_pct,     '#e11d48')}
-    ${barCell(d.rescheduled_pct,   '#059669')}
-    ${barCell(d.slot_issue_pct,    '#f59e0b')}
-    ${barCell(d.callback_pct,      '#6366f1')}
-    ${barCell(d.cancelled_pct,     '#9ca3af')}
-    ${barCell(d.no_capacity_sms_pct,'#10b981')}
-    ${barCell(d.escalated_pct,     '#3b82f6')}
-    ${barCell(other_unk,           '#d1d5db')}
-  </tr>`;
-});
-</script>
-</body></html>
+  // Dual bar — full day with golden markers
+  const goldenPlugin={id:'gp',beforeDraw(c){
+    const{ctx,chartArea,scales}=c;if(!chartArea)return;
+    [GOLDEN_M,GOLDEN_A].forEach(h=>{
+      const idx=DATA.findIndex(d=>d.hour===h);if(idx<0)return;
+      const x=scales.x.getPixelForValue(idx);
+      ctx.save();
+      ctx.strokeStyle=h===GOLDEN_M?'rgba(245,158,11,.7)':'rgba(16,185,129,.7)';
+      ctx.lineWidth=2.5;ctx.setLineDash([]);
+      ctx.beginPath();ctx.moveTo(x,chartArea.top);ctx.lineTo(x,chartArea.bottom);ctx.stroke();
+      ctx.fillStyle=h===GOLDEN_M?'#f59e0b':'#10b981';
+      ctx.font='bold 11px system-ui';ctx.textAlign='center';
+      ctx.fillText(h===GOLDEN_M?'⭐ 11am':'🏆 15pm',x,chartArea.top+12);
+      ctx.restore();
+    });
+  }};
+  new Chart(document.getElementById('dualChart'),{type:'bar',plugins:[goldenPlugin],data:{labels:hours,datasets:[
+    {label:'No-answer %',data:naRate,backgroundColor:'rgba(225,29,72,.6)',borderRadius:3,yAxisID:'y'},
+    {label:'Reschedule %',data:rRate,backgroundColor:DATA.map(d=>d.hour===GOLDEN_M?'rgba(245,158,11,.9)':d.hour===GOLDEN_A?'rgba(16,185,129,.9)':'rgba(5,150,105,.5)'),borderRadius:3,yAxisID:'y'}
+  ]},options:{responsive:true,maintainAspectRatio:false,interaction:{mode:'index',intersect:false},plugins:{legend:{position:'top',labels:{font:{size:11},usePointStyle:true}}},scales:{x:{ticks:{font:{size:11}},grid:{display:false}},y:{max:70,ticks:{callback:v=>v+'%',font:{size:10}},grid:{color:'rgba(0,0,0,.05)'}}}}});
+}
+</script></body></html>
