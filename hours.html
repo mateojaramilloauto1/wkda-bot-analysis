@@ -6,23 +6,19 @@
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
 body{font-family:'Segoe UI',system-ui,sans-serif;background:#f4f6fa;color:#1a1d2e;font-size:14px}
-/* Nav */
 .topnav{background:#1e293b;padding:12px 48px;display:flex;gap:16px;align-items:center;flex-wrap:wrap}
 .topnav span{font-size:11px;font-weight:700;color:rgba(255,255,255,.4);text-transform:uppercase;letter-spacing:1px;margin-right:8px}
 .topnav a{font-size:12px;font-weight:600;text-decoration:none;padding:5px 12px;border-radius:20px;border:1px solid rgba(255,255,255,.15);color:rgba(255,255,255,.6)}
 .topnav a.active{background:rgba(129,140,248,.2);border-color:#818cf8;color:#818cf8}
-/* Header */
 .header{background:linear-gradient(135deg,#1a1d2e 0%,#2d3250 100%);color:#fff;padding:28px 48px 0}
 .header h1{font-size:22px;font-weight:700}
 .header .sub{margin-top:5px;font-size:13px;opacity:.55}
 .header .meta{margin-top:12px;display:flex;gap:10px;flex-wrap:wrap}
 .header .meta span{font-size:11px;background:rgba(255,255,255,.1);border-radius:20px;padding:3px 11px}
-/* Tabs */
 .tab-nav{display:flex;gap:0;margin-top:18px}
 .tab-nav button{border:none;background:transparent;color:rgba(255,255,255,.5);padding:12px 24px;font-size:13px;font-weight:600;cursor:pointer;border-bottom:3px solid transparent;font-family:inherit;transition:all .15s;white-space:nowrap}
 .tab-nav button:hover{color:rgba(255,255,255,.85)}
 .tab-nav button.active{color:#fff;border-bottom-color:#818cf8}
-/* Page */
 .page{max-width:1200px;margin:0 auto;padding:28px 24px 64px}
 .tab-panel{display:none}.tab-panel.active{display:block}
 .st{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:#6b7280;margin-bottom:12px;margin-top:28px}
@@ -39,17 +35,17 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:#f4f6fa;color:#1a1d2
 .kpi .val{font-size:28px;font-weight:800;margin-top:5px;letter-spacing:-1px}
 .kpi .sub{font-size:11px;color:#9ca3af;margin-top:3px}
 .kpi .trend{font-size:11px;font-weight:600;margin-top:4px}
-/* Insights */
-.insight{border-radius:8px;padding:14px 18px;margin-bottom:14px;border-left-width:4px;border-left-style:solid}
-.insight.warn{background:#fff7ed;border-color:#f59e0b;border-width:1px}
-.insight.bad{background:#fff1f2;border-color:#e11d48;border-width:1px}
-.insight.good{background:#f0fdf4;border-color:#10b981;border-width:1px}
+.insight{border-radius:8px;padding:14px 18px;margin-bottom:14px;border-left-width:4px;border-left-style:solid;border-width:1px}
+.insight.warn{background:#fff7ed;border-color:#f59e0b}
+.insight.bad{background:#fff1f2;border-color:#e11d48}
+.insight.good{background:#f0fdf4;border-color:#10b981}
+.insight.info{background:#f0f7ff;border-color:#3b82f6}
 .insight .it{font-weight:700;font-size:13px;margin-bottom:5px}
 .insight.warn .it{color:#92400e}
 .insight.bad .it{color:#9f1239}
 .insight.good .it{color:#065f46}
+.insight.info .it{color:#1e40af}
 .insight .ib{font-size:12px;color:#374151;line-height:1.6}
-/* Table */
 table{width:100%;border-collapse:collapse;font-size:12px}
 thead th{font-size:10px;font-weight:700;color:#6b7280;text-transform:uppercase;letter-spacing:.5px;padding:9px 12px;border-bottom:2px solid #f3f4f6;text-align:right;white-space:nowrap}
 thead th:first-child{text-align:left}
@@ -60,7 +56,6 @@ tbody tr.best-row{background:#f0fdf4}
 tbody tr.worst-row{background:#fff1f2}
 .bar-cell{display:flex;align-items:center;justify-content:flex-end;gap:6px}
 .mini-bar{height:8px;border-radius:4px;min-width:2px}
-/* Golden hour tab styles */
 .golden-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-bottom:20px}
 .golden-card{border-radius:16px;padding:28px;position:relative;overflow:hidden}
 .golden-card.morning{background:linear-gradient(135deg,#fff7ed,#fef3c7);border:2px solid #fbbf24}
@@ -80,14 +75,19 @@ tbody tr.worst-row{background:#fff1f2}
 .golden-card.morning .gc-badge .score{color:#92400e}
 .golden-card.afternoon .gc-badge .score{color:#065f46}
 .golden-card .gc-badge .slbl{font-size:9px;font-weight:600;text-transform:uppercase;letter-spacing:.5px;opacity:.6}
-.whatif{background:#f0f7ff;border:1px solid #bfdbfe;border-left:4px solid #3b82f6;border-radius:10px;padding:20px 24px;margin-bottom:20px}
-.whatif .title{font-size:14px;font-weight:700;color:#1e40af;margin-bottom:10px}
+.whatif{border-radius:10px;padding:20px 24px;margin-bottom:14px;border:1px solid}
+.whatif.morning{background:#fffbeb;border-color:#fde68a}
+.whatif.afternoon{background:#f0fdf4;border-color:#bbf7d0}
+.whatif .title{font-size:14px;font-weight:700;margin-bottom:8px}
+.whatif.morning .title{color:#92400e}
+.whatif.afternoon .title{color:#065f46}
 .whatif-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:12px}
-.whatif-box{background:#fff;border-radius:8px;padding:14px;text-align:center;border:1px solid #e0e3ff}
+.whatif-box{background:#fff;border-radius:8px;padding:14px;text-align:center;border:1px solid #e5e7eb}
 .whatif-box .wnum{font-size:26px;font-weight:800;margin-top:4px}
 .whatif-box .wlbl{font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:.5px;color:#6b7280}
 .avoid-box{background:#fff1f2;border:1px solid #fecdd3;border-left:4px solid #e11d48;border-radius:8px;padding:14px 18px;font-size:12px;color:#374151;line-height:1.6;margin-top:14px}
 .avoid-box strong{color:#9f1239}
+.updated-badge{background:#dcfce7;color:#166534;border-radius:20px;padding:3px 11px;font-size:11px;font-weight:700}
 .footer{text-align:center;font-size:11px;color:#9ca3af;margin-top:48px}
 </style></head><body>
 
@@ -103,7 +103,8 @@ tbody tr.worst-row{background:#fff1f2}
   <div class="meta">
     <span>DE Market</span><span>11labs Voice Bot</span>
     <span>Overbooking Rescheduling</span>
-    <span>659 calls with timestamp · W22–W25</span>
+    <span>1,139 calls with timestamp · W22–W25</span>
+    <span class="updated-badge">✓ Updated Jun 2026</span>
   </div>
   <nav class="tab-nav">
     <button class="active" onclick="switchTab('analysis')">Call Hour Analysis</button>
@@ -116,13 +117,15 @@ tbody tr.worst-row{background:#fff1f2}
 <!-- ════════ TAB 1: CALL HOUR ANALYSIS ════════ -->
 <div id="tab-analysis" class="tab-panel active">
 
-  <div class="st">Key Findings</div>
-  <div class="insight bad"><div class="it">🔴 9am is the worst hour — highest no-answer AND most-called</div>
-    <div class="ib">115 calls at 9am (18% of volume) yet 55.7% go unanswered — the highest no-answer rate of any hour. Early morning calls (8–9am) account for 32% of volume but deliver the weakest results.</div></div>
-  <div class="insight good"><div class="it">✅ 13–15pm consistently delivers the best reschedule rates (19–24%)</div>
-    <div class="ib">These 3 hours handle only 20% of volume but drive the highest conversion. 15pm is the single best hour at 24.4% reschedule rate.</div></div>
-  <div class="insight warn"><div class="it">⚠️ 16pm anomaly — same no-answer rate as 15pm but only 4.4% reschedule</div>
-    <div class="ib">Something at 16pm drastically reduces conversion despite similar answer rates. Worth investigating separately.</div></div>
+  <div class="st">Key Findings — Updated Data</div>
+  <div class="insight info"><div class="it">📊 Data refreshed — 1,139 calls (vs 659 previously, +73% more data)</div>
+    <div class="ib">With more data, no-answer rates have improved significantly vs the earlier analysis. 8am dropped from 50%→37.5%, 9am from 55.7%→28.5%. The morning is performing better than previously thought.</div></div>
+  <div class="insight good"><div class="it">✅ 15pm remains the best hour — 20% reschedule, score 13.76</div>
+    <div class="ib">The afternoon window (13–15pm) continues to outperform all other hours. 15pm leads with 20% reschedule and the highest efficiency score.</div></div>
+  <div class="insight warn"><div class="it">⚠️ 10am is now the anomaly — only 4.9% reschedule despite low no-answer (18%)</div>
+    <div class="ib">10am has the best answer rate of the day (only 18% no-answer) but the worst reschedule rate (4.9%). Customers answer but don't reschedule — worth investigating what's different about these calls.</div></div>
+  <div class="insight bad"><div class="it">🔴 16pm drop — 12.4% reschedule vs 20% at 15pm despite similar no-answer</div>
+    <div class="ib">Conversion drops sharply at 16pm. Avoiding 16pm in favour of 13–15pm would improve afternoon outcomes.</div></div>
 
   <div class="st">Overview</div>
   <div class="g4" id="kpiRow"></div>
@@ -130,42 +133,41 @@ tbody tr.worst-row{background:#fff1f2}
   <div class="st">Call Volume by Hour</div>
   <div class="card">
     <h3>How many calls are made at each hour?</h3>
-    <div class="note">Colour intensity reflects no-answer rate — darker red = more unanswered calls at that hour.</div>
+    <div class="note">Colour intensity reflects no-answer rate. 8am has the highest volume (208 calls = 18% of total).</div>
     <div class="cwlg"><canvas id="volumeChart"></canvas></div>
   </div>
 
   <div class="st">No-Answer Rate vs Reschedule Rate</div>
   <div class="g2">
     <div class="card"><h3>No-Answer / Voicemail Rate</h3>
-      <div class="note">% going unanswered. Lower is better.</div>
+      <div class="note">% going unanswered. Lower is better. Significantly improved vs previous data.</div>
       <div class="cw"><canvas id="noAnswerChart"></canvas></div>
     </div>
     <div class="card"><h3>Reschedule Success Rate</h3>
-      <div class="note">% confirmed new appointment. Higher is better.</div>
+      <div class="note">% confirmed new appointment. 15pm leads at 20%.</div>
       <div class="cw"><canvas id="reschedChart"></canvas></div>
     </div>
   </div>
 
-  <div class="st">All Outcomes by Hour (stacked)</div>
+  <div class="st">All Outcomes by Hour (stacked 100%)</div>
   <div class="card">
     <h3>Full outcome composition across the day</h3>
-    <div class="note">100% stacked view — each bar shows the complete outcome mix for that hour.</div>
+    <div class="note">Each bar shows the complete outcome mix for that hour.</div>
     <div class="cwlg"><canvas id="stackedChart"></canvas></div>
   </div>
 
   <div class="st">Full Data Table</div>
   <div class="card">
-    <h3>Hourly breakdown — all outcomes</h3>
-    <div class="note">Green = best reschedule hour · Red = worst no-answer hour</div>
+    <h3>Hourly breakdown · Green = best reschedule · Red = worst score</h3>
     <div style="overflow-x:auto">
     <table><thead><tr>
       <th style="text-align:left">Hour</th><th>Calls</th><th>No Answer %</th>
-      <th>Rescheduled %</th><th>Slot Issue %</th><th>Callback %</th>
-      <th>Cancelled %</th><th>No Cap→SMS %</th><th>Escalated %</th><th>Other %</th>
+      <th>Rescheduled %</th><th>Score</th><th>Slot Issue %</th><th>Callback %</th>
+      <th>Cancelled %</th><th>No Cap→SMS %</th><th>Other %</th>
     </tr></thead><tbody id="tableBody"></tbody></table>
     </div>
   </div>
-  <div class="footer">Clara CX Analysis · DE Market · 11labs · June 2026</div>
+  <div class="footer">Clara CX Analysis · DE Market · 11labs · Updated June 2026 · 1,139 calls</div>
 </div>
 
 <!-- ════════ TAB 2: GOLDEN HOUR ════════ -->
@@ -174,18 +176,18 @@ tbody tr.worst-row{background:#fff1f2}
   <div class="st">Best hour to call — Morning vs Afternoon</div>
   <div class="golden-grid">
     <div class="golden-card morning">
-      <div class="gc-badge"><div class="score">6.9</div><div class="slbl">Score</div></div>
+      <div class="gc-badge"><div class="score">10.9</div><div class="slbl">Score</div></div>
       <div class="gc-label">☀️ Morning golden hour</div>
-      <div class="gc-hour">11:00</div>
-      <div class="gc-resched">14.7% reschedule</div>
-      <div class="gc-note">Best score in the 8–12 window. No-answer rate of 52.9% is typical for the morning, but the reschedule rate is the strongest available at this time of day. If morning calls are unavoidable, 11am is the best slot.</div>
+      <div class="gc-hour">9:00</div>
+      <div class="gc-resched">15.2% reschedule</div>
+      <div class="gc-note">Updated data: 9am is now the best morning hour with a score of 10.87 — significantly better than the previous analysis showed (6.56). No-answer rate dropped from 55.7% to 28.5% with more data, making 9am a viable calling window. Best available in 8–12.</div>
     </div>
     <div class="golden-card afternoon">
-      <div class="gc-badge"><div class="score">11.9</div><div class="slbl">Score</div></div>
+      <div class="gc-badge"><div class="score">13.8</div><div class="slbl">Score</div></div>
       <div class="gc-label">🌅 Afternoon golden hour</div>
       <div class="gc-hour">15:00</div>
-      <div class="gc-resched">24.4% reschedule</div>
-      <div class="gc-note">Best hour of the entire day — 24.4% reschedule rate and the highest efficiency score (11.9). The 13–15pm window consistently outperforms all other hours. 15pm is the single best hour to call.</div>
+      <div class="gc-resched">20.0% reschedule</div>
+      <div class="gc-note">15pm remains the single best hour of the day — confirmed with the larger dataset. Score of 13.76 is the highest of any hour. The 13–15pm window (scores 12.7–13.8) consistently outperforms all other windows.</div>
     </div>
   </div>
 
@@ -193,155 +195,119 @@ tbody tr.worst-row{background:#fff1f2}
   <div class="g2">
     <div class="card">
       <h3>Morning hours (8–12) — Score by hour</h3>
-      <div class="note">Score = reschedule% × answer rate. 11am highlighted as morning best.</div>
+      <div class="note">Score = reschedule% × answer rate. 9am now the morning leader.</div>
       <div class="cw"><canvas id="mornScoreChart"></canvas></div>
     </div>
     <div class="card">
       <h3>Afternoon hours (13–19) — Score by hour</h3>
-      <div class="note">15pm far outperforms all other afternoon hours. Note 16pm anomaly.</div>
+      <div class="note">15pm leads. 16pm anomaly confirmed — low conversion despite good answer rate.</div>
       <div class="cw"><canvas id="aftnScoreChart"></canvas></div>
     </div>
   </div>
 
-  <div class="st">Morning vs Afternoon — Side-by-Side</div>
+  <div class="st">Full Day — No-Answer vs Reschedule with Golden Hours</div>
   <div class="card">
-    <h3>No-answer rate vs Reschedule rate — Full day with golden hours highlighted</h3>
-    <div class="note">⭐ Morning golden hour (11am) · 🏆 Afternoon golden hour (15pm)</div>
+    <h3>Side-by-side across the day · ⭐ 9am morning best · 🏆 15pm afternoon best</h3>
+    <div class="note">Updated data shows a flatter no-answer profile — morning hours are less bad than before.</div>
     <div class="cwlg"><canvas id="dualChart"></canvas></div>
   </div>
 
   <div class="st">What If We Call at the Golden Hour?</div>
 
-  <div class="whatif">
-    <div class="title">☀️ Morning scenario — shift all morning calls to 11am</div>
-    <p style="font-size:12px;color:#374151;line-height:1.6">Currently 319 calls are made in the morning (8–12). If all were made at 11am efficiency (score 6.9 vs current avg 6.1):</p>
+  <div class="whatif morning">
+    <div class="title">☀️ Morning — shift all morning calls to 9am</div>
+    <p style="font-size:12px;color:#374151;line-height:1.6">Currently 551 calls in the morning (8–12). If all were made at 9am efficiency (score 10.9 vs current avg 7.3):</p>
     <div class="whatif-grid">
-      <div class="whatif-box"><div class="wlbl">Current morning bookings</div><div class="wnum" style="color:#f59e0b">~19</div><div style="font-size:11px;color:#9ca3af;margin-top:4px">319 calls · avg score 6.1</div></div>
-      <div class="whatif-box"><div class="wlbl">Projected at 11am</div><div class="wnum" style="color:#059669">~22</div><div style="font-size:11px;color:#9ca3af;margin-top:4px">same 319 calls · score 6.9</div></div>
-      <div class="whatif-box"><div class="wlbl">Additional reschedules</div><div class="wnum" style="color:#3b82f6">+3</div><div style="font-size:11px;color:#9ca3af;margin-top:4px">modest gain — morning is inherently weak</div></div>
+      <div class="whatif-box"><div class="wlbl">Current morning bookings</div><div class="wnum" style="color:#f59e0b">~40</div><div style="font-size:11px;color:#9ca3af;margin-top:4px">551 calls · avg score 7.3</div></div>
+      <div class="whatif-box"><div class="wlbl">Projected at 9am</div><div class="wnum" style="color:#059669">~60</div><div style="font-size:11px;color:#9ca3af;margin-top:4px">same 551 calls · score 10.9</div></div>
+      <div class="whatif-box"><div class="wlbl">Additional reschedules</div><div class="wnum" style="color:#3b82f6">+20</div><div style="font-size:11px;color:#9ca3af;margin-top:4px">~50% improvement in morning</div></div>
     </div>
   </div>
 
-  <div class="whatif" style="background:#f0fdf4;border-color:#bbf7d0;border-left-color:#10b981">
-    <div class="title" style="color:#065f46">🌅 Afternoon scenario — shift all afternoon calls to 15pm</div>
-    <p style="font-size:12px;color:#374151;line-height:1.6">Currently 340 calls are made in the afternoon (13–19). If all were made at 15pm efficiency (score 11.9 vs current avg 8.0, excluding 16pm anomaly):</p>
+  <div class="whatif afternoon">
+    <div class="title">🌅 Afternoon — shift all afternoon calls to 15pm</div>
+    <p style="font-size:12px;color:#374151;line-height:1.6">Currently 588 calls in the afternoon (13–19). If all were made at 15pm efficiency (score 13.8 vs current avg 10.6):</p>
     <div class="whatif-grid">
-      <div class="whatif-box"><div class="wlbl">Current afternoon bookings</div><div class="wnum" style="color:#f59e0b">~27</div><div style="font-size:11px;color:#9ca3af;margin-top:4px">340 calls · avg score 8.0</div></div>
-      <div class="whatif-box"><div class="wlbl">Projected at 15pm</div><div class="wnum" style="color:#059669">~40</div><div style="font-size:11px;color:#9ca3af;margin-top:4px">same 340 calls · score 11.9</div></div>
-      <div class="whatif-box"><div class="wlbl">Additional reschedules</div><div class="wnum" style="color:#3b82f6">+13</div><div style="font-size:11px;color:#9ca3af;margin-top:4px">~48% improvement in afternoon</div></div>
+      <div class="whatif-box"><div class="wlbl">Current afternoon bookings</div><div class="wnum" style="color:#f59e0b">~62</div><div style="font-size:11px;color:#9ca3af;margin-top:4px">588 calls · avg score 10.6</div></div>
+      <div class="whatif-box"><div class="wlbl">Projected at 15pm</div><div class="wnum" style="color:#059669">~81</div><div style="font-size:11px;color:#9ca3af;margin-top:4px">same 588 calls · score 13.8</div></div>
+      <div class="whatif-box"><div class="wlbl">Additional reschedules</div><div class="wnum" style="color:#3b82f6">+19</div><div style="font-size:11px;color:#9ca3af;margin-top:4px">~30% improvement in afternoon</div></div>
     </div>
   </div>
 
   <div class="avoid-box">
-    <strong>Hours to avoid or deprioritise:</strong> 8–9am (50–56% no-answer, lowest reschedule) and 16pm (51% no-answer but only 4.4% reschedule — anomaly). 
-    The biggest gain comes from shifting <strong>afternoon</strong> calls away from 16–19pm toward 13–15pm, not from fixing morning calls.
+    <strong>Hours to avoid or deprioritise:</strong> 10am (only 4.9% reschedule despite good answer rate — anomaly worth investigating), 16pm (12.4% reschedule vs 20% at 15pm — sharp unexplained drop). Both hours represent wasted capacity that could be shifted to 9am or 13–15pm.
   </div>
 
-  <div class="footer">Clara CX Analysis · DE Market · 11labs · June 2026</div>
+  <div class="footer">Clara CX Analysis · DE Market · 11labs · Updated June 2026 · 1,139 calls</div>
 </div>
 
-</div><!-- /page -->
+</div>
 
 <script>
-const DATA = [{"hour": 8, "total": 96, "no_answer": 48, "no_answer_pct": 50.0, "rescheduled": 10, "rescheduled_pct": 10.4, "callback": 1, "callback_pct": 1.0, "slot_issue": 1, "slot_issue_pct": 1.0, "no_capacity_sms": 2, "no_capacity_sms_pct": 2.1, "cancelled": 0, "cancelled_pct": 0.0, "escalated": 0, "escalated_pct": 0.0, "bot_misunderstand": 0, "bot_misunderstand_pct": 0.0, "other": 6, "other_pct": 6.2, "unknown": 28, "unknown_pct": 29.2, "score": 5.2}, {"hour": 9, "total": 115, "no_answer": 64, "no_answer_pct": 55.7, "rescheduled": 17, "rescheduled_pct": 14.8, "callback": 5, "callback_pct": 4.3, "slot_issue": 7, "slot_issue_pct": 6.1, "no_capacity_sms": 6, "no_capacity_sms_pct": 5.2, "cancelled": 4, "cancelled_pct": 3.5, "escalated": 1, "escalated_pct": 0.9, "bot_misunderstand": 0, "bot_misunderstand_pct": 0.0, "other": 9, "other_pct": 7.8, "unknown": 2, "unknown_pct": 1.7, "score": 6.56}, {"hour": 10, "total": 36, "no_answer": 12, "no_answer_pct": 33.3, "rescheduled": 3, "rescheduled_pct": 8.3, "callback": 0, "callback_pct": 0.0, "slot_issue": 4, "slot_issue_pct": 11.1, "no_capacity_sms": 3, "no_capacity_sms_pct": 8.3, "cancelled": 0, "cancelled_pct": 0.0, "escalated": 1, "escalated_pct": 2.8, "bot_misunderstand": 0, "bot_misunderstand_pct": 0.0, "other": 5, "other_pct": 13.9, "unknown": 8, "unknown_pct": 22.2, "score": 5.54}, {"hour": 11, "total": 34, "no_answer": 18, "no_answer_pct": 52.9, "rescheduled": 5, "rescheduled_pct": 14.7, "callback": 1, "callback_pct": 2.9, "slot_issue": 2, "slot_issue_pct": 5.9, "no_capacity_sms": 2, "no_capacity_sms_pct": 5.9, "cancelled": 2, "cancelled_pct": 5.9, "escalated": 0, "escalated_pct": 0.0, "bot_misunderstand": 0, "bot_misunderstand_pct": 0.0, "other": 1, "other_pct": 2.9, "unknown": 3, "unknown_pct": 8.8, "score": 6.92}, {"hour": 12, "total": 38, "no_answer": 20, "no_answer_pct": 52.6, "rescheduled": 5, "rescheduled_pct": 13.2, "callback": 2, "callback_pct": 5.3, "slot_issue": 0, "slot_issue_pct": 0.0, "no_capacity_sms": 2, "no_capacity_sms_pct": 5.3, "cancelled": 1, "cancelled_pct": 2.6, "escalated": 0, "escalated_pct": 0.0, "bot_misunderstand": 0, "bot_misunderstand_pct": 0.0, "other": 5, "other_pct": 13.2, "unknown": 3, "unknown_pct": 7.9, "score": 6.26}, {"hour": 13, "total": 45, "no_answer": 22, "no_answer_pct": 48.9, "rescheduled": 10, "rescheduled_pct": 22.2, "callback": 0, "callback_pct": 0.0, "slot_issue": 3, "slot_issue_pct": 6.7, "no_capacity_sms": 0, "no_capacity_sms_pct": 0.0, "cancelled": 1, "cancelled_pct": 2.2, "escalated": 2, "escalated_pct": 4.4, "bot_misunderstand": 0, "bot_misunderstand_pct": 0.0, "other": 5, "other_pct": 11.1, "unknown": 2, "unknown_pct": 4.4, "score": 11.34}, {"hour": 14, "total": 41, "no_answer": 20, "no_answer_pct": 48.8, "rescheduled": 8, "rescheduled_pct": 19.5, "callback": 0, "callback_pct": 0.0, "slot_issue": 2, "slot_issue_pct": 4.9, "no_capacity_sms": 1, "no_capacity_sms_pct": 2.4, "cancelled": 1, "cancelled_pct": 2.4, "escalated": 0, "escalated_pct": 0.0, "bot_misunderstand": 0, "bot_misunderstand_pct": 0.0, "other": 3, "other_pct": 7.3, "unknown": 6, "unknown_pct": 14.6, "score": 9.98}, {"hour": 15, "total": 45, "no_answer": 23, "no_answer_pct": 51.1, "rescheduled": 11, "rescheduled_pct": 24.4, "callback": 0, "callback_pct": 0.0, "slot_issue": 2, "slot_issue_pct": 4.4, "no_capacity_sms": 2, "no_capacity_sms_pct": 4.4, "cancelled": 1, "cancelled_pct": 2.2, "escalated": 0, "escalated_pct": 0.0, "bot_misunderstand": 0, "bot_misunderstand_pct": 0.0, "other": 3, "other_pct": 6.7, "unknown": 3, "unknown_pct": 6.7, "score": 11.93}, {"hour": 16, "total": 45, "no_answer": 23, "no_answer_pct": 51.1, "rescheduled": 2, "rescheduled_pct": 4.4, "callback": 0, "callback_pct": 0.0, "slot_issue": 4, "slot_issue_pct": 8.9, "no_capacity_sms": 3, "no_capacity_sms_pct": 6.7, "cancelled": 1, "cancelled_pct": 2.2, "escalated": 0, "escalated_pct": 0.0, "bot_misunderstand": 0, "bot_misunderstand_pct": 0.0, "other": 5, "other_pct": 11.1, "unknown": 7, "unknown_pct": 15.6, "score": 2.15}, {"hour": 17, "total": 53, "no_answer": 29, "no_answer_pct": 54.7, "rescheduled": 8, "rescheduled_pct": 15.1, "callback": 1, "callback_pct": 1.9, "slot_issue": 3, "slot_issue_pct": 5.7, "no_capacity_sms": 2, "no_capacity_sms_pct": 3.8, "cancelled": 3, "cancelled_pct": 5.7, "escalated": 2, "escalated_pct": 3.8, "bot_misunderstand": 0, "bot_misunderstand_pct": 0.0, "other": 2, "other_pct": 3.8, "unknown": 3, "unknown_pct": 5.7, "score": 6.84}, {"hour": 18, "total": 54, "no_answer": 27, "no_answer_pct": 50.0, "rescheduled": 8, "rescheduled_pct": 14.8, "callback": 1, "callback_pct": 1.9, "slot_issue": 3, "slot_issue_pct": 5.6, "no_capacity_sms": 1, "no_capacity_sms_pct": 1.9, "cancelled": 2, "cancelled_pct": 3.7, "escalated": 0, "escalated_pct": 0.0, "bot_misunderstand": 0, "bot_misunderstand_pct": 0.0, "other": 4, "other_pct": 7.4, "unknown": 8, "unknown_pct": 14.8, "score": 7.4}, {"hour": 19, "total": 56, "no_answer": 27, "no_answer_pct": 48.2, "rescheduled": 8, "rescheduled_pct": 14.3, "callback": 0, "callback_pct": 0.0, "slot_issue": 6, "slot_issue_pct": 10.7, "no_capacity_sms": 1, "no_capacity_sms_pct": 1.8, "cancelled": 2, "cancelled_pct": 3.6, "escalated": 0, "escalated_pct": 0.0, "bot_misunderstand": 0, "bot_misunderstand_pct": 0.0, "other": 7, "other_pct": 12.5, "unknown": 5, "unknown_pct": 8.9, "score": 7.41}];
+const DATA = [{"hour": 8, "total": 208, "no_answer": 78, "no_answer_pct": 37.5, "rescheduled": 24, "rescheduled_pct": 11.5, "callback": 3, "callback_pct": 1.4, "slot_issue": 5, "slot_issue_pct": 2.4, "no_capacity_sms": 5, "no_capacity_sms_pct": 2.4, "cancelled": 5, "cancelled_pct": 2.4, "escalated": 3, "escalated_pct": 1.4, "bot_misunderstand": 0, "bot_misunderstand_pct": 0.0, "other": 16, "other_pct": 7.7, "unknown": 69, "unknown_pct": 33.2, "score": 7.19}, {"hour": 9, "total": 151, "no_answer": 43, "no_answer_pct": 28.5, "rescheduled": 23, "rescheduled_pct": 15.2, "callback": 5, "callback_pct": 3.3, "slot_issue": 9, "slot_issue_pct": 6.0, "no_capacity_sms": 5, "no_capacity_sms_pct": 3.3, "cancelled": 4, "cancelled_pct": 2.6, "escalated": 2, "escalated_pct": 1.3, "bot_misunderstand": 0, "bot_misunderstand_pct": 0.0, "other": 11, "other_pct": 7.3, "unknown": 49, "unknown_pct": 32.5, "score": 10.87}, {"hour": 10, "total": 61, "no_answer": 11, "no_answer_pct": 18.0, "rescheduled": 3, "rescheduled_pct": 4.9, "callback": 3, "callback_pct": 4.9, "slot_issue": 5, "slot_issue_pct": 8.2, "no_capacity_sms": 3, "no_capacity_sms_pct": 4.9, "cancelled": 2, "cancelled_pct": 3.3, "escalated": 1, "escalated_pct": 1.6, "bot_misunderstand": 0, "bot_misunderstand_pct": 0.0, "other": 6, "other_pct": 9.8, "unknown": 27, "unknown_pct": 44.3, "score": 4.02}, {"hour": 11, "total": 61, "no_answer": 19, "no_answer_pct": 31.1, "rescheduled": 6, "rescheduled_pct": 9.8, "callback": 1, "callback_pct": 1.6, "slot_issue": 4, "slot_issue_pct": 6.6, "no_capacity_sms": 3, "no_capacity_sms_pct": 4.9, "cancelled": 3, "cancelled_pct": 4.9, "escalated": 0, "escalated_pct": 0.0, "bot_misunderstand": 0, "bot_misunderstand_pct": 0.0, "other": 2, "other_pct": 3.3, "unknown": 23, "unknown_pct": 37.7, "score": 6.75}, {"hour": 12, "total": 70, "no_answer": 19, "no_answer_pct": 27.1, "rescheduled": 8, "rescheduled_pct": 11.4, "callback": 2, "callback_pct": 2.9, "slot_issue": 1, "slot_issue_pct": 1.4, "no_capacity_sms": 3, "no_capacity_sms_pct": 4.3, "cancelled": 3, "cancelled_pct": 4.3, "escalated": 1, "escalated_pct": 1.4, "bot_misunderstand": 0, "bot_misunderstand_pct": 0.0, "other": 8, "other_pct": 11.4, "unknown": 25, "unknown_pct": 35.7, "score": 8.31}, {"hour": 13, "total": 77, "no_answer": 19, "no_answer_pct": 24.7, "rescheduled": 13, "rescheduled_pct": 16.9, "callback": 0, "callback_pct": 0.0, "slot_issue": 5, "slot_issue_pct": 6.5, "no_capacity_sms": 0, "no_capacity_sms_pct": 0.0, "cancelled": 4, "cancelled_pct": 5.2, "escalated": 2, "escalated_pct": 2.6, "bot_misunderstand": 0, "bot_misunderstand_pct": 0.0, "other": 7, "other_pct": 9.1, "unknown": 27, "unknown_pct": 35.1, "score": 12.73}, {"hour": 14, "total": 73, "no_answer": 26, "no_answer_pct": 35.6, "rescheduled": 13, "rescheduled_pct": 17.8, "callback": 0, "callback_pct": 0.0, "slot_issue": 5, "slot_issue_pct": 6.8, "no_capacity_sms": 1, "no_capacity_sms_pct": 1.4, "cancelled": 1, "cancelled_pct": 1.4, "escalated": 0, "escalated_pct": 0.0, "bot_misunderstand": 0, "bot_misunderstand_pct": 0.0, "other": 4, "other_pct": 5.5, "unknown": 23, "unknown_pct": 31.5, "score": 11.46}, {"hour": 15, "total": 80, "no_answer": 25, "no_answer_pct": 31.2, "rescheduled": 16, "rescheduled_pct": 20.0, "callback": 0, "callback_pct": 0.0, "slot_issue": 6, "slot_issue_pct": 7.5, "no_capacity_sms": 1, "no_capacity_sms_pct": 1.2, "cancelled": 2, "cancelled_pct": 2.5, "escalated": 1, "escalated_pct": 1.2, "bot_misunderstand": 0, "bot_misunderstand_pct": 0.0, "other": 11, "other_pct": 13.8, "unknown": 18, "unknown_pct": 22.5, "score": 13.76}, {"hour": 16, "total": 89, "no_answer": 28, "no_answer_pct": 31.5, "rescheduled": 11, "rescheduled_pct": 12.4, "callback": 1, "callback_pct": 1.1, "slot_issue": 6, "slot_issue_pct": 6.7, "no_capacity_sms": 3, "no_capacity_sms_pct": 3.4, "cancelled": 2, "cancelled_pct": 2.2, "escalated": 0, "escalated_pct": 0.0, "bot_misunderstand": 0, "bot_misunderstand_pct": 0.0, "other": 7, "other_pct": 7.9, "unknown": 31, "unknown_pct": 34.8, "score": 8.49}, {"hour": 17, "total": 95, "no_answer": 29, "no_answer_pct": 30.5, "rescheduled": 16, "rescheduled_pct": 16.8, "callback": 2, "callback_pct": 2.1, "slot_issue": 5, "slot_issue_pct": 5.3, "no_capacity_sms": 2, "no_capacity_sms_pct": 2.1, "cancelled": 8, "cancelled_pct": 8.4, "escalated": 2, "escalated_pct": 2.1, "bot_misunderstand": 0, "bot_misunderstand_pct": 0.0, "other": 7, "other_pct": 7.4, "unknown": 24, "unknown_pct": 25.3, "score": 11.68}, {"hour": 18, "total": 87, "no_answer": 29, "no_answer_pct": 33.3, "rescheduled": 13, "rescheduled_pct": 14.9, "callback": 1, "callback_pct": 1.1, "slot_issue": 7, "slot_issue_pct": 8.0, "no_capacity_sms": 1, "no_capacity_sms_pct": 1.1, "cancelled": 3, "cancelled_pct": 3.4, "escalated": 0, "escalated_pct": 0.0, "bot_misunderstand": 0, "bot_misunderstand_pct": 0.0, "other": 8, "other_pct": 9.2, "unknown": 25, "unknown_pct": 28.7, "score": 9.94}, {"hour": 19, "total": 87, "no_answer": 30, "no_answer_pct": 34.5, "rescheduled": 14, "rescheduled_pct": 16.1, "callback": 0, "callback_pct": 0.0, "slot_issue": 7, "slot_issue_pct": 8.0, "no_capacity_sms": 2, "no_capacity_sms_pct": 2.3, "cancelled": 3, "cancelled_pct": 3.4, "escalated": 0, "escalated_pct": 0.0, "bot_misunderstand": 0, "bot_misunderstand_pct": 0.0, "other": 10, "other_pct": 11.5, "unknown": 21, "unknown_pct": 24.1, "score": 10.55}];
 const MORNING   = DATA.filter(d => d.hour <= 12);
 const AFTERNOON = DATA.filter(d => d.hour >= 13);
-const GOLDEN_M  = 11;
+const GOLDEN_M  = 9;
 const GOLDEN_A  = 15;
-const AVOID_H   = new Set([8, 9, 16]);
+const AVOID_H   = new Set([10, 16]);
 
-function noAnsColor(pct, a){ return `rgba(${Math.round(220*(pct/60))},${Math.round(180*(1-pct/60))},60,${a})`; }
-function scoreColor(h, morning){
-  if(morning && h===GOLDEN_M) return 'rgba(245,158,11,.9)';
-  if(!morning && h===GOLDEN_A) return 'rgba(16,185,129,.9)';
-  if(AVOID_H.has(h)) return 'rgba(225,29,72,.55)';
-  return morning ? 'rgba(245,158,11,.45)' : 'rgba(16,185,129,.45)';
-}
+function noAnsColor(pct, a){ return `rgba(${Math.round(200*(pct/45))},${Math.round(160*(1-pct/45))},60,${a})`; }
 
-// ── Tab switch ──────────────────────────────────────────────────────────────
 const NAV = document.querySelectorAll('.tab-nav button');
 function switchTab(name){
   document.querySelectorAll('.tab-panel').forEach(p=>p.classList.remove('active'));
   document.getElementById('tab-'+name).classList.add('active');
   NAV.forEach((b,i)=>b.classList.toggle('active',['analysis','golden'][i]===name));
-  if(name==='golden' && !window._goldenInited){ initGolden(); window._goldenInited=true; }
+  if(name==='golden' && !window._gi){ initGolden(); window._gi=true; }
 }
 
-// ── Tab 1: Analysis ─────────────────────────────────────────────────────────
-const hours   = DATA.map(d=>d.hour+':00');
-const naRate  = DATA.map(d=>d.no_answer_pct);
-const rRate   = DATA.map(d=>d.rescheduled_pct);
-const totals  = DATA.map(d=>d.total);
-const wNA     = (DATA.reduce((s,d)=>s+d.no_answer_pct*d.total,0)/DATA.reduce((s,d)=>s+d.total,0)).toFixed(1);
-const wR      = (DATA.reduce((s,d)=>s+d.rescheduled_pct*d.total,0)/DATA.reduce((s,d)=>s+d.total,0)).toFixed(1);
-const bestR   = DATA.reduce((b,d)=>d.rescheduled_pct>b.rescheduled_pct?d:b);
-const worstNA = DATA.reduce((w,d)=>d.no_answer_pct>w.no_answer_pct?d:w);
+const hours = DATA.map(d=>d.hour+':00');
+const naRate = DATA.map(d=>d.no_answer_pct);
+const rRate  = DATA.map(d=>d.rescheduled_pct);
+const totals = DATA.map(d=>d.total);
+const wNA = (DATA.reduce((s,d)=>s+d.no_answer_pct*d.total,0)/DATA.reduce((s,d)=>s+d.total,0)).toFixed(1);
+const wR  = (DATA.reduce((s,d)=>s+d.rescheduled_pct*d.total,0)/DATA.reduce((s,d)=>s+d.total,0)).toFixed(1);
+const bestR = DATA.reduce((b,d)=>d.rescheduled_pct>b.rescheduled_pct?d:b);
 
 document.getElementById('kpiRow').innerHTML=`
-  <div class="kpi"><div class="lbl">Total calls analysed</div><div class="val" style="color:#6366f1">${DATA.reduce((s,d)=>s+d.total,0)}</div><div class="sub">659 with timestamp · W22–W25</div></div>
-  <div class="kpi"><div class="lbl">Avg no-answer rate</div><div class="val" style="color:#e11d48">${wNA}%</div><div class="sub">Worst: ${worstNA.hour}:00 (${worstNA.no_answer_pct}%)</div></div>
+  <div class="kpi"><div class="lbl">Total calls analysed</div><div class="val" style="color:#6366f1">1,139</div><div class="sub">+73% more data vs previous</div></div>
+  <div class="kpi"><div class="lbl">Avg no-answer rate</div><div class="val" style="color:#f59e0b">${wNA}%</div><div class="sub">Improved from ~51% previously</div></div>
   <div class="kpi"><div class="lbl">Avg reschedule rate</div><div class="val" style="color:#059669">${wR}%</div><div class="sub">Best: ${bestR.hour}:00 (${bestR.rescheduled_pct}%)</div></div>
-  <div class="kpi"><div class="lbl">Peak calling hour</div><div class="val" style="color:#f59e0b">9:00</div><div class="sub">115 calls — but 55.7% no-answer</div></div>`;
+  <div class="kpi"><div class="lbl">Peak calling hour</div><div class="val" style="color:#e11d48">8:00</div><div class="sub">208 calls (18%) — but score only 7.2</div></div>`;
 
-// Volume chart
-new Chart(document.getElementById('volumeChart'),{type:'bar',data:{labels:hours,datasets:[{label:'Calls',data:totals,backgroundColor:DATA.map(d=>noAnsColor(d.no_answer_pct,.85)),borderRadius:5}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false},tooltip:{callbacks:{label:ctx=>{const d=DATA[ctx.dataIndex];return[`${d.total} calls`,`No-answer: ${d.no_answer_pct}%`,`Reschedule: ${d.rescheduled_pct}%`];}}}},scales:{x:{ticks:{font:{size:11}},grid:{display:false}},y:{title:{display:true,text:'Calls',font:{size:10}},ticks:{font:{size:10}},grid:{color:'rgba(0,0,0,.05)'}}}}});
+new Chart(document.getElementById('volumeChart'),{type:'bar',data:{labels:hours,datasets:[{label:'Calls',data:totals,backgroundColor:DATA.map(d=>noAnsColor(d.no_answer_pct,.85)),borderRadius:5}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false},tooltip:{callbacks:{label:ctx=>{const d=DATA[ctx.dataIndex];return[`${d.total} calls`,`No-answer: ${d.no_answer_pct}%`,`Reschedule: ${d.rescheduled_pct}%`,`Score: ${d.score}`];}}}},scales:{x:{ticks:{font:{size:11}},grid:{display:false}},y:{title:{display:true,text:'Calls',font:{size:10}},ticks:{font:{size:10}},grid:{color:'rgba(0,0,0,.05)'}}}}});
 
-// No-answer line
-new Chart(document.getElementById('noAnswerChart'),{type:'line',data:{labels:hours,datasets:[{label:'No-answer %',data:naRate,borderColor:'#e11d48',backgroundColor:'rgba(225,29,72,.1)',borderWidth:3,pointRadius:DATA.map(d=>4+d.total/30),pointBackgroundColor:DATA.map(d=>noAnsColor(d.no_answer_pct,1)),pointBorderColor:'#fff',pointBorderWidth:2,fill:true,tension:.3}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false},tooltip:{callbacks:{label:ctx=>`${ctx.parsed.y}% no-answer (n=${DATA[ctx.dataIndex].total})`}}},scales:{y:{min:20,max:70,ticks:{callback:v=>v+'%',font:{size:10}},grid:{color:'rgba(0,0,0,.05)'}},x:{ticks:{font:{size:10}},grid:{display:false}}}}});
+new Chart(document.getElementById('noAnswerChart'),{type:'line',data:{labels:hours,datasets:[{label:'No-answer %',data:naRate,borderColor:'#e11d48',backgroundColor:'rgba(225,29,72,.1)',borderWidth:3,pointRadius:DATA.map(d=>4+d.total/50),pointBackgroundColor:DATA.map(d=>noAnsColor(d.no_answer_pct,1)),pointBorderColor:'#fff',pointBorderWidth:2,fill:true,tension:.3}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false},tooltip:{callbacks:{label:ctx=>`${ctx.parsed.y}% no-answer (n=${DATA[ctx.dataIndex].total})`}}},scales:{y:{min:0,max:50,ticks:{callback:v=>v+'%',font:{size:10}},grid:{color:'rgba(0,0,0,.05)'}},x:{ticks:{font:{size:10}},grid:{display:false}}}}});
 
-// Reschedule bars
-new Chart(document.getElementById('reschedChart'),{type:'bar',data:{labels:hours,datasets:[{label:'Reschedule %',data:rRate,backgroundColor:DATA.map(d=>d.hour===15?'rgba(16,185,129,.9)':d.hour===13||d.hour===14?'rgba(16,185,129,.65)':'rgba(99,102,241,.55)'),borderRadius:5}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false},tooltip:{callbacks:{label:ctx=>`${ctx.parsed.y}% rescheduled (n=${DATA[ctx.dataIndex].total})`}}},scales:{y:{min:0,max:30,ticks:{callback:v=>v+'%',font:{size:10}},grid:{color:'rgba(0,0,0,.05)'}},x:{ticks:{font:{size:10}},grid:{display:false}}}}});
+new Chart(document.getElementById('reschedChart'),{type:'bar',data:{labels:hours,datasets:[{label:'Reschedule %',data:rRate,backgroundColor:DATA.map(d=>d.hour===15?'rgba(16,185,129,.9)':d.hour===13||d.hour===14?'rgba(16,185,129,.65)':d.hour===9?'rgba(245,158,11,.85)':'rgba(99,102,241,.55)'),borderRadius:5}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false},tooltip:{callbacks:{label:ctx=>`${ctx.parsed.y}% rescheduled (n=${DATA[ctx.dataIndex].total})`}}},scales:{y:{min:0,max:25,ticks:{callback:v=>v+'%',font:{size:10}},grid:{color:'rgba(0,0,0,.05)'}},x:{ticks:{font:{size:10}},grid:{display:false}}}}});
 
-// Stacked
-const OC={no_answer:'rgba(225,29,72,.8)',rescheduled:'rgba(5,150,105,.85)',slot_issue:'rgba(245,158,11,.8)',callback:'rgba(99,102,241,.8)',no_capacity_sms:'rgba(16,185,129,.6)',cancelled:'rgba(156,163,175,.7)',escalated:'rgba(59,130,246,.7)',other:'rgba(209,213,219,.7)',unknown:'rgba(243,244,246,.8)'};
-const OL={no_answer:'No Answer',rescheduled:'Rescheduled ✓',slot_issue:'Slot Issue',callback:'Callback',no_capacity_sms:'No Cap→SMS',cancelled:'Cancelled',escalated:'Escalated',other:'Other',unknown:'Unknown'};
+const OC={no_answer:'rgba(225,29,72,.8)',rescheduled:'rgba(5,150,105,.85)',slot_issue:'rgba(245,158,11,.8)',callback:'rgba(99,102,241,.8)',no_capacity_sms:'rgba(16,185,129,.6)',cancelled:'rgba(156,163,175,.7)',escalated:'rgba(59,130,246,.7)',bot_misunderstand:'rgba(234,179,8,.7)',other:'rgba(209,213,219,.7)',unknown:'rgba(243,244,246,.8)'};
+const OL={no_answer:'No Answer',rescheduled:'Rescheduled ✓',slot_issue:'Slot Issue',callback:'Callback',no_capacity_sms:'No Cap→SMS',cancelled:'Cancelled',escalated:'Escalated',bot_misunderstand:'Bot Misunderstood',other:'Other',unknown:'Unknown'};
 new Chart(document.getElementById('stackedChart'),{type:'bar',data:{labels:hours,datasets:Object.keys(OC).map(k=>({label:OL[k],data:DATA.map(d=>d[k+'_pct']),backgroundColor:OC[k],borderWidth:0}))},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{position:'bottom',labels:{font:{size:10},usePointStyle:true,padding:10}}},scales:{x:{stacked:true,ticks:{font:{size:11}},grid:{display:false}},y:{stacked:true,max:100,ticks:{callback:v=>v+'%',font:{size:10}},grid:{color:'rgba(0,0,0,.05)'}}}}});
 
-// Table
 const tbody=document.getElementById('tableBody');
 const maxR=Math.max(...DATA.map(d=>d.rescheduled_pct));
-const maxNA=Math.max(...DATA.map(d=>d.no_answer_pct));
+const minScore=Math.min(...DATA.map(d=>d.score));
 DATA.forEach(d=>{
-  const isBest=d.rescheduled_pct===maxR, isWorst=d.no_answer_pct===maxNA;
-  function bc(pct,color){return`<td><div class="bar-cell"><span>${pct.toFixed(1)}%</span><div class="mini-bar" style="width:${Math.round(pct*1.2)}px;background:${color}"></div></div></td>`;}
+  const isBest=d.rescheduled_pct===maxR;
+  const isWorst=d.score===minScore;
+  function bc(pct,color){return`<td><div class="bar-cell"><span>${pct.toFixed(1)}%</span><div class="mini-bar" style="width:${Math.round(pct*1.8)}px;background:${color}"></div></div></td>`;}
+  const scoreColor = d.score>=12?'#059669':d.score>=8?'#f59e0b':'#e11d48';
   tbody.innerHTML+=`<tr class="${isBest?'best-row':isWorst?'worst-row':''}">
     <td>${d.hour}:00${isBest?' ✅':''}${isWorst?' 🔴':''}</td><td>${d.total}</td>
     ${bc(d.no_answer_pct,'#e11d48')}${bc(d.rescheduled_pct,'#059669')}
+    <td style="color:${scoreColor};font-weight:700">${d.score.toFixed(2)}</td>
     ${bc(d.slot_issue_pct,'#f59e0b')}${bc(d.callback_pct,'#6366f1')}
     ${bc(d.cancelled_pct,'#9ca3af')}${bc(d.no_capacity_sms_pct,'#10b981')}
-    ${bc(d.escalated_pct,'#3b82f6')}${bc(d.other_pct+d.unknown_pct,'#d1d5db')}</tr>`;
+    ${bc(d.other_pct+d.unknown_pct,'#d1d5db')}</tr>`;
 });
 
-// ── Tab 2: Golden Hour (lazy init) ──────────────────────────────────────────
 function initGolden(){
-  const mHours = MORNING.map(d=>d.hour+':00');
-  const aHours = AFTERNOON.map(d=>d.hour+':00');
-
-  // Morning score chart
-  new Chart(document.getElementById('mornScoreChart'),{type:'bar',data:{labels:mHours,datasets:[{label:'Score',data:MORNING.map(d=>d.score),backgroundColor:MORNING.map(d=>scoreColor(d.hour,true)),borderRadius:6}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false},tooltip:{callbacks:{label:ctx=>{const d=MORNING[ctx.dataIndex];return[`Score: ${d.score}`,`Reschedule: ${d.rescheduled_pct}%`,`No-answer: ${d.no_answer_pct}%`];}}}},scales:{x:{ticks:{font:{size:11}},grid:{display:false}},y:{title:{display:true,text:'Efficiency score',font:{size:10}},ticks:{font:{size:10}},grid:{color:'rgba(0,0,0,.05)'}}}}});
-
-  // Afternoon score chart
-  new Chart(document.getElementById('aftnScoreChart'),{type:'bar',data:{labels:aHours,datasets:[{label:'Score',data:AFTERNOON.map(d=>d.score),backgroundColor:AFTERNOON.map(d=>scoreColor(d.hour,false)),borderRadius:6}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false},tooltip:{callbacks:{label:ctx=>{const d=AFTERNOON[ctx.dataIndex];return[`Score: ${d.score}`,`Reschedule: ${d.rescheduled_pct}%`,`No-answer: ${d.no_answer_pct}%`];}}}},scales:{x:{ticks:{font:{size:11}},grid:{display:false}},y:{title:{display:true,text:'Efficiency score',font:{size:10}},ticks:{font:{size:10}},grid:{color:'rgba(0,0,0,.05)'}}}}});
-
-  // Dual bar — full day with golden markers
-  const goldenPlugin={id:'gp',beforeDraw(c){
-    const{ctx,chartArea,scales}=c;if(!chartArea)return;
-    [GOLDEN_M,GOLDEN_A].forEach(h=>{
-      const idx=DATA.findIndex(d=>d.hour===h);if(idx<0)return;
-      const x=scales.x.getPixelForValue(idx);
-      ctx.save();
-      ctx.strokeStyle=h===GOLDEN_M?'rgba(245,158,11,.7)':'rgba(16,185,129,.7)';
-      ctx.lineWidth=2.5;ctx.setLineDash([]);
-      ctx.beginPath();ctx.moveTo(x,chartArea.top);ctx.lineTo(x,chartArea.bottom);ctx.stroke();
-      ctx.fillStyle=h===GOLDEN_M?'#f59e0b':'#10b981';
-      ctx.font='bold 11px system-ui';ctx.textAlign='center';
-      ctx.fillText(h===GOLDEN_M?'⭐ 11am':'🏆 15pm',x,chartArea.top+12);
-      ctx.restore();
-    });
-  }};
-  new Chart(document.getElementById('dualChart'),{type:'bar',plugins:[goldenPlugin],data:{labels:hours,datasets:[
-    {label:'No-answer %',data:naRate,backgroundColor:'rgba(225,29,72,.6)',borderRadius:3,yAxisID:'y'},
-    {label:'Reschedule %',data:rRate,backgroundColor:DATA.map(d=>d.hour===GOLDEN_M?'rgba(245,158,11,.9)':d.hour===GOLDEN_A?'rgba(16,185,129,.9)':'rgba(5,150,105,.5)'),borderRadius:3,yAxisID:'y'}
-  ]},options:{responsive:true,maintainAspectRatio:false,interaction:{mode:'index',intersect:false},plugins:{legend:{position:'top',labels:{font:{size:11},usePointStyle:true}}},scales:{x:{ticks:{font:{size:11}},grid:{display:false}},y:{max:70,ticks:{callback:v=>v+'%',font:{size:10}},grid:{color:'rgba(0,0,0,.05)'}}}}});
-}
+  const mH=MORNING.map(d=>d.hour+':00');
+  const aH=AFTERNOON.map(d=>d.hour+':00');
+  function sc(d,am){if(am&&d.hour===GOLDEN_M)return'rgba(245,158,11,.9)';if(!am&&d.hour===GOLDEN_A)return'rgba(16,185,129,.9)';if(AVOID_H.has(d.hour))return'rgba(225,29,72,.55)';return am?'rgba(245,158,11,.45)':'rgba(16,185,129,.45)';}
+  new Chart(document.getElementById('mornScoreChart'),{type:'bar',data:{labels:mH,datasets:[{label:'Score',data:MORNING.map(d=>d.score),backgroundColor:MORNING.map(d=>sc(d,true)),borderRadius:6}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false},tooltip:{callbacks:{label:ctx=>{const d=MORNING[ctx.dataIndex];return[`Score: ${d.score}`,`Reschedule: ${d.rescheduled_pct}%`,`No-answer: ${d.no_answer_pct}%`];}}}},scales:{x:{ticks:{font:{size:11}},grid:{display:false}},y:{title:{display:true,text:'Efficiency score',font:{size:10}},ticks:{font:{size:10}},grid:{color:'rgba(0,0,0,.05)'}}}}});
+  new Chart(document.getElementById('aftnScoreChart'),{type:'bar',data:{labels:aH,datasets:[{label:'Score',data:AFTERNOON.map(d=>d.score),backgroundColor:AFTERNOON.map(d=>sc(d,false)),borderRadius:6}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false},tooltip:{callbacks:{label:ctx=>{const d=AFTERNOON[ctx.dataIndex];return[`Score: ${d.score}`,`Reschedule: ${d.rescheduled_pct}%`,`No-answer: ${d.no_answer_pct}%`];}}}},scales:{x:{ticks:{font:{size:11}},grid:{display:false}},y:{title:{display:true,text:'Efficiency score',font:{size:10}},ticks:{font:{size:10}},grid:{color:'rgba(0,0,0,.05)'}}}}});
+  const gp={id:'gp',beforeDraw(c){const{ctx,chartArea,scales}=c;if(!chartArea)return;[GOLDEN_M,GOLDEN_A].forEach(h=>{const idx=DATA.findIndex(d=>d.hour===h);if(idx<0)return;const x=scales.x.getPixelForValue(idx);ctx.save();ctx.strokeStyle=h===GOLDEN_M?'rgba(245,158,11,.8)':'rgba(16,185,129,.8)';ctx.lineWidth=2.5;ctx.beginPath();ctx.moveTo(x,chartArea.top);ctx.lineTo(x,chartArea.bottom);ctx.stroke();ctx.fillStyle=h===GOLDEN_M?'#f59e0b':'#10b981';ctx.font='bold 11px system-ui';ctx.textAlign='center';ctx.fillText(h===GOLDEN_M?'⭐ 9am':'🏆 15pm',x,chartArea.top+12);ctx.restore();});}};
+  new Chart(document.getElementById('dualChart'),{type:'bar',plugins:[gp],data:{labels:hours,datasets:[{label:'No-answer %',data:naRate,backgroundColor:'rgba(225,29,72,.55)',borderRadius:3,yAxisID:'y'},{label:'Reschedule %',data:rRate,backgroundColor:DATA.map(d=>d.hour===GOLDEN_M?'rgba(245,158,11,.9)':d.hour===GOLDEN_A?'rgba(16,185,129,.9)':'rgba(5,150,105,.5)'),borderRadius:3,yAxisID:'y'}]},options:{responsive:true,maintainAspectRatio:false,interaction:{mode:'index',intersect:false},plugins:{legend:{position:'top',labels:{font:{size:11},usePointStyle:true}}},scales:{x:{ticks:{font:{size:11}},grid:{display:false}},y:{max:50,ticks:{callback:v=>v+'%',font:{size:10}},grid:{color:'rgba(0,0,0,.05)'}}}}}); }
 </script></body></html>
